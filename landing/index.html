@@ -788,26 +788,77 @@
       color: var(--ink-3);
     }
 
-    /* ─── responsive ─────────────────────────────────────── */
+    /* ─── responsive: tablet ────────────────────────────── */
     @media (max-width: 900px) {
+      .nav-links { display: none; }
       .hero-grid { grid-template-columns: 1fr; }
       .hero-image { display: none; }
       .psi-grid,
       .pac-grid { grid-template-columns: 1fr; gap: 40px; }
-      .steps-grid { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: 1fr; gap: 24px; }
       .steps-grid::before { display: none; }
       .trust-grid { grid-template-columns: 1fr; }
       .footer-inner { grid-template-columns: 1fr; gap: 32px; }
       .hero-stats { gap: 24px; }
-      .nav-links { display: none; }
     }
 
+    /* ─── responsive: mobile (iPhone 390px) ─────────────── */
     @media (max-width: 600px) {
-      #hero { padding: 72px 0 56px; }
+      /* nav */
+      .nav-logo-text { display: none; }
+      .nav-cta { padding: 10px 16px; font-size: 0.82rem; white-space: nowrap; }
+
+      /* hero */
+      #hero { padding: 56px 0 40px; }
+      .hero-badge { font-size: 0.76rem; padding: 5px 12px; margin-bottom: 20px; }
+      .hero-heading { margin-bottom: 16px; }
+      .hero-sub { margin-bottom: 32px; font-size: 1rem; }
+      .hero-actions {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .hero-actions .btn {
+        width: 100%;
+        justify-content: center;
+        padding: 15px 20px;
+      }
+      .hero-note { font-size: 0.76rem; margin-top: 14px; }
+      .hero-stats {
+        flex-direction: column;
+        gap: 16px;
+        margin-top: 40px;
+        padding-top: 28px;
+      }
+      .stat-value { font-size: 1.8rem; }
+
+      /* sections padding */
+      #para-psicologos,
+      #para-pacientes,
+      #como-funciona-pac,
+      #confianca { padding: 56px 0; }
+      .como-funciona { padding: 56px 0; }
+
+      /* form */
       .form-row { grid-template-columns: 1fr; }
-      .form-card, .waitlist-card { padding: 28px 24px; }
-      .hero-stats { flex-wrap: wrap; gap: 20px; }
-      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+      .form-card, .waitlist-card { padding: 24px 20px; }
+      .form-card h3, .waitlist-card h3 { font-size: 1.2rem; }
+
+      /* steps */
+      .step-number { width: 44px; height: 44px; font-size: 1.1rem; }
+      .steps-header { margin-bottom: 40px; }
+
+      /* trust */
+      .trust-item { padding: 24px 20px; }
+
+      /* footer */
+      .footer-bottom {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+        font-size: 0.74rem;
+      }
+      footer { padding: 40px 0 28px; }
+      .footer-inner { gap: 24px; margin-bottom: 32px; }
     }
   </style>
 </head>
