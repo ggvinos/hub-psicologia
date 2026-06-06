@@ -238,21 +238,29 @@
       overflow: hidden;
     }
 
-    #hero::before {
-      content: '';
-      position: absolute;
-      top: -120px;
-      right: -200px;
-      width: 700px;
-      height: 700px;
-      background: radial-gradient(circle, var(--sage-tint) 0%, transparent 70%);
-      pointer-events: none;
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
     }
 
     .hero-content {
-      max-width: 700px;
       position: relative;
       z-index: 1;
+    }
+
+    .hero-image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-image img {
+      width: 100%;
+      max-width: 520px;
+      height: auto;
+      filter: drop-shadow(0 8px 32px rgba(61,90,65,0.10));
     }
 
     .hero-badge {
@@ -782,6 +790,8 @@
 
     /* ─── responsive ─────────────────────────────────────── */
     @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-image { display: none; }
       .psi-grid,
       .pac-grid { grid-template-columns: 1fr; gap: 40px; }
       .steps-grid { grid-template-columns: 1fr; }
@@ -830,6 +840,7 @@
   <!-- ─── hero ─────────────────────────────────────────────── -->
   <section id="hero">
     <div class="container">
+      <div class="hero-grid">
       <div class="hero-content">
         <div class="hero-badge">
           <span class="hero-badge-dot"></span>
@@ -854,8 +865,14 @@
           </a>
         </div>
         <p class="hero-note">Regulamentado pela Resolução CFP 09/2024. Atendimento online.</p>
+      </div>
 
-        <div class="hero-stats">
+      <div class="hero-image">
+        <img src="assets/psychologist.svg" alt="Psicólogo em sessão com paciente">
+      </div>
+      </div>
+
+      <div class="hero-stats">
           <div class="stat-item">
             <div class="stat-value">2.238</div>
             <div class="stat-label">psicólogos registrados em SC</div>
@@ -869,7 +886,6 @@
             <div class="stat-label">plataformas com foco regional</div>
           </div>
         </div>
-      </div>
     </div>
   </section>
 
