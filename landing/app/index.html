@@ -272,9 +272,11 @@
     .match-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 7px; }
     .match-tag { font-size: 10px; padding: 2px 9px; border-radius: 99px; background: var(--paper-2); color: var(--ink-3); font-weight: 500; }
     .match-loc { font-size: 11px; color: var(--ink-3); }
-    .match-score-col { text-align: center; flex-shrink: 0; min-width: 70px; }
-    .match-score { font-size: 22px; font-weight: 800; color: var(--verde); line-height: 1; }
-    .match-score-lbl { font-size: 9px; color: var(--ink-3); margin-top: 2px; }
+    .match-seeking { font-size: 12px; color: var(--ink-2); margin-bottom: 7px; }
+    .match-seeking strong { color: var(--ink); font-weight: 600; }
+    .match-details-row { display: flex; gap: 12px; font-size: 11px; color: var(--ink-3); margin-bottom: 8px; flex-wrap: wrap; }
+    .match-reason { display: flex; gap: 8px; align-items: flex-start; background: rgba(61,90,65,0.05); border: 1px solid rgba(61,90,65,0.12); border-radius: 7px; padding: 8px 12px; font-size: 11px; color: var(--ink-2); line-height: 1.55; margin-bottom: 10px; }
+    .match-reason svg { width: 13px; height: 13px; fill: none; stroke: var(--verde); stroke-width: 1.8; stroke-linecap: round; flex-shrink: 0; margin-top: 1px; }
     .match-actions { display: flex; gap: 7px; margin-top: 12px; }
 
     /* ══════════════════════════════════════════════════════
@@ -731,43 +733,73 @@
           <div class="av av-lg av-teal">LM</div>
           <div class="match-body">
             <div class="match-name">Lucas Mendes, 29 anos</div>
-            <div class="match-tags"><span class="match-tag">Ansiedade generalizada</span><span class="match-tag">ACT</span><span class="match-tag">Online</span><span class="match-tag">Manhãs</span></div>
-            <div class="match-loc">São José, SC · Disponível: seg, qua e sex manhãs · Faixa de preço: até R$ 200</div>
+            <div class="match-seeking">Busca ajuda com <strong>ansiedade generalizada</strong></div>
+            <div class="match-tags"><span class="match-tag">ACT</span><span class="match-tag">Online</span><span class="match-tag">Manhãs</span></div>
+            <div class="match-details-row">
+              <span>São José, SC</span>
+              <span>·</span>
+              <span>Seg, qua e sex — manhãs</span>
+              <span>·</span>
+              <span>Até R$ 200/sessão</span>
+            </div>
+            <div class="match-reason">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              Abordagem ACT alinhada com sua especialidade, horários compatíveis com sua disponibilidade de manhã e histórico com casos de ansiedade.
+            </div>
             <div class="match-actions">
-              <button class="act-btn act-btn-prim">Aceitar paciente</button>
+              <button class="act-btn act-btn-prim">Aceitar e entrar em contato</button>
               <button class="act-btn">Ver perfil completo</button>
               <button class="act-btn act-btn-red">Recusar</button>
             </div>
           </div>
-          <div class="match-score-col"><div class="match-score">98%</div><div class="match-score-lbl">compatível</div></div>
         </div>
         <div class="match-card">
           <div class="av av-lg av-blue">JP</div>
           <div class="match-body">
             <div class="match-name">Julia Pereira, 34 anos</div>
-            <div class="match-tags"><span class="match-tag">Depressão</span><span class="match-tag">TCC</span><span class="match-tag">Online</span><span class="match-tag">Tardes</span></div>
-            <div class="match-loc">Florianópolis, SC · Disponível: ter e qui tardes · Faixa de preço: até R$ 220</div>
+            <div class="match-seeking">Busca ajuda com <strong>depressão e baixa autoestima</strong></div>
+            <div class="match-tags"><span class="match-tag">TCC</span><span class="match-tag">Online</span><span class="match-tag">Tardes</span></div>
+            <div class="match-details-row">
+              <span>Florianópolis, SC</span>
+              <span>·</span>
+              <span>Ter e qui — tardes</span>
+              <span>·</span>
+              <span>Até R$ 220/sessão</span>
+            </div>
+            <div class="match-reason">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              Abordagem TCC compatível, disponibilidade nas tardes de terça e quinta alinhada com seus horários vagos.
+            </div>
             <div class="match-actions">
-              <button class="act-btn act-btn-prim">Aceitar paciente</button>
+              <button class="act-btn act-btn-prim">Aceitar e entrar em contato</button>
               <button class="act-btn">Ver perfil completo</button>
               <button class="act-btn act-btn-red">Recusar</button>
             </div>
           </div>
-          <div class="match-score-col"><div class="match-score">92%</div><div class="match-score-lbl">compatível</div></div>
         </div>
         <div class="match-card">
           <div class="av av-lg av-rose">RF</div>
           <div class="match-body">
             <div class="match-name">Rafael Fontes, 27 anos</div>
-            <div class="match-tags"><span class="match-tag">Relacionamentos</span><span class="match-tag">ACT</span><span class="match-tag">Online</span><span class="match-tag">Noites</span></div>
-            <div class="match-loc">Palhoça, SC · Disponível: seg, qua e sex noites · Faixa de preço: até R$ 180</div>
+            <div class="match-seeking">Busca ajuda com <strong>dificuldades em relacionamentos</strong></div>
+            <div class="match-tags"><span class="match-tag">ACT</span><span class="match-tag">Online</span><span class="match-tag">Noites</span></div>
+            <div class="match-details-row">
+              <span>Palhoça, SC</span>
+              <span>·</span>
+              <span>Seg, qua e sex — noites</span>
+              <span>·</span>
+              <span>Até R$ 180/sessão</span>
+            </div>
+            <div class="match-reason">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              Abordagem ACT alinhada, disponibilidade noturna compatível com horários em aberto na sua agenda.
+            </div>
             <div class="match-actions">
-              <button class="act-btn act-btn-prim">Aceitar paciente</button>
+              <button class="act-btn act-btn-prim">Aceitar e entrar em contato</button>
               <button class="act-btn">Ver perfil completo</button>
               <button class="act-btn act-btn-red">Recusar</button>
             </div>
           </div>
-          <div class="match-score-col"><div class="match-score">87%</div><div class="match-score-lbl">compatível</div></div>
         </div>
       </div>
 
