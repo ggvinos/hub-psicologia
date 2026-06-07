@@ -9,7 +9,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
   <style>
-    /* ─── tokens ─────────────────────────────────────────── */
     :root {
       --verde:        #3D5A41;
       --verde-escuro: #2D4430;
@@ -26,932 +25,1008 @@
       --ink-3:        #8A8F84;
       --ink-4:        #B4B6AB;
       --white:        #FFFFFF;
-
       --font-display: 'Instrument Serif', Georgia, serif;
       --font-sans:    'DM Sans', -apple-system, system-ui, sans-serif;
-
       --radius-sm:  6px;
       --radius-md:  12px;
       --radius-lg:  20px;
       --radius-xl:  32px;
-
       --shadow-sm: 0 1px 3px rgba(28,38,32,0.08);
       --shadow-md: 0 4px 16px rgba(28,38,32,0.10);
-      --shadow-lg: 0 12px 40px rgba(28,38,32,0.12);
+      --shadow-lg: 0 12px 40px rgba(28,38,32,0.14);
     }
-
-    /* ─── reset ──────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; font-size: 16px; }
-
-    body {
-      background: var(--paper);
-      color: var(--ink);
-      font-family: var(--font-sans);
-      font-weight: 400;
-      line-height: 1.6;
-      letter-spacing: -0.01em;
-      -webkit-font-smoothing: antialiased;
-    }
-
+    body { background: var(--paper); color: var(--ink); font-family: var(--font-sans); font-weight: 400; line-height: 1.6; letter-spacing: -0.01em; -webkit-font-smoothing: antialiased; }
     img { display: block; max-width: 100%; }
     a { color: inherit; text-decoration: none; }
 
-    /* ─── utilities ──────────────────────────────────────── */
-    .container {
-      width: 100%;
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
+    .container { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 24px; }
 
     .section-tag {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ink-3);
-      margin-bottom: 16px;
+      display: inline-block; font-size: 11px; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--ink-3); margin-bottom: 16px;
     }
-
     .display-heading {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 400;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      color: var(--ink);
+      font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 400; line-height: 1.15; letter-spacing: -0.02em; color: var(--ink);
     }
-
     .section-heading {
-      font-family: var(--font-display);
-      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
-      font-weight: 400;
-      line-height: 1.2;
-      letter-spacing: -0.02em;
+      font-family: var(--font-display); font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+      font-weight: 400; line-height: 1.2; letter-spacing: -0.02em;
     }
+    .body-lg { font-size: 1.125rem; line-height: 1.65; color: var(--ink-2); }
+    .body-md { font-size: 1rem; line-height: 1.6; color: var(--ink-2); }
 
-    .body-lg {
-      font-size: 1.125rem;
-      line-height: 1.65;
-      color: var(--ink-2);
-    }
-
-    .body-md {
-      font-size: 1rem;
-      line-height: 1.6;
-      color: var(--ink-2);
-    }
-
-    /* ─── buttons ────────────────────────────────────────── */
+    /* buttons */
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 28px;
-      border-radius: var(--radius-md);
-      font-family: var(--font-sans);
-      font-size: 0.95rem;
-      font-weight: 500;
-      letter-spacing: -0.01em;
-      cursor: pointer;
-      border: none;
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: var(--radius-md);
+      font-family: var(--font-sans); font-size: 0.95rem; font-weight: 500;
+      letter-spacing: -0.01em; cursor: pointer; border: none;
       transition: background 0.18s, transform 0.12s, box-shadow 0.18s;
       text-decoration: none;
     }
-
     .btn:active { transform: scale(0.98); }
-
-    .btn-primary {
-      background: var(--verde);
-      color: var(--paper-3);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .btn-primary:hover {
-      background: var(--verde-escuro);
-      box-shadow: var(--shadow-md);
-    }
-
-    .btn-ghost {
-      background: transparent;
-      color: var(--verde);
-      border: 1.5px solid var(--sage);
-    }
-
-    .btn-ghost:hover {
-      background: var(--sage-tint);
-    }
-
-    .btn-white {
-      background: var(--paper-3);
-      color: var(--verde);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .btn-white:hover {
-      background: var(--white);
-      box-shadow: var(--shadow-md);
-    }
-
+    .btn-primary { background: var(--verde); color: var(--paper-3); box-shadow: var(--shadow-sm); }
+    .btn-primary:hover { background: var(--verde-escuro); box-shadow: var(--shadow-md); }
+    .btn-ghost { background: transparent; color: var(--verde); border: 1.5px solid var(--sage); }
+    .btn-ghost:hover { background: var(--sage-tint); }
+    .btn-white { background: var(--paper-3); color: var(--verde); box-shadow: var(--shadow-sm); }
+    .btn-white:hover { background: var(--white); box-shadow: var(--shadow-md); }
     .btn-lg { padding: 16px 36px; font-size: 1rem; }
 
-    /* ─── nav ────────────────────────────────────────────── */
+    /* nav */
     nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(242, 238, 227, 0.92);
-      backdrop-filter: blur(12px);
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(242,238,227,0.92); backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--rule-soft);
     }
-
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 64px;
-      gap: 32px;
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 32px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; }
     .nav-logo-mark {
-      width: 36px;
-      height: 36px;
-      background: var(--verde);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
+      width: 36px; height: 36px; background: var(--verde); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
-
-    .nav-logo-mark svg {
-      width: 20px;
-      height: 20px;
-      fill: none;
-      stroke: var(--sage);
-      stroke-width: 2;
-      stroke-linecap: round;
-    }
-
-    .nav-logo-text {
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      color: var(--ink);
-      font-style: italic;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      padding: 6px 14px;
-      border-radius: var(--radius-sm);
-      font-size: 0.9rem;
-      color: var(--ink-2);
-      transition: background 0.15s, color 0.15s;
-    }
-
-    .nav-links a:hover {
-      background: var(--sage-tint);
-      color: var(--ink);
-    }
-
+    .nav-logo-mark svg { width: 20px; height: 20px; fill: none; stroke: var(--sage); stroke-width: 2; stroke-linecap: round; }
+    .nav-logo-text { font-family: var(--font-display); font-size: 1.1rem; color: var(--ink); font-style: italic; }
+    .nav-links { display: flex; align-items: center; gap: 8px; list-style: none; }
+    .nav-links a { padding: 6px 14px; border-radius: var(--radius-sm); font-size: 0.9rem; color: var(--ink-2); transition: background 0.15s, color 0.15s; }
+    .nav-links a:hover { background: var(--sage-tint); color: var(--ink); }
     .nav-cta { margin-left: 8px; }
 
-    /* ─── hero ───────────────────────────────────────────── */
-    #hero {
-      padding: 100px 0 140px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      align-items: center;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-image {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hero-image img {
-      width: 100%;
-      max-width: 520px;
-      height: auto;
-      filter: drop-shadow(0 8px 32px rgba(61,90,65,0.10));
-    }
-
+    /* hero */
+    #hero { padding: 100px 0 120px; position: relative; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+    .hero-content { position: relative; z-index: 1; }
     .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--sage-tint);
-      border: 1px solid var(--sage);
-      border-radius: 99px;
-      padding: 6px 14px;
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--verde);
-      margin-bottom: 32px;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--sage-tint); border: 1px solid var(--sage);
+      border-radius: 99px; padding: 6px 14px; font-size: 0.82rem;
+      font-weight: 500; color: var(--verde); margin-bottom: 32px;
     }
+    .hero-badge-dot { width: 6px; height: 6px; background: var(--verde); border-radius: 50%; }
+    .hero-heading { margin-bottom: 24px; }
+    .hero-heading em { font-style: italic; color: var(--verde); }
+    .hero-sub { margin-bottom: 48px; max-width: 480px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .hero-note { font-size: 0.82rem; color: var(--ink-3); margin-top: 20px; }
 
-    .hero-badge-dot {
-      width: 6px;
-      height: 6px;
-      background: var(--verde);
-      border-radius: 50%;
+    /* hero product mockup */
+    .hero-product { position: relative; }
+    .hero-product-float {
+      position: absolute; bottom: -16px; right: -16px;
+      background: var(--paper-3); border: 1px solid var(--rule-soft);
+      border-radius: 12px; padding: 10px 14px;
+      box-shadow: var(--shadow-md);
+      display: flex; align-items: center; gap: 10px;
+      font-size: 12px; font-weight: 500; color: var(--verde);
+      white-space: nowrap; z-index: 10;
     }
+    .hero-product-float-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #22C55E; box-shadow: 0 0 0 3px rgba(34,197,94,0.2);
+      flex-shrink: 0; animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
 
-    .hero-heading {
-      margin-bottom: 24px;
-    }
-
-    .hero-heading em {
-      font-style: italic;
-      color: var(--verde);
-    }
-
-    .hero-sub {
-      margin-bottom: 48px;
-      max-width: 540px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      align-items: center;
-    }
-
-    .hero-note {
-      font-size: 0.82rem;
-      color: var(--ink-3);
-      margin-top: 20px;
-    }
-
-    .hero-stats {
-      display: flex;
-      gap: 40px;
-      margin-top: 72px;
-      padding-top: 40px;
-      border-top: 1px solid var(--rule-soft);
-    }
-
-    .stat-item {}
-    .stat-value {
-      font-family: var(--font-display);
-      font-size: 2rem;
-      color: var(--verde);
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-    .stat-label {
-      font-size: 0.82rem;
-      color: var(--ink-3);
-    }
-
-    /* ─── section: para psicólogos ───────────────────────── */
-    #para-psicologos {
-      background: var(--verde);
-      padding: 96px 0;
-      position: relative;
+    /* browser frame */
+    .browser-frame {
+      background: var(--white); border-radius: 12px;
+      box-shadow: 0 0 0 1px rgba(28,38,32,0.07), 0 24px 64px rgba(28,38,32,0.16);
       overflow: hidden;
     }
+    .browser-bar {
+      background: #F5F4F1; border-bottom: 1px solid #E8E6E1;
+      padding: 10px 14px; display: flex; align-items: center; gap: 10px;
+    }
+    .browser-dots { display: flex; gap: 6px; flex-shrink: 0; }
+    .browser-dots span { width: 11px; height: 11px; border-radius: 50%; display: block; }
+    .browser-dots span:nth-child(1) { background: #FF5F57; }
+    .browser-dots span:nth-child(2) { background: #FEBC2E; }
+    .browser-dots span:nth-child(3) { background: #28C840; }
+    .browser-url {
+      background: #ECEAE6; border-radius: 5px; padding: 4px 12px;
+      font-size: 11px; color: #888; flex: 1; max-width: 260px;
+      margin: 0 auto; text-align: center; font-family: var(--font-sans);
+      overflow: hidden; white-space: nowrap;
+    }
 
+    /* dashboard mini (hero) */
+    .dash-wrap { display: grid; grid-template-columns: 152px 1fr; height: 340px; overflow: hidden; }
+    .dash-sidebar { background: var(--ink); padding: 16px 10px; display: flex; flex-direction: column; gap: 2px; }
+    .dash-sidebar-logo {
+      display: flex; align-items: center; gap: 7px; padding: 6px 8px;
+      margin-bottom: 12px;
+    }
+    .dash-sidebar-logo-mark {
+      width: 24px; height: 24px; background: var(--verde); border-radius: 6px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .dash-sidebar-logo-mark svg { width: 13px; height: 13px; fill: none; stroke: var(--sage); stroke-width: 2; stroke-linecap: round; }
+    .dash-sidebar-logo span { font-size: 11px; font-weight: 600; color: var(--paper-3); font-family: var(--font-sans); }
+    .dash-nav-item {
+      display: flex; align-items: center; gap: 8px; padding: 7px 8px;
+      border-radius: 6px; font-size: 11px; color: var(--ink-3);
+      font-family: var(--font-sans); cursor: default;
+    }
+    .dash-nav-item.active { background: rgba(199,210,181,0.13); color: var(--sage); }
+    .dash-nav-item svg { width: 13px; height: 13px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .dash-main { background: #F9F8F5; padding: 16px 18px; overflow: hidden; }
+    .dash-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 14px; }
+    .dash-greeting { font-size: 12px; font-weight: 600; color: var(--ink); font-family: var(--font-sans); }
+    .dash-date { font-size: 10px; color: var(--ink-3); margin-top: 2px; font-family: var(--font-sans); }
+    .dash-avatar {
+      width: 28px; height: 28px; background: var(--verde); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 600; color: var(--paper-3); font-family: var(--font-sans);
+      flex-shrink: 0;
+    }
+    .dash-stats-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 16px; }
+    .dash-stat-card {
+      background: var(--white); border-radius: 7px; padding: 10px 10px 8px;
+      border: 1px solid rgba(28,38,32,0.06);
+    }
+    .dash-stat-val { font-size: 16px; font-weight: 600; color: var(--ink); font-family: var(--font-sans); line-height: 1; }
+    .dash-stat-lbl { font-size: 9px; color: var(--ink-3); margin-top: 3px; font-family: var(--font-sans); line-height: 1.3; }
+    .dash-section-label { font-size: 10px; font-weight: 600; color: var(--ink-2); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.07em; font-family: var(--font-sans); }
+    .dash-session-row {
+      display: flex; align-items: center; gap: 8px; padding: 7px 10px;
+      background: var(--white); border-radius: 6px; margin-bottom: 5px;
+      border: 1px solid rgba(28,38,32,0.05);
+    }
+    .dash-time { font-size: 10px; color: var(--ink-3); font-family: var(--font-sans); width: 34px; flex-shrink: 0; }
+    .dash-patient-av {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--sage-tint); display: flex; align-items: center;
+      justify-content: center; font-size: 8px; font-weight: 600;
+      color: var(--verde); flex-shrink: 0; font-family: var(--font-sans);
+    }
+    .dash-patient-name { font-size: 11px; color: var(--ink); font-family: var(--font-sans); flex: 1; }
+    .dash-chip {
+      font-size: 9px; font-weight: 600; padding: 2px 7px; border-radius: 99px;
+      font-family: var(--font-sans); flex-shrink: 0;
+    }
+    .dash-chip-green { background: rgba(34,197,94,0.12); color: #16A34A; }
+    .dash-chip-yellow { background: rgba(234,179,8,0.12); color: #B45309; }
+
+    /* hero stats */
+    .hero-stats { display: flex; gap: 40px; margin-top: 72px; padding-top: 40px; border-top: 1px solid var(--rule-soft); }
+    .stat-value { font-family: var(--font-display); font-size: 2rem; color: var(--verde); line-height: 1; margin-bottom: 4px; }
+    .stat-label { font-size: 0.82rem; color: var(--ink-3); }
+
+    /* ── plataforma ───────────────────────────────────────── */
+    #plataforma { padding: 96px 0; background: var(--paper-2); border-top: 1px solid var(--rule-soft); }
+    .platform-header { text-align: center; max-width: 600px; margin: 0 auto 56px; }
+    .platform-header .section-heading { color: var(--ink); }
+    .platform-header .body-md { margin-top: 12px; }
+
+    .platform-tabs {
+      display: flex; gap: 4px; background: var(--paper-3);
+      border: 1px solid var(--rule-soft); border-radius: 12px;
+      padding: 4px; width: fit-content; margin: 0 auto 40px; flex-wrap: wrap;
+    }
+    .platform-tab {
+      padding: 9px 22px; border-radius: 8px; font-size: 0.88rem; font-weight: 500;
+      color: var(--ink-3); cursor: pointer; border: none; background: transparent;
+      font-family: var(--font-sans); transition: background 0.15s, color 0.15s;
+    }
+    .platform-tab.active { background: var(--white); color: var(--ink); box-shadow: var(--shadow-sm); }
+    .platform-tab:hover:not(.active) { color: var(--ink-2); }
+
+    .platform-view { display: none; }
+    .platform-view.active { display: block; }
+
+    /* agenda tab view */
+    .agenda-view { font-family: var(--font-sans); overflow: hidden; }
+    .agenda-toolbar {
+      display: flex; align-items: center; gap: 10px; padding: 14px 20px;
+      border-bottom: 1px solid #ECEAE6; background: #FAFAF8;
+    }
+    .agenda-nav-btn {
+      width: 28px; height: 28px; border: 1px solid #E0DDD8; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; color: #666; cursor: default; background: var(--white);
+    }
+    .agenda-month-label { font-size: 13px; font-weight: 600; color: var(--ink); }
+    .agenda-toggle {
+      display: flex; border: 1px solid #E0DDD8; border-radius: 6px; overflow: hidden; margin-left: auto;
+    }
+    .agenda-toggle button {
+      padding: 5px 12px; font-size: 11px; font-weight: 500; border: none;
+      cursor: default; font-family: var(--font-sans); color: #888; background: var(--white);
+    }
+    .agenda-toggle button.active { background: var(--verde); color: var(--white); }
+    .agenda-new-btn {
+      background: var(--verde); color: var(--white); border: none; border-radius: 6px;
+      padding: 6px 14px; font-size: 11px; font-weight: 600; cursor: default;
+      font-family: var(--font-sans);
+    }
+    .agenda-grid-wrap { overflow-x: auto; }
+    .agenda-grid {
+      display: grid; grid-template-columns: 52px repeat(6, 1fr);
+      border-bottom: 1px solid #ECEAE6;
+    }
+    .agenda-grid-head { background: #FAFAF8; }
+    .agenda-col-head {
+      padding: 10px 8px; text-align: center; border-right: 1px solid #ECEAE6;
+      font-size: 11px; color: #888; font-weight: 500;
+    }
+    .agenda-col-head strong { display: block; font-size: 18px; font-weight: 600; color: var(--ink); line-height: 1.2; }
+    .agenda-col-head.today strong { color: var(--verde); }
+    .agenda-col-head.today { background: rgba(61,90,65,0.04); }
+    .agenda-time-cell { padding: 0 8px; height: 52px; display: flex; align-items: flex-start; padding-top: 6px; border-right: 1px solid #ECEAE6; border-bottom: 1px solid #F0EDE8; }
+    .agenda-time-cell span { font-size: 10px; color: #AAA; }
+    .agenda-slot { position: relative; height: 52px; border-right: 1px solid #F0EDE8; border-bottom: 1px solid #F0EDE8; }
+    .agenda-event {
+      position: absolute; left: 3px; right: 3px; top: 4px; bottom: 4px;
+      border-radius: 5px; padding: 3px 6px; font-size: 10px; font-weight: 600;
+      overflow: hidden; cursor: default;
+    }
+    .agenda-event-name { display: block; color: inherit; line-height: 1.3; }
+    .agenda-event-type { display: block; font-size: 9px; font-weight: 400; opacity: 0.8; }
+    .ev-tcc { background: rgba(61,90,65,0.15); color: #2D4430; }
+    .ev-act { background: rgba(100,130,200,0.15); color: #3456A0; }
+    .ev-psi { background: rgba(180,90,120,0.15); color: #8B3555; }
+
+    /* prontuário tab */
+    .pronut-wrap { display: grid; grid-template-columns: 220px 1fr; height: 420px; font-family: var(--font-sans); }
+    .pronut-list { border-right: 1px solid #ECEAE6; background: #FAFAF8; overflow-y: auto; }
+    .pronut-list-header { padding: 14px 16px 10px; border-bottom: 1px solid #ECEAE6; }
+    .pronut-search {
+      width: 100%; padding: 6px 10px; border: 1px solid #E0DDD8; border-radius: 6px;
+      font-size: 11px; color: #888; background: var(--white); font-family: var(--font-sans);
+    }
+    .pronut-patient {
+      display: flex; align-items: center; gap: 10px; padding: 10px 16px;
+      border-bottom: 1px solid #F0EDE8; cursor: default;
+    }
+    .pronut-patient.active { background: rgba(61,90,65,0.06); }
+    .pronut-av {
+      width: 32px; height: 32px; border-radius: 50%; background: var(--sage-tint);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 600; color: var(--verde); flex-shrink: 0;
+    }
+    .pronut-av.av2 { background: rgba(100,130,200,0.15); color: #3456A0; }
+    .pronut-av.av3 { background: rgba(180,90,120,0.12); color: #8B3555; }
+    .pronut-name { font-size: 12px; font-weight: 500; color: var(--ink); }
+    .pronut-meta { font-size: 10px; color: var(--ink-3); margin-top: 1px; }
+    .pronut-status { width: 7px; height: 7px; border-radius: 50%; background: #22C55E; flex-shrink: 0; margin-left: auto; }
+    .pronut-status.paused { background: #E5E7EB; }
+    .pronut-detail { padding: 20px 24px; overflow-y: auto; background: var(--white); }
+    .pronut-detail-header { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid #ECEAE6; }
+    .pronut-detail-av { width: 44px; height: 44px; border-radius: 50%; background: var(--sage-tint); display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600; color: var(--verde); }
+    .pronut-detail-name { font-size: 15px; font-weight: 600; color: var(--ink); }
+    .pronut-detail-sub { font-size: 11px; color: var(--ink-3); margin-top: 2px; }
+    .pronut-session-card {
+      border: 1px solid #ECEAE6; border-radius: 8px; padding: 14px 16px; margin-bottom: 10px;
+      background: #FAFAF8;
+    }
+    .pronut-session-date { font-size: 10px; font-weight: 600; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+    .pronut-session-text { font-size: 12px; color: var(--ink-2); line-height: 1.55; }
+    .pronut-action-row { display: flex; gap: 8px; margin-top: 16px; }
+    .pronut-btn {
+      padding: 7px 14px; border-radius: 6px; font-size: 11px; font-weight: 600;
+      border: 1px solid var(--rule); cursor: default; background: var(--white);
+      color: var(--ink-2); font-family: var(--font-sans);
+    }
+    .pronut-btn.primary { background: var(--verde); color: var(--white); border-color: var(--verde); }
+
+    /* pacientes tab (matching) */
+    .match-wrap { padding: 20px 24px; font-family: var(--font-sans); min-height: 420px; background: var(--white); }
+    .match-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+    .match-title { font-size: 14px; font-weight: 600; color: var(--ink); }
+    .match-badge { background: var(--verde); color: var(--white); font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 99px; }
+    .match-card {
+      border: 1px solid #ECEAE6; border-radius: 10px; padding: 16px 18px;
+      margin-bottom: 12px; display: flex; gap: 14px; align-items: flex-start;
+      background: #FAFAF8;
+    }
+    .match-card.highlight { border-color: rgba(61,90,65,0.3); background: rgba(61,90,65,0.03); }
+    .match-av { width: 40px; height: 40px; border-radius: 50%; background: var(--sage-tint); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: var(--verde); flex-shrink: 0; }
+    .match-av.av2 { background: rgba(100,130,200,0.15); color: #3456A0; }
+    .match-av.av3 { background: rgba(234,179,8,0.12); color: #92680F; }
+    .match-info { flex: 1; }
+    .match-name { font-size: 13px; font-weight: 600; color: var(--ink); }
+    .match-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 5px; }
+    .match-tag { font-size: 10px; padding: 2px 8px; border-radius: 99px; background: #F0EDE8; color: var(--ink-3); font-weight: 500; }
+    .match-location { font-size: 10px; color: var(--ink-3); margin-top: 5px; }
+    .match-score-wrap { text-align: right; flex-shrink: 0; }
+    .match-score { font-size: 20px; font-weight: 700; color: var(--verde); line-height: 1; }
+    .match-score-lbl { font-size: 9px; color: var(--ink-3); margin-top: 2px; }
+    .match-actions { display: flex; gap: 6px; margin-top: 10px; }
+    .match-btn {
+      padding: 5px 12px; border-radius: 6px; font-size: 10px; font-weight: 600;
+      border: none; cursor: default; font-family: var(--font-sans);
+    }
+    .match-btn-accept { background: var(--verde); color: var(--white); }
+    .match-btn-see { background: #F0EDE8; color: var(--ink-2); }
+
+    /* financeiro tab */
+    .fin-wrap { padding: 20px 24px; font-family: var(--font-sans); min-height: 420px; background: var(--white); display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .fin-left {}
+    .fin-revenue { margin-bottom: 20px; }
+    .fin-amount { font-size: 28px; font-weight: 700; color: var(--ink); line-height: 1; }
+    .fin-period { font-size: 11px; color: var(--ink-3); margin-top: 3px; }
+    .fin-growth { font-size: 11px; color: #16A34A; font-weight: 600; margin-top: 6px; }
+    .fin-chart { display: flex; align-items: flex-end; gap: 6px; height: 100px; margin-top: 16px; }
+    .fin-bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+    .fin-bar { background: var(--sage-tint); border-radius: 4px 4px 0 0; width: 100%; transition: background 0.15s; }
+    .fin-bar.active { background: var(--verde); }
+    .fin-bar-label { font-size: 9px; color: var(--ink-3); }
+    .fin-right {}
+    .fin-list-title { font-size: 11px; font-weight: 600; color: var(--ink); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 12px; }
+    .fin-list-item { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid #F0EDE8; }
+    .fin-item-date { font-size: 10px; color: var(--ink-3); width: 38px; flex-shrink: 0; }
+    .fin-item-name { font-size: 12px; color: var(--ink); flex: 1; }
+    .fin-item-amount { font-size: 12px; font-weight: 600; color: var(--ink); }
+    .fin-item-status { width: 7px; height: 7px; border-radius: 50%; background: #22C55E; flex-shrink: 0; }
+
+    /* ── para psicólogos ─────────────────────────────────── */
+    #para-psicologos { background: var(--verde); padding: 96px 0; position: relative; overflow: hidden; }
     #para-psicologos::after {
-      content: '';
-      position: absolute;
-      bottom: -100px;
-      left: -100px;
-      width: 400px;
-      height: 400px;
+      content: ''; position: absolute; bottom: -100px; left: -100px;
+      width: 400px; height: 400px;
       background: radial-gradient(circle, rgba(199,210,181,0.12) 0%, transparent 70%);
       pointer-events: none;
     }
-
     #para-psicologos .section-tag { color: var(--sage); }
     #para-psicologos .section-heading { color: var(--paper-3); }
     #para-psicologos .body-md { color: var(--sage); }
-
-    .psi-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: start;
-    }
-
-    .psi-benefits {
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-      margin-top: 40px;
-    }
-
-    .benefit-item {
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-    }
-
+    .psi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+    .psi-benefits { display: flex; flex-direction: column; gap: 32px; margin-top: 40px; }
+    .benefit-item { display: flex; gap: 16px; align-items: flex-start; }
     .benefit-icon {
-      width: 40px;
-      height: 40px;
-      background: rgba(199,210,181,0.15);
-      border-radius: var(--radius-sm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      border: 1px solid rgba(199,210,181,0.25);
+      width: 40px; height: 40px; background: rgba(199,210,181,0.15);
+      border-radius: var(--radius-sm); display: flex; align-items: center;
+      justify-content: center; flex-shrink: 0; border: 1px solid rgba(199,210,181,0.25);
     }
+    .benefit-icon svg { width: 18px; height: 18px; stroke: var(--sage); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .benefit-text h4 { font-size: 0.95rem; font-weight: 600; color: var(--paper-3); margin-bottom: 4px; }
+    .benefit-text p { font-size: 0.88rem; color: var(--sage); line-height: 1.55; }
 
-    .benefit-icon svg {
-      width: 18px;
-      height: 18px;
-      stroke: var(--sage);
-      fill: none;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+    /* forms */
+    .form-card { background: var(--paper-3); border-radius: var(--radius-xl); padding: 40px; box-shadow: var(--shadow-lg); }
+    .form-card h3 { font-family: var(--font-display); font-size: 1.4rem; color: var(--ink); margin-bottom: 8px; }
+    .form-card .form-sub, .waitlist-card .form-sub { font-size: 0.88rem; color: var(--ink-3); margin-bottom: 28px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 0.82rem; font-weight: 500; color: var(--ink-2); margin-bottom: 6px; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 11px 14px; background: var(--paper);
+      border: 1.5px solid var(--rule); border-radius: var(--radius-sm);
+      font-family: var(--font-sans); font-size: 0.9rem; color: var(--ink);
+      transition: border-color 0.15s, box-shadow 0.15s; outline: none; -webkit-appearance: none;
     }
-
-    .benefit-text h4 {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--paper-3);
-      margin-bottom: 4px;
-    }
-
-    .benefit-text p {
-      font-size: 0.88rem;
-      color: var(--sage);
-      line-height: 1.55;
-    }
-
-    /* ─── formulário de cadastro ─────────────────────────── */
-    .form-card {
-      background: var(--paper-3);
-      border-radius: var(--radius-xl);
-      padding: 40px;
-      box-shadow: var(--shadow-lg);
-    }
-
-    .form-card h3 {
-      font-family: var(--font-display);
-      font-size: 1.4rem;
-      color: var(--ink);
-      margin-bottom: 8px;
-    }
-
-    .form-card .form-sub {
-      font-size: 0.88rem;
-      color: var(--ink-3);
-      margin-bottom: 28px;
-    }
-
-    .form-group {
-      margin-bottom: 16px;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--ink-2);
-      margin-bottom: 6px;
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      padding: 11px 14px;
-      background: var(--paper);
-      border: 1.5px solid var(--rule);
-      border-radius: var(--radius-sm);
-      font-family: var(--font-sans);
-      font-size: 0.9rem;
-      color: var(--ink);
-      transition: border-color 0.15s, box-shadow 0.15s;
-      outline: none;
-      -webkit-appearance: none;
-    }
-
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: var(--verde);
-      box-shadow: 0 0 0 3px rgba(61,90,65,0.10);
-    }
-
+    .form-group input:focus, .form-group select:focus { border-color: var(--verde); box-shadow: 0 0 0 3px rgba(61,90,65,0.10); }
     .form-group input::placeholder { color: var(--ink-4); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .form-submit { width: 100%; margin-top: 8px; justify-content: center; }
+    .form-legal { font-size: 0.76rem; color: var(--ink-4); text-align: center; margin-top: 12px; line-height: 1.5; }
 
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
+    /* como funciona */
+    .como-funciona { padding: 96px 0; }
+    .steps-header { text-align: center; max-width: 560px; margin: 0 auto 64px; }
+    .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; position: relative; }
+    .steps-grid::before { content: ''; position: absolute; top: 28px; left: calc(16.66% + 20px); right: calc(16.66% + 20px); height: 1px; background: var(--rule-soft); }
+    .step-item { position: relative; text-align: center; }
+    .step-number { width: 56px; height: 56px; background: var(--paper-2); border: 1.5px solid var(--rule); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 1.3rem; color: var(--verde); margin: 0 auto 20px; position: relative; z-index: 1; }
+    .step-item h4 { font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+    .step-item p { font-size: 0.88rem; color: var(--ink-3); line-height: 1.55; }
 
-    .form-submit {
-      width: 100%;
-      margin-top: 8px;
-      justify-content: center;
-    }
-
-    .form-legal {
-      font-size: 0.76rem;
-      color: var(--ink-4);
-      text-align: center;
-      margin-top: 12px;
-      line-height: 1.5;
-    }
-
-    /* ─── como funciona ──────────────────────────────────── */
-    .como-funciona {
-      padding: 96px 0;
-    }
-
-    .steps-header {
-      text-align: center;
-      max-width: 560px;
-      margin: 0 auto 64px;
-    }
-
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-      position: relative;
-    }
-
-    .steps-grid::before {
-      content: '';
-      position: absolute;
-      top: 28px;
-      left: calc(16.66% + 20px);
-      right: calc(16.66% + 20px);
-      height: 1px;
-      background: var(--rule-soft);
-    }
-
-    .step-item {
-      position: relative;
-      text-align: center;
-    }
-
-    .step-number {
-      width: 56px;
-      height: 56px;
-      background: var(--paper-2);
-      border: 1.5px solid var(--rule);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-display);
-      font-size: 1.3rem;
-      color: var(--verde);
-      margin: 0 auto 20px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .step-item h4 {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--ink);
-      margin-bottom: 8px;
-    }
-
-    .step-item p {
-      font-size: 0.88rem;
-      color: var(--ink-3);
-      line-height: 1.55;
-    }
-
-    /* ─── section: para pacientes ────────────────────────── */
-    #para-pacientes {
-      background: var(--paper-2);
-      padding: 96px 0;
-      border-top: 1px solid var(--rule-soft);
-      border-bottom: 1px solid var(--rule-soft);
-    }
-
-    .pac-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: start;
-    }
-
+    /* para pacientes */
+    #para-pacientes { background: var(--paper-2); padding: 96px 0; border-top: 1px solid var(--rule-soft); border-bottom: 1px solid var(--rule-soft); }
+    .pac-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
     .pac-content .section-heading { color: var(--ink); }
+    .pac-benefits { display: flex; flex-direction: column; gap: 24px; margin-top: 40px; }
+    .pac-benefit-item { display: flex; gap: 14px; align-items: flex-start; }
+    .pac-check { width: 22px; height: 22px; background: var(--sage-tint); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .pac-check svg { width: 12px; height: 12px; stroke: var(--verde); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .pac-benefit-item p { font-size: 0.95rem; color: var(--ink-2); }
+    .waitlist-card { background: var(--paper-3); border-radius: var(--radius-xl); padding: 40px; border: 1px solid var(--rule-soft); box-shadow: var(--shadow-sm); }
+    .waitlist-card h3 { font-family: var(--font-display); font-size: 1.4rem; margin-bottom: 8px; }
 
-    .pac-benefits {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      margin-top: 40px;
+    /* como funciona paciente */
+    #como-funciona-pac { background: var(--sage-tint); padding: 96px 0; }
+    #como-funciona-pac .step-number { background: var(--paper-3); border-color: var(--sage); }
+
+    /* preços */
+    #precos { padding: 96px 0; background: var(--paper-3); border-top: 1px solid var(--rule-soft); }
+    .precos-header { text-align: center; max-width: 540px; margin: 0 auto 56px; }
+    .precos-header .section-heading { color: var(--ink); }
+    .precos-header .body-md { margin-top: 12px; }
+    .precos-grid { display: grid; grid-template-columns: 380px auto; gap: 40px; align-items: start; justify-content: center; max-width: 900px; margin: 0 auto; }
+    .pricing-card {
+      background: var(--white); border-radius: var(--radius-xl); padding: 40px;
+      border: 1.5px solid var(--rule-soft);
+      box-shadow: 0 0 0 4px rgba(61,90,65,0.06), var(--shadow-md);
+      position: relative; overflow: hidden;
     }
-
-    .pac-benefit-item {
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
+    .pricing-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: var(--verde);
     }
+    .pricing-badge { display: inline-block; background: var(--sage-tint); color: var(--verde); font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 99px; margin-bottom: 20px; }
+    .pricing-name { font-size: 1.1rem; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+    .pricing-amount-row { display: flex; align-items: baseline; gap: 4px; margin: 16px 0 4px; }
+    .pricing-currency { font-size: 1.2rem; font-weight: 600; color: var(--verde); }
+    .pricing-amount { font-size: 3rem; font-weight: 700; color: var(--verde); line-height: 1; font-family: var(--font-display); }
+    .pricing-period { font-size: 0.9rem; color: var(--ink-3); }
+    .pricing-billing { font-size: 0.8rem; color: var(--ink-3); margin-bottom: 28px; }
+    .pricing-divider { height: 1px; background: var(--rule-soft); margin-bottom: 24px; }
+    .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+    .pricing-feature { display: flex; gap: 10px; align-items: flex-start; font-size: 0.9rem; color: var(--ink-2); }
+    .pricing-feature-check { width: 18px; height: 18px; background: var(--sage-tint); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .pricing-feature-check svg { width: 10px; height: 10px; stroke: var(--verde); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .pricing-cta { width: 100%; justify-content: center; }
+    .pricing-note { font-size: 0.75rem; color: var(--ink-4); text-align: center; margin-top: 14px; line-height: 1.55; }
 
-    .pac-check {
-      width: 22px;
-      height: 22px;
-      background: var(--sage-tint);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 1px;
+    .pricing-info-col { padding-top: 8px; }
+    .pricing-info-item { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 28px; }
+    .pricing-info-icon { width: 40px; height: 40px; background: var(--sage-tint); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .pricing-info-icon svg { width: 18px; height: 18px; stroke: var(--verde); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .pricing-info-title { font-size: 0.95rem; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+    .pricing-info-desc { font-size: 0.85rem; color: var(--ink-3); line-height: 1.55; }
+
+    /* confiança */
+    #confianca { padding: 80px 0; border-top: 1px solid var(--rule-soft); }
+    .trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .trust-item { text-align: center; padding: 32px 24px; background: var(--paper-2); border-radius: var(--radius-lg); border: 1px solid var(--rule-soft); }
+    .trust-icon { width: 48px; height: 48px; background: var(--sage-tint); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+    .trust-icon svg { width: 22px; height: 22px; stroke: var(--verde); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .trust-item h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; }
+    .trust-item p { font-size: 0.85rem; color: var(--ink-3); line-height: 1.55; }
+
+    /* cta final */
+    #cta-final {
+      background: var(--verde); padding: 80px 0; text-align: center;
     }
+    #cta-final .section-heading { color: var(--paper-3); max-width: 600px; margin: 0 auto 16px; }
+    #cta-final .body-md { color: var(--sage); max-width: 480px; margin: 0 auto 40px; }
+    .cta-final-actions { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
 
-    .pac-check svg {
-      width: 12px;
-      height: 12px;
-      stroke: var(--verde);
-      fill: none;
-      stroke-width: 2.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .pac-benefit-item p {
-      font-size: 0.95rem;
-      color: var(--ink-2);
-    }
-
-    .waitlist-card {
-      background: var(--paper-3);
-      border-radius: var(--radius-xl);
-      padding: 40px;
-      border: 1px solid var(--rule-soft);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .waitlist-card h3 {
-      font-family: var(--font-display);
-      font-size: 1.4rem;
-      margin-bottom: 8px;
-    }
-
-    .waitlist-card .form-sub {
-      font-size: 0.88rem;
-      color: var(--ink-3);
-      margin-bottom: 24px;
-    }
-
-    /* ─── como funciona paciente ─────────────────────────── */
-    #como-funciona-pac {
-      background: var(--sage-tint);
-      padding: 96px 0;
-    }
-
-    #como-funciona-pac .step-number {
-      background: var(--paper-3);
-      border-color: var(--sage);
-    }
-
-    /* ─── confiança ──────────────────────────────────────── */
-    #confianca {
-      padding: 80px 0;
-      border-top: 1px solid var(--rule-soft);
-    }
-
-    .trust-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-    }
-
-    .trust-item {
-      text-align: center;
-      padding: 32px 24px;
-      background: var(--paper-2);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--rule-soft);
-    }
-
-    .trust-icon {
-      width: 48px;
-      height: 48px;
-      background: var(--sage-tint);
-      border-radius: var(--radius-md);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 16px;
-    }
-
-    .trust-icon svg {
-      width: 22px;
-      height: 22px;
-      stroke: var(--verde);
-      fill: none;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .trust-item h4 {
-      font-size: 0.95rem;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    .trust-item p {
-      font-size: 0.85rem;
-      color: var(--ink-3);
-      line-height: 1.55;
-    }
-
-    /* ─── footer ─────────────────────────────────────────── */
-    footer {
-      background: var(--ink);
-      color: var(--ink-4);
-      padding: 56px 0 40px;
-    }
-
-    .footer-inner {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 48px;
-      margin-bottom: 48px;
-    }
-
+    /* footer */
+    footer { background: var(--ink); color: var(--ink-4); padding: 56px 0 40px; }
+    .footer-inner { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
     .footer-brand .nav-logo-text { color: var(--paper-3); }
-
-    .footer-desc {
-      font-size: 0.88rem;
-      color: var(--ink-3);
-      margin-top: 16px;
-      line-height: 1.65;
-      max-width: 300px;
-    }
-
-    .footer-col h5 {
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--ink-3);
-      margin-bottom: 16px;
-    }
-
+    .footer-desc { font-size: 0.88rem; color: var(--ink-3); margin-top: 16px; line-height: 1.65; max-width: 300px; }
+    .footer-col h5 { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 16px; }
     .footer-col ul { list-style: none; }
-
     .footer-col li { margin-bottom: 10px; }
-
-    .footer-col a {
-      font-size: 0.88rem;
-      color: var(--ink-4);
-      transition: color 0.15s;
-    }
-
+    .footer-col a { font-size: 0.88rem; color: var(--ink-4); transition: color 0.15s; }
     .footer-col a:hover { color: var(--paper-3); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--ink-3); }
 
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.06);
-      padding-top: 28px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.8rem;
-      color: var(--ink-3);
-    }
-
-    /* ─── success state ──────────────────────────────────── */
-    .form-success {
-      display: none;
-      text-align: center;
-      padding: 32px 0;
-    }
-
+    /* success states */
+    .form-success { display: none; text-align: center; padding: 32px 0; }
     .form-success.visible { display: block; }
+    .success-icon { width: 56px; height: 56px; background: var(--sage-tint); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+    .success-icon svg { width: 24px; height: 24px; stroke: var(--verde); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .form-success h4 { font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 8px; }
+    .form-success p { font-size: 0.88rem; color: var(--ink-3); }
 
-    .success-icon {
-      width: 56px;
-      height: 56px;
-      background: var(--sage-tint);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 16px;
-    }
-
-    .success-icon svg {
-      width: 24px;
-      height: 24px;
-      stroke: var(--verde);
-      fill: none;
-      stroke-width: 2.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .form-success h4 {
-      font-family: var(--font-display);
-      font-size: 1.3rem;
-      margin-bottom: 8px;
-    }
-
-    .form-success p {
-      font-size: 0.88rem;
-      color: var(--ink-3);
-    }
-
-    /* ─── responsive: tablet ────────────────────────────── */
+    /* responsive: tablet */
     @media (max-width: 900px) {
       .nav-links { display: none; }
       .hero-grid { grid-template-columns: 1fr; }
-      .hero-image { display: none; }
-      .psi-grid,
-      .pac-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero-product { display: none; }
+      .psi-grid, .pac-grid { grid-template-columns: 1fr; gap: 40px; }
       .steps-grid { grid-template-columns: 1fr; gap: 24px; }
       .steps-grid::before { display: none; }
       .trust-grid { grid-template-columns: 1fr; }
       .footer-inner { grid-template-columns: 1fr; gap: 32px; }
       .hero-stats { gap: 24px; }
+      .precos-grid { grid-template-columns: 1fr; max-width: 420px; }
+      .pricing-info-col { display: none; }
     }
 
-    /* ─── responsive: mobile (iPhone 390px) ─────────────── */
+    /* responsive: mobile */
     @media (max-width: 600px) {
-      /* nav */
       .nav-logo-text { display: none; }
       .nav-cta { padding: 10px 16px; font-size: 0.82rem; white-space: nowrap; }
-
-      /* hero */
       #hero { padding: 56px 0 40px; }
       .hero-badge { font-size: 0.76rem; padding: 5px 12px; margin-bottom: 20px; }
       .hero-heading { margin-bottom: 16px; }
       .hero-sub { margin-bottom: 32px; font-size: 1rem; }
-      .hero-actions {
-        flex-direction: column;
-        gap: 10px;
-      }
-      .hero-actions .btn {
-        width: 100%;
-        justify-content: center;
-        padding: 15px 20px;
-      }
+      .hero-actions { flex-direction: column; gap: 10px; }
+      .hero-actions .btn { width: 100%; justify-content: center; padding: 15px 20px; }
       .hero-note { font-size: 0.76rem; margin-top: 14px; }
-      .hero-stats {
-        flex-direction: column;
-        gap: 16px;
-        margin-top: 40px;
-        padding-top: 28px;
-      }
+      .hero-stats { flex-direction: column; gap: 16px; margin-top: 40px; padding-top: 28px; }
       .stat-value { font-size: 1.8rem; }
-
-      /* sections padding */
-      #para-psicologos,
-      #para-pacientes,
-      #como-funciona-pac,
-      #confianca { padding: 56px 0; }
+      #plataforma, #para-psicologos, #para-pacientes, #como-funciona-pac, #confianca, #precos, #cta-final { padding: 56px 0; }
       .como-funciona { padding: 56px 0; }
-
-      /* form */
       .form-row { grid-template-columns: 1fr; }
       .form-card, .waitlist-card { padding: 24px 20px; }
       .form-card h3, .waitlist-card h3 { font-size: 1.2rem; }
-
-      /* steps */
       .step-number { width: 44px; height: 44px; font-size: 1.1rem; }
       .steps-header { margin-bottom: 40px; }
-
-      /* trust */
       .trust-item { padding: 24px 20px; }
-
-      /* footer */
-      .footer-bottom {
-        flex-direction: column;
-        gap: 8px;
-        text-align: center;
-        font-size: 0.74rem;
-      }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; font-size: 0.74rem; }
       footer { padding: 40px 0 28px; }
       .footer-inner { gap: 24px; margin-bottom: 32px; }
+      .platform-tabs { width: 100%; justify-content: stretch; }
+      .platform-tab { flex: 1; text-align: center; padding: 9px 10px; font-size: 0.78rem; }
+      .agenda-grid-wrap { overflow-x: auto; }
+      .pronut-wrap { grid-template-columns: 1fr; height: auto; }
+      .pronut-list { height: 200px; overflow-y: auto; }
+      .fin-wrap { grid-template-columns: 1fr; }
+      .precos-grid { padding: 0 16px; }
+      .cta-final-actions { flex-direction: column; align-items: stretch; }
+      .cta-final-actions .btn { justify-content: center; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ─── nav ─────────────────────────────────────────────── -->
+  <!-- nav -->
   <nav>
     <div class="container nav-inner">
       <a href="/" class="nav-logo">
         <div class="nav-logo-mark">
-          <svg viewBox="0 0 24 24">
-            <path d="M12 22c4-4 8-7.5 8-12a8 8 0 0 0-16 0c0 4.5 4 8 8 12z"/>
-          </svg>
+          <svg viewBox="0 0 24 24"><path d="M12 22c4-4 8-7.5 8-12a8 8 0 0 0-16 0c0 4.5 4 8 8 12z"/></svg>
         </div>
         <span class="nav-logo-text">Hub de Psicologia</span>
       </a>
-
       <ul class="nav-links">
+        <li><a href="#plataforma">Plataforma</a></li>
         <li><a href="#para-psicologos">Para psicólogos</a></li>
         <li><a href="#para-pacientes">Para pacientes</a></li>
-        <li><a href="#como-funciona-psi">Como funciona</a></li>
+        <li><a href="#precos">Preços</a></li>
       </ul>
-
-      <a href="#cadastro-psicologo" class="btn btn-primary nav-cta">
-        Sou psicólogo
-      </a>
+      <a href="#cadastro-psicologo" class="btn btn-primary nav-cta">Sou psicólogo</a>
     </div>
   </nav>
 
-  <!-- ─── hero ─────────────────────────────────────────────── -->
+  <!-- hero -->
   <section id="hero">
     <div class="container">
       <div class="hero-grid">
-      <div class="hero-content">
-        <div class="hero-badge">
-          <span class="hero-badge-dot"></span>
-          Grande Florianópolis
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            Grande Florianópolis
+          </div>
+          <h1 class="display-heading hero-heading">
+            A maior rede de psicólogos<br>
+            <em>da Grande Florianópolis</em>
+          </h1>
+          <p class="body-lg hero-sub">
+            Conectamos pacientes a profissionais qualificados e ajudamos psicólogos a crescerem suas agendas, sem depender de indicação.
+          </p>
+          <div class="hero-actions">
+            <a href="#cadastro-psicologo" class="btn btn-primary btn-lg">Sou psicólogo, quero parceiros</a>
+            <a href="#para-pacientes" class="btn btn-ghost btn-lg">Sou paciente</a>
+          </div>
+          <p class="hero-note">Regulamentado pela Resolução CFP 09/2024. Atendimento online.</p>
         </div>
 
-        <h1 class="display-heading hero-heading">
-          A maior rede de psicólogos<br>
-          <em>da Grande Florianópolis</em>
-        </h1>
-
-        <p class="body-lg hero-sub">
-          Conectamos pacientes a profissionais qualificados e ajudamos psicólogos a crescerem suas agendas, sem depender de indicação.
-        </p>
-
-        <div class="hero-actions">
-          <a href="#cadastro-psicologo" class="btn btn-primary btn-lg">
-            Sou psicólogo, quero parceiros
-          </a>
-          <a href="#para-pacientes" class="btn btn-ghost btn-lg">
-            Sou paciente
-          </a>
+        <div class="hero-product">
+          <div class="browser-frame">
+            <div class="browser-bar">
+              <div class="browser-dots"><span></span><span></span><span></span></div>
+              <div class="browser-url">app.hubpsicologia.com.br/painel</div>
+            </div>
+            <div class="dash-wrap">
+              <div class="dash-sidebar">
+                <div class="dash-sidebar-logo">
+                  <div class="dash-sidebar-logo-mark">
+                    <svg viewBox="0 0 24 24"><path d="M12 22c4-4 8-7.5 8-12a8 8 0 0 0-16 0c0 4.5 4 8 8 12z"/></svg>
+                  </div>
+                  <span>Hub Psi</span>
+                </div>
+                <div class="dash-nav-item active">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                  Painel
+                </div>
+                <div class="dash-nav-item">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  Agenda
+                </div>
+                <div class="dash-nav-item">
+                  <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                  Pacientes
+                </div>
+                <div class="dash-nav-item">
+                  <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                  Prontuário
+                </div>
+                <div class="dash-nav-item">
+                  <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                  Financeiro
+                </div>
+              </div>
+              <div class="dash-main">
+                <div class="dash-header">
+                  <div>
+                    <p class="dash-greeting">Bom dia, Dra. Ana Lima</p>
+                    <p class="dash-date">Sábado, 07 de junho de 2026</p>
+                  </div>
+                  <div class="dash-avatar">AL</div>
+                </div>
+                <div class="dash-stats-row">
+                  <div class="dash-stat-card">
+                    <div class="dash-stat-val">4</div>
+                    <div class="dash-stat-lbl">sessões hoje</div>
+                  </div>
+                  <div class="dash-stat-card">
+                    <div class="dash-stat-val">12</div>
+                    <div class="dash-stat-lbl">pacientes ativos</div>
+                  </div>
+                  <div class="dash-stat-card">
+                    <div class="dash-stat-val">R$2.8k</div>
+                    <div class="dash-stat-lbl">este mês</div>
+                  </div>
+                </div>
+                <div class="dash-section-label">Sessões de hoje</div>
+                <div class="dash-session-row">
+                  <span class="dash-time">09:00</span>
+                  <div class="dash-patient-av">MS</div>
+                  <span class="dash-patient-name">Maria S.</span>
+                  <span class="dash-chip dash-chip-green">Confirmada</span>
+                </div>
+                <div class="dash-session-row">
+                  <span class="dash-time">10:00</span>
+                  <div class="dash-patient-av">JR</div>
+                  <span class="dash-patient-name">João R.</span>
+                  <span class="dash-chip dash-chip-green">Confirmada</span>
+                </div>
+                <div class="dash-session-row">
+                  <span class="dash-time">11:00</span>
+                  <div class="dash-patient-av">CM</div>
+                  <span class="dash-patient-name">Carla M.</span>
+                  <span class="dash-chip dash-chip-yellow">Pendente</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hero-product-float">
+            <span class="hero-product-float-dot"></span>
+            1 novo paciente do hub
+          </div>
         </div>
-        <p class="hero-note">Regulamentado pela Resolução CFP 09/2024. Atendimento online.</p>
-      </div>
-
-      <div class="hero-image">
-        <img src="assets/psychologist.svg" alt="Psicólogo em sessão com paciente">
-      </div>
       </div>
 
       <div class="hero-stats">
-          <div class="stat-item">
-            <div class="stat-value">2.238</div>
-            <div class="stat-label">psicólogos registrados em SC</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-value">5%</div>
-            <div class="stat-label">da população em acompanhamento</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-value">0</div>
-            <div class="stat-label">plataformas com foco regional</div>
-          </div>
+        <div class="stat-item">
+          <div class="stat-value">2.238</div>
+          <div class="stat-label">psicólogos registrados em SC</div>
         </div>
+        <div class="stat-item">
+          <div class="stat-value">5%</div>
+          <div class="stat-label">da população em acompanhamento</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">0</div>
+          <div class="stat-label">plataformas com foco regional</div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ─── para psicólogos ──────────────────────────────────── -->
+  <!-- plataforma -->
+  <section id="plataforma">
+    <div class="container">
+      <div class="platform-header">
+        <span class="section-tag">Plataforma</span>
+        <h2 class="section-heading">Tudo que você precisa para gerenciar sua prática</h2>
+        <p class="body-md">Agenda, prontuário, matching com pacientes e financeiro em um só lugar. Sem planilha, sem WhatsApp para confirmar sessão.</p>
+      </div>
+
+      <div class="platform-tabs">
+        <button class="platform-tab active" data-tab="agenda">Agenda</button>
+        <button class="platform-tab" data-tab="prontuario">Prontuário</button>
+        <button class="platform-tab" data-tab="pacientes">Pacientes do Hub</button>
+        <button class="platform-tab" data-tab="financeiro">Financeiro</button>
+      </div>
+
+      <!-- Agenda view -->
+      <div class="platform-view active" id="view-agenda">
+        <div class="browser-frame">
+          <div class="browser-bar">
+            <div class="browser-dots"><span></span><span></span><span></span></div>
+            <div class="browser-url">app.hubpsicologia.com.br/agenda</div>
+          </div>
+          <div class="agenda-view">
+            <div class="agenda-toolbar">
+              <div class="agenda-nav-btn">‹</div>
+              <span class="agenda-month-label">Junho 2026</span>
+              <div class="agenda-nav-btn">›</div>
+              <div class="agenda-toggle">
+                <button class="active">Semana</button>
+                <button>Mês</button>
+              </div>
+              <button class="agenda-new-btn">+ Nova sessão</button>
+            </div>
+            <div class="agenda-grid-wrap">
+              <div class="agenda-grid agenda-grid-head">
+                <div class="agenda-time-cell"><span></span></div>
+                <div class="agenda-col-head">Seg<br><strong>02</strong></div>
+                <div class="agenda-col-head">Ter<br><strong>03</strong></div>
+                <div class="agenda-col-head">Qua<br><strong>04</strong></div>
+                <div class="agenda-col-head">Qui<br><strong>05</strong></div>
+                <div class="agenda-col-head">Sex<br><strong>06</strong></div>
+                <div class="agenda-col-head today">Sáb<br><strong>07</strong></div>
+              </div>
+              <div class="agenda-grid">
+                <div class="agenda-time-cell"><span>08:00</span></div>
+                <div class="agenda-slot"></div><div class="agenda-slot"></div><div class="agenda-slot"></div><div class="agenda-slot"></div><div class="agenda-slot"></div><div class="agenda-slot"></div>
+              </div>
+              <div class="agenda-grid">
+                <div class="agenda-time-cell"><span>09:00</span></div>
+                <div class="agenda-slot"></div>
+                <div class="agenda-slot"><div class="agenda-event ev-tcc"><span class="agenda-event-name">Maria S.</span><span class="agenda-event-type">TCC</span></div></div>
+                <div class="agenda-slot"></div>
+                <div class="agenda-slot"><div class="agenda-event ev-act"><span class="agenda-event-name">Lucas F.</span><span class="agenda-event-type">ACT</span></div></div>
+                <div class="agenda-slot"></div>
+                <div class="agenda-slot"><div class="agenda-event ev-tcc"><span class="agenda-event-name">Maria S.</span><span class="agenda-event-type">TCC</span></div></div>
+              </div>
+              <div class="agenda-grid">
+                <div class="agenda-time-cell"><span>10:00</span></div>
+                <div class="agenda-slot"><div class="agenda-event ev-psi"><span class="agenda-event-name">Carla M.</span><span class="agenda-event-type">Psicanálise</span></div></div>
+                <div class="agenda-slot"></div>
+                <div class="agenda-slot"><div class="agenda-event ev-tcc"><span class="agenda-event-name">João R.</span><span class="agenda-event-type">TCC</span></div></div>
+                <div class="agenda-slot"></div>
+                <div class="agenda-slot"><div class="agenda-event ev-act"><span class="agenda-event-name">Ana C.</span><span class="agenda-event-type">ACT</span></div></div>
+                <div class="agenda-slot"><div class="agenda-event ev-act"><span class="agenda-event-name">João R.</span><span class="agenda-event-type">ACT</span></div></div>
+              </div>
+              <div class="agenda-grid">
+                <div class="agenda-time-cell"><span>11:00</span></div>
+                <div class="agenda-slot"></div><div class="agenda-slot"></div><div class="agenda-slot"></div><div class="agenda-slot"></div><div class="agenda-slot"></div>
+                <div class="agenda-slot"><div class="agenda-event ev-psi"><span class="agenda-event-name">Paulo F.</span><span class="agenda-event-type">Psicanálise</span></div></div>
+              </div>
+              <div class="agenda-grid">
+                <div class="agenda-time-cell"><span>13:00</span></div>
+                <div class="agenda-slot"><div class="agenda-event ev-act"><span class="agenda-event-name">Lucas F.</span><span class="agenda-event-type">ACT</span></div></div>
+                <div class="agenda-slot"></div>
+                <div class="agenda-slot"><div class="agenda-event ev-psi"><span class="agenda-event-name">Paula R.</span><span class="agenda-event-type">Psicanálise</span></div></div>
+                <div class="agenda-slot"></div>
+                <div class="agenda-slot"></div>
+                <div class="agenda-slot"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Prontuário view -->
+      <div class="platform-view" id="view-prontuario">
+        <div class="browser-frame">
+          <div class="browser-bar">
+            <div class="browser-dots"><span></span><span></span><span></span></div>
+            <div class="browser-url">app.hubpsicologia.com.br/prontuario</div>
+          </div>
+          <div class="pronut-wrap">
+            <div class="pronut-list">
+              <div class="pronut-list-header">
+                <input class="pronut-search" placeholder="Buscar paciente..." readonly>
+              </div>
+              <div class="pronut-patient">
+                <div class="pronut-av">MS</div>
+                <div><div class="pronut-name">Maria S.</div><div class="pronut-meta">18 sessões · TCC</div></div>
+                <span class="pronut-status"></span>
+              </div>
+              <div class="pronut-patient">
+                <div class="pronut-av">JR</div>
+                <div><div class="pronut-name">João R.</div><div class="pronut-meta">7 sessões · ACT</div></div>
+                <span class="pronut-status"></span>
+              </div>
+              <div class="pronut-patient active">
+                <div class="pronut-av av2">AC</div>
+                <div><div class="pronut-name">Ana Costa</div><div class="pronut-meta">12 sessões · TCC</div></div>
+                <span class="pronut-status"></span>
+              </div>
+              <div class="pronut-patient">
+                <div class="pronut-av av3">CM</div>
+                <div><div class="pronut-name">Carla M.</div><div class="pronut-meta">3 sessões · Psicanálise</div></div>
+                <span class="pronut-status paused"></span>
+              </div>
+              <div class="pronut-patient">
+                <div class="pronut-av">PF</div>
+                <div><div class="pronut-name">Paulo F.</div><div class="pronut-meta">9 sessões · Psicanálise</div></div>
+                <span class="pronut-status"></span>
+              </div>
+            </div>
+            <div class="pronut-detail">
+              <div class="pronut-detail-header">
+                <div class="pronut-detail-av">AC</div>
+                <div>
+                  <div class="pronut-detail-name">Ana Costa</div>
+                  <div class="pronut-detail-sub">TCC · 12 sessões · Iniciou em março 2026</div>
+                </div>
+              </div>
+              <div class="pronut-session-card">
+                <div class="pronut-session-date">Sessão 12 · 04 jun 2026</div>
+                <div class="pronut-session-text">Paciente relatou melhora nos padrões de pensamento automáticos negativos. Trabalhamos reestruturação cognitiva com foco em situações de trabalho. Tarefa: registro de pensamentos durante a semana. Próximo encontro: revisar o diário e avançar para técnicas de exposição gradual.</div>
+              </div>
+              <div class="pronut-session-card">
+                <div class="pronut-session-date">Sessão 11 · 28 mai 2026</div>
+                <div class="pronut-session-text">Abordamos o episódio de ansiedade do final de semana. Paciente identificou o gatilho corretamente. Psicoeducação sobre o ciclo ansiedade-evitação. Evolução positiva na adesão às técnicas de respiração.</div>
+              </div>
+              <div class="pronut-action-row">
+                <button class="pronut-btn primary">Nova nota de sessão</button>
+                <button class="pronut-btn">Emitir recibo</button>
+                <button class="pronut-btn">Ver histórico</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pacientes (matching) view -->
+      <div class="platform-view" id="view-pacientes">
+        <div class="browser-frame">
+          <div class="browser-bar">
+            <div class="browser-dots"><span></span><span></span><span></span></div>
+            <div class="browser-url">app.hubpsicologia.com.br/hub/novos-pacientes</div>
+          </div>
+          <div class="match-wrap">
+            <div class="match-header">
+              <div>
+                <div class="match-title">Novos pacientes compatíveis</div>
+                <div style="font-size:12px;color:var(--ink-3);margin-top:3px;">O hub encontrou pacientes alinhados ao seu perfil e disponibilidade</div>
+              </div>
+              <span class="match-badge">3 novos</span>
+            </div>
+            <div class="match-card highlight">
+              <div class="match-av">LM</div>
+              <div class="match-info">
+                <div class="match-name">Lucas Mendes</div>
+                <div class="match-tags">
+                  <span class="match-tag">Ansiedade</span>
+                  <span class="match-tag">ACT</span>
+                  <span class="match-tag">Online</span>
+                </div>
+                <div class="match-location">São José, SC · Disponível: manhãs e tarde</div>
+                <div class="match-actions">
+                  <button class="match-btn match-btn-accept">Aceitar paciente</button>
+                  <button class="match-btn match-btn-see">Ver perfil</button>
+                </div>
+              </div>
+              <div class="match-score-wrap">
+                <div class="match-score">98%</div>
+                <div class="match-score-lbl">compatível</div>
+              </div>
+            </div>
+            <div class="match-card">
+              <div class="match-av av2">JP</div>
+              <div class="match-info">
+                <div class="match-name">Julia Pereira</div>
+                <div class="match-tags">
+                  <span class="match-tag">Depressão</span>
+                  <span class="match-tag">TCC</span>
+                  <span class="match-tag">Online</span>
+                </div>
+                <div class="match-location">Florianópolis, SC · Disponível: tardes</div>
+                <div class="match-actions">
+                  <button class="match-btn match-btn-accept">Aceitar paciente</button>
+                  <button class="match-btn match-btn-see">Ver perfil</button>
+                </div>
+              </div>
+              <div class="match-score-wrap">
+                <div class="match-score">92%</div>
+                <div class="match-score-lbl">compatível</div>
+              </div>
+            </div>
+            <div class="match-card">
+              <div class="match-av av3">RF</div>
+              <div class="match-info">
+                <div class="match-name">Rafael Fontes</div>
+                <div class="match-tags">
+                  <span class="match-tag">Relacionamentos</span>
+                  <span class="match-tag">ACT</span>
+                  <span class="match-tag">Online</span>
+                </div>
+                <div class="match-location">Palhoça, SC · Disponível: noites</div>
+                <div class="match-actions">
+                  <button class="match-btn match-btn-accept">Aceitar paciente</button>
+                  <button class="match-btn match-btn-see">Ver perfil</button>
+                </div>
+              </div>
+              <div class="match-score-wrap">
+                <div class="match-score">87%</div>
+                <div class="match-score-lbl">compatível</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Financeiro view -->
+      <div class="platform-view" id="view-financeiro">
+        <div class="browser-frame">
+          <div class="browser-bar">
+            <div class="browser-dots"><span></span><span></span><span></span></div>
+            <div class="browser-url">app.hubpsicologia.com.br/financeiro</div>
+          </div>
+          <div class="fin-wrap">
+            <div class="fin-left">
+              <div class="fin-revenue">
+                <div class="fin-amount">R$ 2.840</div>
+                <div class="fin-period">Junho 2026 (parcial)</div>
+                <div class="fin-growth">+18% em relação a maio</div>
+              </div>
+              <div class="fin-chart">
+                <div class="fin-bar-wrap"><div class="fin-bar" style="height:48px"></div><div class="fin-bar-label">jan</div></div>
+                <div class="fin-bar-wrap"><div class="fin-bar" style="height:56px"></div><div class="fin-bar-label">fev</div></div>
+                <div class="fin-bar-wrap"><div class="fin-bar" style="height:44px"></div><div class="fin-bar-label">mar</div></div>
+                <div class="fin-bar-wrap"><div class="fin-bar" style="height:68px"></div><div class="fin-bar-label">abr</div></div>
+                <div class="fin-bar-wrap"><div class="fin-bar" style="height:80px"></div><div class="fin-bar-label">mai</div></div>
+                <div class="fin-bar-wrap"><div class="fin-bar active" style="height:66px"></div><div class="fin-bar-label">jun</div></div>
+              </div>
+            </div>
+            <div class="fin-right">
+              <div class="fin-list-title">Últimos pagamentos</div>
+              <div class="fin-list-item">
+                <div class="fin-item-date">07/06</div>
+                <div class="fin-item-name">Ana Costa · Sessão 12</div>
+                <div class="fin-item-amount">R$ 220</div>
+                <span class="fin-item-status"></span>
+              </div>
+              <div class="fin-list-item">
+                <div class="fin-item-date">05/06</div>
+                <div class="fin-item-name">Maria S. · Sessão 18</div>
+                <div class="fin-item-amount">R$ 200</div>
+                <span class="fin-item-status"></span>
+              </div>
+              <div class="fin-list-item">
+                <div class="fin-item-date">04/06</div>
+                <div class="fin-item-name">João R. · Sessão 7</div>
+                <div class="fin-item-amount">R$ 200</div>
+                <span class="fin-item-status"></span>
+              </div>
+              <div class="fin-list-item">
+                <div class="fin-item-date">03/06</div>
+                <div class="fin-item-name">Lucas F. · Sessão 4</div>
+                <div class="fin-item-amount">R$ 180</div>
+                <span class="fin-item-status"></span>
+              </div>
+              <div class="fin-list-item">
+                <div class="fin-item-date">02/06</div>
+                <div class="fin-item-name">Paulo F. · Sessão 9</div>
+                <div class="fin-item-amount">R$ 200</div>
+                <span class="fin-item-status"></span>
+              </div>
+              <div class="fin-list-item">
+                <div class="fin-item-date">01/06</div>
+                <div class="fin-item-name">Carla M. · Sessão 3</div>
+                <div class="fin-item-amount">R$ 180</div>
+                <span class="fin-item-status"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- para psicólogos -->
   <section id="para-psicologos">
     <div class="container">
       <div class="psi-grid">
-
         <div class="psi-content">
           <span class="section-tag">Para psicólogos</span>
           <h2 class="section-heading">Preencha sua agenda com pacientes qualificados</h2>
-          <p class="body-md" style="margin-top:16px;">
-            Você traz sua expertise. Nós trazemos os pacientes. Um sistema simples cuida do resto.
-          </p>
-
+          <p class="body-md" style="margin-top:16px;">Você traz sua expertise. Nós trazemos os pacientes. Um sistema simples cuida do resto.</p>
           <div class="psi-benefits">
             <div class="benefit-item">
               <div class="benefit-icon">
@@ -962,27 +1037,24 @@
                 <p>Libere seus horários vagos para o hub e receba indicações de pacientes compatíveis com seu perfil.</p>
               </div>
             </div>
-
             <div class="benefit-item">
               <div class="benefit-icon">
-                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
               </div>
               <div class="benefit-text">
                 <h4>Gestão em um lugar só</h4>
                 <p>Prontuários, recibos, agenda e videochamada integrados. Sem planilha, sem WhatsApp.</p>
               </div>
             </div>
-
             <div class="benefit-item">
               <div class="benefit-icon">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
               </div>
               <div class="benefit-text">
                 <h4>Custo acessível</h4>
                 <p>Assinatura mensal mais barata que os concorrentes nacionais. Comissão só sobre pacientes que a plataforma trouxer.</p>
               </div>
             </div>
-
             <div class="benefit-item">
               <div class="benefit-icon">
                 <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
@@ -999,7 +1071,6 @@
           <div class="form-card">
             <h3>Quero ser parceiro</h3>
             <p class="form-sub">Cadastre-se e entraremos em contato para apresentar a proposta.</p>
-
             <form id="form-psicologo" onsubmit="handlePsiSubmit(event)">
               <div class="form-row">
                 <div class="form-group">
@@ -1011,17 +1082,14 @@
                   <input type="text" id="psi-crp" placeholder="12/00000" required>
                 </div>
               </div>
-
               <div class="form-group">
                 <label for="psi-email">E-mail profissional</label>
                 <input type="email" id="psi-email" placeholder="ana@exemplo.com" required>
               </div>
-
               <div class="form-group">
                 <label for="psi-whatsapp">WhatsApp</label>
                 <input type="tel" id="psi-whatsapp" placeholder="(48) 9 0000-0000" required>
               </div>
-
               <div class="form-group">
                 <label for="psi-abordagem">Abordagem principal</label>
                 <select id="psi-abordagem" required>
@@ -1034,7 +1102,6 @@
                   <option>Outra</option>
                 </select>
               </div>
-
               <div class="form-group">
                 <label for="psi-horarios">Horários vagos por semana (estimativa)</label>
                 <select id="psi-horarios" required>
@@ -1044,35 +1111,27 @@
                   <option>Mais de 8 horários</option>
                 </select>
               </div>
-
-              <button type="submit" class="btn btn-primary btn-lg form-submit">
-                Quero ser parceiro
-              </button>
+              <button type="submit" class="btn btn-primary btn-lg form-submit">Quero ser parceiro</button>
               <p class="form-legal">Seus dados não são compartilhados com terceiros. Entraremos em contato em até 48h.</p>
             </form>
-
             <div class="form-success" id="psi-success">
-              <div class="success-icon">
-                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
+              <div class="success-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
               <h4>Cadastro recebido!</h4>
               <p>Entraremos em contato pelo WhatsApp em até 48 horas.</p>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ─── como funciona: psicólogo ────────────────────────── -->
+  <!-- como funciona: psicólogo -->
   <section id="como-funciona-psi" class="como-funciona">
     <div class="container">
       <div class="steps-header">
         <span class="section-tag">Como funciona para psicólogos</span>
         <h2 class="section-heading">Três passos para uma agenda mais cheia</h2>
       </div>
-
       <div class="steps-grid">
         <div class="step-item">
           <div class="step-number">1</div>
@@ -1093,68 +1152,50 @@
     </div>
   </section>
 
-  <!-- ─── para pacientes ───────────────────────────────────── -->
+  <!-- para pacientes -->
   <section id="para-pacientes">
     <div class="container">
       <div class="pac-grid">
-
         <div class="pac-content">
           <span class="section-tag">Para pacientes</span>
           <h2 class="section-heading">Encontre o psicólogo certo para você</h2>
-          <p class="body-md" style="margin-top:16px;">
-            Sem pesquisa interminável no Google. Respondendo algumas perguntas simples, você encontra profissionais compatíveis com o que você precisa.
-          </p>
-
+          <p class="body-md" style="margin-top:16px;">Sem pesquisa interminável no Google. Respondendo algumas perguntas simples, você encontra profissionais compatíveis com o que você precisa.</p>
           <div class="pac-benefits">
             <div class="pac-benefit-item">
-              <div class="pac-check">
-                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
+              <div class="pac-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
               <p>Match por objetivo de terapia, não só por preço</p>
             </div>
             <div class="pac-benefit-item">
-              <div class="pac-check">
-                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
+              <div class="pac-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
               <p>Psicólogos verificados com CRP ativo em Santa Catarina</p>
             </div>
             <div class="pac-benefit-item">
-              <div class="pac-check">
-                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
+              <div class="pac-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
               <p>Agendamento online, sem ligação e sem espera</p>
             </div>
             <div class="pac-benefit-item">
-              <div class="pac-check">
-                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
+              <div class="pac-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
               <p>Atendimento online com preços acessíveis</p>
             </div>
             <div class="pac-benefit-item">
-              <div class="pac-check">
-                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
+              <div class="pac-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
               <p>Profissionais da Grande Florianópolis que conhecem a realidade local</p>
             </div>
           </div>
         </div>
-
         <div>
           <div class="waitlist-card">
             <h3>Entre na lista de espera</h3>
             <p class="form-sub">A plataforma está em fase de lançamento. Seja avisado primeiro quando abrirmos para pacientes.</p>
-
             <form id="form-paciente" onsubmit="handlePacSubmit(event)">
               <div class="form-group">
                 <label for="pac-nome">Seu nome</label>
                 <input type="text" id="pac-nome" placeholder="Maria Silva" required>
               </div>
-
               <div class="form-group">
                 <label for="pac-email">E-mail</label>
                 <input type="email" id="pac-email" placeholder="maria@exemplo.com" required>
               </div>
-
               <div class="form-group">
                 <label for="pac-objetivo">O que você está buscando?</label>
                 <select id="pac-objetivo" required>
@@ -1168,35 +1209,27 @@
                   <option>Outros</option>
                 </select>
               </div>
-
-              <button type="submit" class="btn btn-primary btn-lg form-submit">
-                Quero ser avisado
-              </button>
+              <button type="submit" class="btn btn-primary btn-lg form-submit">Quero ser avisado</button>
               <p class="form-legal">Sem spam. Apenas um aviso quando a plataforma estiver disponível.</p>
             </form>
-
             <div class="form-success" id="pac-success">
-              <div class="success-icon">
-                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
+              <div class="success-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
               <h4>Você está na lista!</h4>
               <p>Você será o primeiro a saber quando a plataforma abrir para pacientes.</p>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ─── como funciona: paciente ─────────────────────────── -->
+  <!-- como funciona: paciente -->
   <section id="como-funciona-pac" class="como-funciona">
     <div class="container">
       <div class="steps-header">
         <span class="section-tag">Como funciona para pacientes</span>
         <h2 class="section-heading">Do quiz ao atendimento em minutos</h2>
       </div>
-
       <div class="steps-grid">
         <div class="step-item">
           <div class="step-number">1</div>
@@ -1217,14 +1250,98 @@
     </div>
   </section>
 
-  <!-- ─── confiança ────────────────────────────────────────── -->
+  <!-- preços -->
+  <section id="precos">
+    <div class="container">
+      <div class="precos-header">
+        <span class="section-tag">Preços</span>
+        <h2 class="section-heading">Preço simples e justo</h2>
+        <p class="body-md">Um plano para psicólogos. Sem taxa de adesão, sem fidelidade.</p>
+      </div>
+      <div class="precos-grid">
+        <div class="pricing-card">
+          <span class="pricing-badge">30 dias grátis</span>
+          <div class="pricing-name">Plano Profissional</div>
+          <div class="pricing-amount-row">
+            <span class="pricing-currency">R$</span>
+            <span class="pricing-amount">89</span>
+            <span class="pricing-period">/mês</span>
+          </div>
+          <p class="pricing-billing">Faturado mensalmente. Cancele a qualquer momento.</p>
+          <div class="pricing-divider"></div>
+          <ul class="pricing-features">
+            <li class="pricing-feature">
+              <span class="pricing-feature-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Agenda inteligente com confirmação automática
+            </li>
+            <li class="pricing-feature">
+              <span class="pricing-feature-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Prontuário digital ilimitado com notas de sessão
+            </li>
+            <li class="pricing-feature">
+              <span class="pricing-feature-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Videochamada integrada (sem app externo)
+            </li>
+            <li class="pricing-feature">
+              <span class="pricing-feature-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Emissão de recibos e controle financeiro
+            </li>
+            <li class="pricing-feature">
+              <span class="pricing-feature-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Até 3 novos pacientes/mês via marketplace do hub
+            </li>
+            <li class="pricing-feature">
+              <span class="pricing-feature-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Perfil público no marketplace verificado por CRP
+            </li>
+            <li class="pricing-feature">
+              <span class="pricing-feature-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Suporte via WhatsApp em horário comercial
+            </li>
+          </ul>
+          <a href="#cadastro-psicologo" class="btn btn-primary btn-lg pricing-cta">Começar gratuitamente</a>
+          <p class="pricing-note">20% de comissão sobre pacientes indicados pelo hub após o período gratuito. Sem cobrança sobre seus pacientes próprios.</p>
+        </div>
+        <div class="pricing-info-col">
+          <div class="pricing-info-item">
+            <div class="pricing-info-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <div class="pricing-info-title">Sem fidelidade</div>
+              <div class="pricing-info-desc">Cancele quando quiser, sem multa. Seus dados e prontuários ficam disponíveis para exportação por 90 dias.</div>
+            </div>
+          </div>
+          <div class="pricing-info-item">
+            <div class="pricing-info-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <div class="pricing-info-title">Setup em 10 minutos</div>
+              <div class="pricing-info-desc">Cadastro, validação de CRP e configuração da agenda. Você começa a receber pacientes no mesmo dia.</div>
+            </div>
+          </div>
+          <div class="pricing-info-item">
+            <div class="pricing-info-icon">
+              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            </div>
+            <div>
+              <div class="pricing-info-title">Pacientes próprios: sem custo extra</div>
+              <div class="pricing-info-desc">A comissão de 20% se aplica apenas a pacientes que o hub indicou. Seus pacientes diretos não geram comissão.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- confiança -->
   <section id="confianca">
     <div class="container">
       <div style="text-align:center; margin-bottom:48px;">
         <span class="section-tag">Por que o Hub de Psicologia</span>
         <h2 class="section-heading">Construído para a Grande Florianópolis</h2>
       </div>
-
       <div class="trust-grid">
         <div class="trust-item">
           <div class="trust-icon">
@@ -1233,7 +1350,6 @@
           <h4>Regulamentado pelo CFP</h4>
           <p>Todos os psicólogos têm CRP ativo e o atendimento segue a Resolução CFP 09/2024.</p>
         </div>
-
         <div class="trust-item">
           <div class="trust-icon">
             <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -1241,7 +1357,6 @@
           <h4>Foco regional</h4>
           <p>Diferente das plataformas nacionais, conhecemos o mercado e os profissionais da região.</p>
         </div>
-
         <div class="trust-item">
           <div class="trust-icon">
             <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
@@ -1253,57 +1368,73 @@
     </div>
   </section>
 
-  <!-- ─── footer ───────────────────────────────────────────── -->
+  <!-- CTA final -->
+  <section id="cta-final">
+    <div class="container">
+      <h2 class="section-heading">Pronto para começar?</h2>
+      <p class="body-md">Seja você psicólogo querendo uma agenda mais cheia, ou paciente buscando o profissional certo.</p>
+      <div class="cta-final-actions">
+        <a href="#cadastro-psicologo" class="btn btn-white btn-lg">Sou psicólogo, quero parceiros</a>
+        <a href="#para-pacientes" class="btn btn-ghost btn-lg" style="border-color:rgba(199,210,181,0.4);color:var(--sage);">Sou paciente, quero encontrar um psicólogo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- footer -->
   <footer>
     <div class="container">
       <div class="footer-inner">
         <div class="footer-brand">
           <div class="nav-logo">
             <div class="nav-logo-mark">
-              <svg viewBox="0 0 24 24">
-                <path d="M12 22c4-4 8-7.5 8-12a8 8 0 0 0-16 0c0 4.5 4 8 8 12z"/>
-              </svg>
+              <svg viewBox="0 0 24 24"><path d="M12 22c4-4 8-7.5 8-12a8 8 0 0 0-16 0c0 4.5 4 8 8 12z"/></svg>
             </div>
             <span class="nav-logo-text">Hub de Psicologia</span>
           </div>
-          <p class="footer-desc">
-            Conectando psicólogos e pacientes na Grande Florianópolis. Gestão simples para profissionais, encontro certo para pacientes.
-          </p>
+          <p class="footer-desc">Conectando psicólogos e pacientes na Grande Florianópolis. Gestão simples para profissionais, encontro certo para pacientes.</p>
         </div>
-
         <div class="footer-col">
           <h5>Plataforma</h5>
           <ul>
+            <li><a href="#plataforma">Como funciona</a></li>
             <li><a href="#para-psicologos">Para psicólogos</a></li>
             <li><a href="#para-pacientes">Para pacientes</a></li>
-            <li><a href="#como-funciona-psi">Como funciona</a></li>
+            <li><a href="#precos">Preços</a></li>
           </ul>
         </div>
-
         <div class="footer-col">
           <h5>Legal</h5>
           <ul>
             <li><a href="#">Termos de uso</a></li>
-            <li><a href="#">Política de privacidade</a></li>
-            <li><a href="#">LGPD</a></li>
+            <li><a href="#">Privacidade</a></li>
+            <li><a href="#">Resolução CFP 09/2024</a></li>
           </ul>
         </div>
       </div>
-
       <div class="footer-bottom">
-        <span>2026 Hub de Psicologia — Grande Florianópolis</span>
+        <span>© 2026 Hub de Psicologia da Grande Florianópolis</span>
         <span>Regulamentado pela Resolução CFP 09/2024</span>
       </div>
     </div>
   </footer>
 
   <script>
+    // tabs
+    document.querySelectorAll('.platform-tab').forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        document.querySelectorAll('.platform-tab').forEach(function(t) { t.classList.remove('active'); });
+        document.querySelectorAll('.platform-view').forEach(function(v) { v.classList.remove('active'); });
+        tab.classList.add('active');
+        document.getElementById('view-' + tab.dataset.tab).classList.add('active');
+      });
+    });
+
+    // forms
     function handlePsiSubmit(e) {
       e.preventDefault();
       document.getElementById('form-psicologo').style.display = 'none';
       document.getElementById('psi-success').classList.add('visible');
     }
-
     function handlePacSubmit(e) {
       e.preventDefault();
       document.getElementById('form-paciente').style.display = 'none';
