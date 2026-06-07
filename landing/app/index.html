@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hub de Psicologia — Painel</title>
+  <title>Hub de Psicologia — Área do Psicólogo</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
@@ -14,227 +14,350 @@
       --paper: #F2EEE3; --paper-2: #EAE4D5; --paper-3: #FBF8F0;
       --rule: #D6CFBE; --rule-soft: #E2DCCC;
       --ink: #1C2620; --ink-2: #4F564E; --ink-3: #8A8F84; --ink-4: #B4B6AB;
-      --white: #FFFFFF;
+      --white: #fff;
       --font-display: 'Instrument Serif', Georgia, serif;
       --font-sans: 'DM Sans', -apple-system, system-ui, sans-serif;
-      --sidebar-w: 220px;
+      --sidebar-w: 224px;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; }
-    body {
-      font-family: var(--font-sans); background: #F4F3EF; color: var(--ink);
-      display: flex; font-size: 14px; -webkit-font-smoothing: antialiased;
-    }
+    html, body { height: 100%; overflow: hidden; }
+    body { font-family: var(--font-sans); background: #F0EEE9; color: var(--ink); display: flex; font-size: 14px; -webkit-font-smoothing: antialiased; }
 
-    /* sidebar */
-    .sidebar {
-      width: var(--sidebar-w); background: var(--ink); display: flex;
-      flex-direction: column; flex-shrink: 0; height: 100vh;
-      position: sticky; top: 0; overflow-y: auto;
-    }
-    .sidebar-logo {
-      display: flex; align-items: center; gap: 10px;
-      padding: 24px 20px 20px; border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-    .sidebar-logo-mark {
-      width: 32px; height: 32px; background: var(--verde); border-radius: 8px;
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    }
-    .sidebar-logo-mark svg { width: 17px; height: 17px; fill: none; stroke: var(--sage); stroke-width: 2; stroke-linecap: round; }
-    .sidebar-logo-name { font-family: var(--font-display); font-size: 1rem; color: var(--paper-3); font-style: italic; }
-    .sidebar-nav { padding: 16px 10px; flex: 1; }
-    .sidebar-section-label { font-size: 10px; font-weight: 600; color: var(--ink-3); letter-spacing: 0.1em; text-transform: uppercase; padding: 8px 10px 6px; margin-top: 8px; }
-    .nav-item {
-      display: flex; align-items: center; gap: 10px; padding: 9px 10px;
-      border-radius: 8px; font-size: 13px; color: var(--ink-3); cursor: pointer;
-      transition: background 0.15s, color 0.15s; margin-bottom: 1px; user-select: none;
-    }
-    .nav-item:hover { background: rgba(255,255,255,0.05); color: var(--ink-4); }
+    /* ── sidebar ─────────────────────────────────────────── */
+    .sidebar { width: var(--sidebar-w); background: var(--ink); display: flex; flex-direction: column; flex-shrink: 0; height: 100vh; overflow-y: auto; }
+    .sidebar-logo { display: flex; align-items: center; gap: 10px; padding: 22px 18px 18px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .logo-mark { width: 30px; height: 30px; background: var(--verde); border-radius: 7px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .logo-mark svg { width: 16px; height: 16px; fill: none; stroke: var(--sage); stroke-width: 2; stroke-linecap: round; }
+    .logo-name { font-family: var(--font-display); font-size: 0.95rem; color: var(--paper-3); font-style: italic; }
+
+    .sidebar-nav { padding: 14px 10px; flex: 1; }
+    .nav-section { font-size: 10px; font-weight: 600; color: var(--ink-3); letter-spacing: 0.1em; text-transform: uppercase; padding: 10px 10px 5px; margin-top: 4px; }
+    .nav-item { display: flex; align-items: center; gap: 9px; padding: 8px 10px; border-radius: 7px; font-size: 13px; color: var(--ink-3); cursor: pointer; transition: background 0.12s, color 0.12s; margin-bottom: 1px; user-select: none; }
+    .nav-item:hover { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.5); }
     .nav-item.active { background: rgba(199,210,181,0.13); color: var(--sage); }
-    .nav-item svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
-    .nav-item .nav-badge { margin-left: auto; background: var(--verde); color: var(--white); font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 99px; }
-    .sidebar-footer {
-      padding: 16px 10px; border-top: 1px solid rgba(255,255,255,0.06);
-    }
-    .sidebar-user {
-      display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 8px; cursor: pointer;
-    }
-    .sidebar-user:hover { background: rgba(255,255,255,0.05); }
-    .sidebar-avatar {
-      width: 32px; height: 32px; border-radius: 50%; background: var(--verde);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 11px; font-weight: 700; color: var(--paper-3); flex-shrink: 0;
-    }
-    .sidebar-user-name { font-size: 12px; font-weight: 500; color: var(--paper-3); }
-    .sidebar-user-crp { font-size: 10px; color: var(--ink-3); }
+    .nav-item svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+    .nav-badge { margin-left: auto; background: var(--verde); color: var(--white); font-size: 10px; font-weight: 700; padding: 1px 7px; border-radius: 99px; }
+    .nav-badge-alert { background: #EF4444; }
 
-    /* main */
-    .main { flex: 1; display: flex; flex-direction: column; min-height: 100vh; overflow-x: hidden; }
+    .sidebar-user { padding: 14px 10px; border-top: 1px solid rgba(255,255,255,0.06); }
+    .user-row { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 7px; cursor: pointer; }
+    .user-row:hover { background: rgba(255,255,255,0.05); }
+    .user-av { width: 30px; height: 30px; border-radius: 50%; background: var(--verde); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: var(--paper-3); flex-shrink: 0; }
+    .user-name { font-size: 12px; font-weight: 500; color: var(--paper-3); }
+    .user-crp { font-size: 10px; color: var(--ink-3); }
 
-    /* topbar */
-    .topbar {
-      background: var(--white); border-bottom: 1px solid var(--rule-soft);
-      padding: 0 32px; height: 60px; display: flex; align-items: center;
-      gap: 16px; position: sticky; top: 0; z-index: 10;
-    }
-    .topbar-title { font-size: 15px; font-weight: 600; color: var(--ink); flex: 1; }
-    .topbar-search {
-      display: flex; align-items: center; gap: 8px; background: var(--paper);
-      border: 1px solid var(--rule-soft); border-radius: 8px; padding: 7px 14px;
-      width: 240px;
-    }
-    .topbar-search svg { width: 14px; height: 14px; stroke: var(--ink-3); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
-    .topbar-search span { font-size: 13px; color: var(--ink-4); }
-    .topbar-notif {
-      width: 36px; height: 36px; border-radius: 8px; background: var(--paper);
-      border: 1px solid var(--rule-soft); display: flex; align-items: center;
-      justify-content: center; cursor: pointer; position: relative;
-    }
-    .topbar-notif svg { width: 15px; height: 15px; stroke: var(--ink-2); fill: none; stroke-width: 1.8; stroke-linecap: round; }
-    .notif-dot { position: absolute; top: 7px; right: 8px; width: 7px; height: 7px; background: #EF4444; border-radius: 50%; border: 2px solid var(--white); }
-    .topbar-btn {
-      display: flex; align-items: center; gap: 6px; padding: 8px 16px;
-      background: var(--verde); color: var(--white); border: none; border-radius: 8px;
-      font-size: 13px; font-weight: 600; font-family: var(--font-sans); cursor: pointer;
-    }
-    .topbar-btn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+    /* ── main area ───────────────────────────────────────── */
+    .main { flex: 1; display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+    .topbar { background: var(--white); border-bottom: 1px solid var(--rule-soft); padding: 0 28px; height: 58px; display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+    .topbar-title { font-size: 14px; font-weight: 600; color: var(--ink); flex: 1; }
+    .topbar-search { display: flex; align-items: center; gap: 8px; background: var(--paper); border: 1px solid var(--rule-soft); border-radius: 7px; padding: 7px 14px; width: 220px; }
+    .topbar-search svg { width: 13px; height: 13px; stroke: var(--ink-3); fill: none; stroke-width: 2; stroke-linecap: round; flex-shrink: 0; }
+    .topbar-search span { font-size: 12px; color: var(--ink-4); }
+    .topbar-icon-btn { width: 34px; height: 34px; border-radius: 7px; background: var(--paper); border: 1px solid var(--rule-soft); display: flex; align-items: center; justify-content: center; cursor: pointer; position: relative; }
+    .topbar-icon-btn svg { width: 14px; height: 14px; stroke: var(--ink-2); fill: none; stroke-width: 1.8; stroke-linecap: round; }
+    .badge-dot { position: absolute; top: 6px; right: 7px; width: 7px; height: 7px; background: #EF4444; border-radius: 50%; border: 2px solid var(--white); }
+    .topbar-cta { display: flex; align-items: center; gap: 6px; padding: 7px 16px; background: var(--verde); color: var(--white); border: none; border-radius: 7px; font-size: 12px; font-weight: 600; font-family: var(--font-sans); cursor: pointer; }
+    .topbar-cta svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
 
-    /* content area */
-    .content { padding: 32px; flex: 1; }
+    .scroll-area { flex: 1; overflow-y: auto; padding: 28px; }
 
-    /* views */
+    /* ── view system ──────────────────────────────────────── */
     .view { display: none; }
     .view.active { display: block; }
 
-    /* dashboard view */
-    .page-greeting { margin-bottom: 28px; }
-    .page-greeting h1 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 400; color: var(--ink); }
-    .page-greeting p { font-size: 13px; color: var(--ink-3); margin-top: 4px; }
+    /* ── page header ─────────────────────────────────────── */
+    .pg-head { margin-bottom: 24px; }
+    .pg-head h1 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 400; color: var(--ink); }
+    .pg-head p { font-size: 12px; color: var(--ink-3); margin-top: 3px; }
 
-    .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 28px; }
-    .stat-card {
-      background: var(--white); border-radius: 12px; padding: 20px 22px;
-      border: 1px solid var(--rule-soft);
-    }
-    .stat-card-label { font-size: 12px; color: var(--ink-3); margin-bottom: 8px; font-weight: 500; }
-    .stat-card-value { font-size: 1.8rem; font-weight: 700; color: var(--ink); line-height: 1; font-family: var(--font-display); }
-    .stat-card-sub { font-size: 11px; color: var(--ink-4); margin-top: 6px; }
-    .stat-card-sub.positive { color: #16A34A; }
-    .stat-card-sub.alert { color: #D97706; }
+    /* ── cards ───────────────────────────────────────────── */
+    .card { background: var(--white); border-radius: 11px; border: 1px solid var(--rule-soft); overflow: hidden; }
+    .card-head { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--rule-soft); }
+    .card-title { font-size: 13px; font-weight: 600; color: var(--ink); }
+    .card-link { font-size: 12px; color: var(--verde); cursor: pointer; font-weight: 500; }
 
-    .dashboard-grid { display: grid; grid-template-columns: 1fr 320px; gap: 20px; }
+    /* ── stat cards ──────────────────────────────────────── */
+    .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 24px; }
+    .scard { background: var(--white); border: 1px solid var(--rule-soft); border-radius: 11px; padding: 18px 20px; }
+    .scard-label { font-size: 11px; color: var(--ink-3); font-weight: 500; margin-bottom: 8px; }
+    .scard-val { font-size: 1.7rem; font-weight: 700; color: var(--ink); line-height: 1; font-family: var(--font-display); }
+    .scard-sub { font-size: 11px; color: var(--ink-4); margin-top: 5px; }
+    .scard-sub.pos { color: #16A34A; }
+    .scard-sub.warn { color: #D97706; }
 
-    .card { background: var(--white); border-radius: 12px; border: 1px solid var(--rule-soft); overflow: hidden; }
-    .card-header { display: flex; align-items: center; justify-content: space-between; padding: 18px 22px; border-bottom: 1px solid var(--rule-soft); }
-    .card-title { font-size: 14px; font-weight: 600; color: var(--ink); }
-    .card-action { font-size: 12px; color: var(--verde); cursor: pointer; font-weight: 500; }
-
-    .session-table { width: 100%; border-collapse: collapse; }
-    .session-table th { font-size: 11px; font-weight: 600; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.06em; padding: 10px 22px; text-align: left; background: var(--paper); }
-    .session-table td { padding: 12px 22px; font-size: 13px; color: var(--ink-2); border-top: 1px solid var(--rule-soft); }
-    .session-table tr:hover td { background: var(--paper); }
-    .patient-cell { display: flex; align-items: center; gap: 10px; }
-    .patient-av { width: 32px; height: 32px; border-radius: 50%; background: var(--sage-tint); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: var(--verde); flex-shrink: 0; }
-    .patient-av.blue { background: rgba(100,130,200,0.15); color: #3456A0; }
-    .patient-av.rose { background: rgba(180,90,120,0.12); color: #8B3555; }
-    .patient-av.amber { background: rgba(234,179,8,0.12); color: #92680F; }
-    .patient-name { font-size: 13px; font-weight: 500; color: var(--ink); }
-    .patient-approach { font-size: 11px; color: var(--ink-3); }
-    .status-chip { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 99px; }
+    /* ── chips ───────────────────────────────────────────── */
+    .chip { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 99px; }
     .chip-green { background: rgba(34,197,94,0.10); color: #16A34A; }
     .chip-yellow { background: rgba(234,179,8,0.10); color: #B45309; }
     .chip-blue { background: rgba(100,130,200,0.12); color: #3456A0; }
+    .chip-gray { background: #F0EDE8; color: var(--ink-3); }
     .chip-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
-    .action-btn { padding: 5px 12px; border-radius: 6px; font-size: 11px; font-weight: 600; border: 1px solid var(--rule); background: var(--white); color: var(--ink-2); cursor: pointer; font-family: var(--font-sans); }
-    .action-btn:hover { background: var(--paper); }
 
-    /* mini calendar widget */
-    .mini-cal { padding: 18px 20px; }
-    .mini-cal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
-    .mini-cal-title { font-size: 13px; font-weight: 600; color: var(--ink); }
-    .mini-cal-nav { font-size: 16px; color: var(--ink-3); cursor: pointer; padding: 0 4px; }
-    .mini-cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; text-align: center; }
-    .mini-cal-day-name { font-size: 10px; font-weight: 600; color: var(--ink-4); padding: 4px 0; }
-    .mini-cal-day { font-size: 12px; color: var(--ink-2); padding: 5px 0; border-radius: 6px; cursor: pointer; }
-    .mini-cal-day:hover { background: var(--paper); }
-    .mini-cal-day.today { background: var(--verde); color: var(--white); font-weight: 600; }
-    .mini-cal-day.has-event { position: relative; }
-    .mini-cal-day.has-event::after { content: ''; position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); width: 4px; height: 4px; border-radius: 50%; background: var(--verde); }
-    .mini-cal-day.today.has-event::after { background: var(--sage); }
-    .mini-cal-day.other-month { color: var(--ink-4); }
+    /* ── avatars ─────────────────────────────────────────── */
+    .av { border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
+    .av-sm { width: 30px; height: 30px; font-size: 10px; }
+    .av-md { width: 36px; height: 36px; font-size: 12px; }
+    .av-lg { width: 44px; height: 44px; font-size: 14px; }
+    .av-green { background: var(--sage-tint); color: var(--verde); }
+    .av-blue  { background: rgba(100,130,200,0.15); color: #3456A0; }
+    .av-rose  { background: rgba(180,90,120,0.12); color: #8B3555; }
+    .av-amber { background: rgba(234,179,8,0.12); color: #92680F; }
+    .av-teal  { background: rgba(20,184,166,0.12); color: #0F766E; }
 
-    /* upcoming sessions */
-    .upcoming-list { padding: 0 20px 16px; }
-    .upcoming-item { display: flex; gap: 12px; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid var(--rule-soft); }
-    .upcoming-item:last-child { border-bottom: none; }
-    .upcoming-time-block { background: var(--sage-tint); border-radius: 6px; padding: 6px 10px; text-align: center; flex-shrink: 0; min-width: 48px; }
-    .upcoming-hour { font-size: 14px; font-weight: 700; color: var(--verde); line-height: 1; }
-    .upcoming-min { font-size: 10px; color: var(--verde); }
-    .upcoming-name { font-size: 13px; font-weight: 500; color: var(--ink); }
-    .upcoming-type { font-size: 11px; color: var(--ink-3); margin-top: 2px; }
-    .upcoming-action { margin-left: auto; flex-shrink: 0; }
+    /* ── action btn ──────────────────────────────────────── */
+    .act-btn { padding: 5px 12px; border-radius: 6px; font-size: 11px; font-weight: 600; border: 1px solid var(--rule); background: var(--white); color: var(--ink-2); cursor: pointer; font-family: var(--font-sans); white-space: nowrap; }
+    .act-btn:hover { background: var(--paper); }
+    .act-btn-prim { background: var(--verde); color: var(--white); border-color: var(--verde); }
+    .act-btn-prim:hover { background: var(--verde-escuro); }
+    .act-btn-red { background: #FEF2F2; color: #DC2626; border-color: #FECACA; }
 
-    /* ── agenda view ─────────────────────────────────────── */
-    .agenda-topbar { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
-    .agenda-period { font-size: 15px; font-weight: 600; color: var(--ink); }
-    .agenda-nav { display: flex; gap: 4px; }
-    .agenda-nav-btn { width: 32px; height: 32px; border: 1px solid var(--rule); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 15px; color: var(--ink-3); cursor: pointer; background: var(--white); }
-    .agenda-view-toggle { display: flex; border: 1px solid var(--rule); border-radius: 7px; overflow: hidden; margin-left: auto; }
-    .agenda-view-toggle button { padding: 6px 14px; font-size: 12px; font-weight: 500; border: none; cursor: pointer; font-family: var(--font-sans); color: var(--ink-3); background: var(--white); }
-    .agenda-view-toggle button.active { background: var(--verde); color: var(--white); }
+    /* ══════════════════════════════════════════════════════
+       VIEW: PAINEL
+    ══════════════════════════════════════════════════════ */
+    .dash-grid { display: grid; grid-template-columns: 1fr 296px; gap: 18px; }
+    .session-table { width: 100%; border-collapse: collapse; }
+    .session-table th { font-size: 10px; font-weight: 600; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.06em; padding: 10px 20px; text-align: left; background: var(--paper); }
+    .session-table td { padding: 11px 20px; font-size: 12px; color: var(--ink-2); border-top: 1px solid var(--rule-soft); vertical-align: middle; }
+    .session-table tr:hover td { background: var(--paper); }
+    .patient-cell { display: flex; align-items: center; gap: 10px; }
+    .patient-name { font-size: 13px; font-weight: 500; color: var(--ink); }
+    .patient-meta { font-size: 11px; color: var(--ink-3); }
 
-    .week-grid { background: var(--white); border: 1px solid var(--rule-soft); border-radius: 12px; overflow: hidden; }
-    .week-header { display: grid; grid-template-columns: 64px repeat(6, 1fr); border-bottom: 1px solid var(--rule-soft); background: var(--paper); }
-    .week-header-cell { padding: 12px 8px; text-align: center; border-right: 1px solid var(--rule-soft); font-size: 11px; color: var(--ink-3); font-weight: 500; }
-    .week-header-cell:last-child { border-right: none; }
-    .week-header-cell strong { display: block; font-size: 20px; font-weight: 700; color: var(--ink); line-height: 1.2; margin-top: 2px; }
-    .week-header-cell.today-col strong { color: var(--verde); }
-    .week-header-cell.today-col { background: rgba(61,90,65,0.04); }
-    .week-time-row { display: grid; grid-template-columns: 64px repeat(6, 1fr); border-bottom: 1px solid #F0EDE8; }
-    .week-time-cell { padding: 0 8px; height: 64px; display: flex; align-items: flex-start; padding-top: 8px; border-right: 1px solid #F0EDE8; flex-shrink: 0; }
-    .week-time-cell span { font-size: 11px; color: var(--ink-4); }
-    .week-slot { height: 64px; border-right: 1px solid #F0EDE8; position: relative; }
-    .week-slot:last-child { border-right: none; }
-    .week-event {
-      position: absolute; left: 4px; right: 4px; top: 5px; bottom: 5px;
-      border-radius: 6px; padding: 5px 8px; font-size: 12px; cursor: pointer;
-    }
-    .week-event-name { font-weight: 600; color: inherit; display: block; }
-    .week-event-type { font-size: 10px; font-weight: 400; opacity: 0.8; display: block; }
+    .hub-alert { background: rgba(61,90,65,0.06); border: 1px solid rgba(61,90,65,0.2); border-radius: 9px; padding: 12px 16px; display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .hub-alert-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--verde); box-shadow: 0 0 0 3px rgba(61,90,65,0.15); flex-shrink: 0; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+    .hub-alert-text { font-size: 12px; color: var(--ink); flex: 1; }
+    .hub-alert-text strong { font-weight: 600; }
+
+    .side-widgets { display: flex; flex-direction: column; gap: 14px; }
+    .mini-cal { padding: 16px 18px; }
+    .mini-cal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    .mini-cal-title { font-size: 12px; font-weight: 600; }
+    .mini-cal-nav { font-size: 14px; color: var(--ink-3); cursor: pointer; padding: 0 3px; }
+    .mini-cal-grid { display: grid; grid-template-columns: repeat(7,1fr); text-align: center; gap: 2px; }
+    .mcg-day-name { font-size: 9px; font-weight: 600; color: var(--ink-4); padding: 3px 0; }
+    .mcg-day { font-size: 11px; color: var(--ink-2); padding: 4px 0; border-radius: 5px; cursor: pointer; position: relative; }
+    .mcg-day:hover { background: var(--paper); }
+    .mcg-day.today { background: var(--verde); color: var(--white); font-weight: 700; }
+    .mcg-day.has-ev::after { content:''; position: absolute; bottom: 1px; left: 50%; transform: translateX(-50%); width: 3px; height: 3px; border-radius: 50%; background: var(--verde); }
+    .mcg-day.today.has-ev::after { background: var(--sage); }
+    .mcg-day.off { color: var(--ink-4); }
+
+    .upcoming-item { display: flex; align-items: center; gap: 10px; padding: 11px 18px; border-top: 1px solid var(--rule-soft); }
+    .upcoming-time { background: var(--sage-tint); border-radius: 5px; padding: 5px 9px; text-align: center; flex-shrink: 0; min-width: 46px; }
+    .upcoming-hour { font-size: 13px; font-weight: 700; color: var(--verde); line-height: 1; }
+    .upcoming-min { font-size: 9px; color: var(--verde); }
+    .upcoming-info { flex: 1; }
+    .upcoming-name { font-size: 12px; font-weight: 500; color: var(--ink); }
+    .upcoming-type { font-size: 10px; color: var(--ink-3); margin-top: 1px; }
+
+    /* ══════════════════════════════════════════════════════
+       VIEW: AGENDA
+    ══════════════════════════════════════════════════════ */
+    .agenda-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+    .agenda-period { font-size: 14px; font-weight: 600; color: var(--ink); }
+    .nav-pair { display: flex; border: 1px solid var(--rule); border-radius: 7px; overflow: hidden; }
+    .nav-pair button { width: 30px; height: 30px; border: none; cursor: pointer; font-size: 14px; color: var(--ink-3); background: var(--white); font-family: var(--font-sans); }
+    .nav-pair button:first-child { border-right: 1px solid var(--rule); }
+    .view-toggle { display: flex; border: 1px solid var(--rule); border-radius: 7px; overflow: hidden; margin-left: auto; }
+    .view-toggle button { padding: 5px 13px; font-size: 11px; font-weight: 500; border: none; cursor: pointer; font-family: var(--font-sans); color: var(--ink-3); background: var(--white); }
+    .view-toggle button.active { background: var(--verde); color: var(--white); }
+    .week-grid-wrap { background: var(--white); border: 1px solid var(--rule-soft); border-radius: 11px; overflow: hidden; }
+    .wg-head { display: grid; grid-template-columns: 56px repeat(6,1fr); background: var(--paper); border-bottom: 1px solid var(--rule-soft); }
+    .wg-head-cell { padding: 11px 6px; text-align: center; border-right: 1px solid var(--rule-soft); font-size: 10px; color: var(--ink-3); font-weight: 500; }
+    .wg-head-cell:last-child { border-right: none; }
+    .wg-head-cell strong { display: block; font-size: 18px; font-weight: 700; color: var(--ink); line-height: 1.2; }
+    .wg-head-cell.today-col strong { color: var(--verde); }
+    .wg-row { display: grid; grid-template-columns: 56px repeat(6,1fr); border-bottom: 1px solid #F0EDE8; }
+    .wg-row:last-child { border-bottom: none; }
+    .wg-time { padding: 0 8px; height: 60px; display: flex; align-items: flex-start; padding-top: 7px; border-right: 1px solid var(--rule-soft); }
+    .wg-time span { font-size: 10px; color: var(--ink-4); }
+    .wg-slot { height: 60px; border-right: 1px solid #F0EDE8; position: relative; }
+    .wg-slot:last-child { border-right: none; }
+    .wg-event { position: absolute; left: 3px; right: 3px; top: 4px; bottom: 4px; border-radius: 5px; padding: 4px 7px; font-size: 11px; cursor: pointer; }
+    .wg-event:hover { filter: brightness(0.96); }
+    .wg-event-name { font-weight: 600; display: block; line-height: 1.2; }
+    .wg-event-type { font-size: 9px; font-weight: 400; opacity: 0.8; display: block; }
     .ev-tcc { background: rgba(61,90,65,0.13); color: #2D4430; }
     .ev-act { background: rgba(100,130,200,0.13); color: #3456A0; }
     .ev-psi { background: rgba(180,90,120,0.12); color: #8B3555; }
 
-    /* ── pacientes view ──────────────────────────────────── */
-    .patients-topbar { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
-    .patients-search {
-      display: flex; align-items: center; gap: 8px; background: var(--white);
-      border: 1px solid var(--rule); border-radius: 8px; padding: 9px 16px; flex: 1; max-width: 360px;
-    }
-    .patients-search svg { width: 14px; height: 14px; stroke: var(--ink-3); fill: none; stroke-width: 2; stroke-linecap: round; }
-    .patients-search input { border: none; outline: none; font-size: 13px; color: var(--ink); font-family: var(--font-sans); background: transparent; flex: 1; }
-    .patients-search input::placeholder { color: var(--ink-4); }
-    .filter-chip { padding: 7px 14px; border: 1px solid var(--rule); border-radius: 99px; font-size: 12px; font-weight: 500; color: var(--ink-3); cursor: pointer; background: var(--white); font-family: var(--font-sans); }
-    .filter-chip.active { background: var(--verde); color: var(--white); border-color: var(--verde); }
+    /* ══════════════════════════════════════════════════════
+       VIEW: PACIENTES
+    ══════════════════════════════════════════════════════ */
+    .patient-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+    .search-box { display: flex; align-items: center; gap: 8px; background: var(--white); border: 1px solid var(--rule); border-radius: 7px; padding: 8px 14px; flex: 1; max-width: 320px; }
+    .search-box svg { width: 13px; height: 13px; stroke: var(--ink-3); fill: none; stroke-width: 2; stroke-linecap: round; }
+    .search-box input { border: none; outline: none; font-size: 12px; color: var(--ink); font-family: var(--font-sans); background: transparent; flex: 1; }
+    .search-box input::placeholder { color: var(--ink-4); }
+    .filter-pill { padding: 6px 13px; border: 1px solid var(--rule); border-radius: 99px; font-size: 11px; font-weight: 500; color: var(--ink-3); cursor: pointer; background: var(--white); font-family: var(--font-sans); }
+    .filter-pill.active { background: var(--verde); color: var(--white); border-color: var(--verde); }
+    .pat-table-wrap { background: var(--white); border: 1px solid var(--rule-soft); border-radius: 11px; overflow: hidden; }
+    .pat-table { width: 100%; border-collapse: collapse; }
+    .pat-table th { font-size: 10px; font-weight: 600; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.06em; padding: 11px 20px; text-align: left; background: var(--paper); border-bottom: 1px solid var(--rule-soft); }
+    .pat-table td { padding: 13px 20px; font-size: 12px; color: var(--ink-2); border-bottom: 1px solid var(--rule-soft); vertical-align: middle; }
+    .pat-table tbody tr:last-child td { border-bottom: none; }
+    .pat-table tbody tr:hover td { background: var(--paper); }
 
-    .patients-table { background: var(--white); border: 1px solid var(--rule-soft); border-radius: 12px; overflow: hidden; }
-    .patients-table table { width: 100%; border-collapse: collapse; }
-    .patients-table thead th { font-size: 11px; font-weight: 600; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.06em; padding: 12px 20px; text-align: left; background: var(--paper); border-bottom: 1px solid var(--rule-soft); }
-    .patients-table tbody td { padding: 14px 20px; font-size: 13px; color: var(--ink-2); border-bottom: 1px solid var(--rule-soft); }
-    .patients-table tbody tr:last-child td { border-bottom: none; }
-    .patients-table tbody tr:hover td { background: var(--paper); }
-    .sessions-count { font-weight: 600; color: var(--ink); }
+    /* ══════════════════════════════════════════════════════
+       VIEW: PRONTUÁRIO
+    ══════════════════════════════════════════════════════ */
+    .pronut-layout { display: grid; grid-template-columns: 240px 1fr; gap: 0; background: var(--white); border: 1px solid var(--rule-soft); border-radius: 11px; overflow: hidden; height: calc(100vh - 180px); }
+    .pronut-list-col { border-right: 1px solid var(--rule-soft); display: flex; flex-direction: column; overflow: hidden; }
+    .pronut-list-head { padding: 14px 16px; border-bottom: 1px solid var(--rule-soft); flex-shrink: 0; }
+    .pronut-search { width: 100%; padding: 7px 10px; border: 1px solid var(--rule); border-radius: 6px; font-size: 12px; color: var(--ink); font-family: var(--font-sans); outline: none; }
+    .pronut-search:focus { border-color: var(--verde); }
+    .pronut-list-scroll { overflow-y: auto; flex: 1; }
+    .pronut-pat { display: flex; align-items: center; gap: 10px; padding: 11px 16px; border-bottom: 1px solid var(--rule-soft); cursor: pointer; }
+    .pronut-pat:hover { background: var(--paper); }
+    .pronut-pat.active { background: rgba(61,90,65,0.06); }
+    .pronut-pat-name { font-size: 12px; font-weight: 500; color: var(--ink); }
+    .pronut-pat-meta { font-size: 10px; color: var(--ink-3); margin-top: 2px; }
+    .pronut-status-dot { width: 7px; height: 7px; border-radius: 50%; background: #22C55E; flex-shrink: 0; margin-left: auto; }
+    .pronut-status-dot.off { background: #E5E7EB; }
 
-    /* hub notification */
-    .hub-alert {
-      background: rgba(61,90,65,0.06); border: 1px solid rgba(61,90,65,0.2);
-      border-radius: 10px; padding: 14px 18px; display: flex; align-items: center;
-      gap: 14px; margin-bottom: 20px;
-    }
-    .hub-alert-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--verde); box-shadow: 0 0 0 3px rgba(61,90,65,0.15); flex-shrink: 0; }
-    .hub-alert-text { font-size: 13px; color: var(--ink); flex: 1; }
-    .hub-alert-text strong { font-weight: 600; }
-    .hub-alert-btn { padding: 6px 14px; background: var(--verde); color: var(--white); border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: var(--font-sans); white-space: nowrap; }
+    .pronut-detail-col { display: flex; flex-direction: column; overflow: hidden; }
+    .pronut-detail-head { display: flex; align-items: center; gap: 14px; padding: 18px 24px; border-bottom: 1px solid var(--rule-soft); flex-shrink: 0; }
+    .pronut-detail-info { flex: 1; }
+    .pronut-detail-name { font-size: 15px; font-weight: 600; color: var(--ink); }
+    .pronut-detail-sub { font-size: 11px; color: var(--ink-3); margin-top: 2px; }
+    .pronut-detail-actions { display: flex; gap: 8px; }
+    .pronut-notes-scroll { overflow-y: auto; flex: 1; padding: 20px 24px; }
+    .note-card { border: 1px solid var(--rule-soft); border-radius: 9px; padding: 16px 18px; margin-bottom: 12px; background: var(--paper); }
+    .note-card-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+    .note-date { font-size: 10px; font-weight: 700; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.06em; }
+    .note-session { font-size: 10px; color: var(--verde); font-weight: 600; }
+    .note-text { font-size: 12px; color: var(--ink-2); line-height: 1.65; }
+    .note-editor { margin-top: 20px; border: 1.5px solid var(--verde); border-radius: 9px; overflow: hidden; }
+    .note-editor-head { background: rgba(61,90,65,0.06); padding: 10px 14px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--rule-soft); font-size: 11px; font-weight: 600; color: var(--verde); }
+    .note-editor textarea { width: 100%; border: none; outline: none; padding: 14px 16px; font-size: 12px; font-family: var(--font-sans); color: var(--ink); resize: vertical; min-height: 100px; background: var(--white); }
+    .note-editor-foot { padding: 10px 14px; background: var(--paper); display: flex; justify-content: flex-end; gap: 8px; border-top: 1px solid var(--rule-soft); }
+
+    /* ══════════════════════════════════════════════════════
+       VIEW: FINANCEIRO
+    ══════════════════════════════════════════════════════ */
+    .fin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px; }
+    .fin-big-card { background: var(--white); border: 1px solid var(--rule-soft); border-radius: 11px; padding: 24px 26px; }
+    .fin-amount { font-size: 2.4rem; font-weight: 700; color: var(--ink); line-height: 1; font-family: var(--font-display); }
+    .fin-period { font-size: 11px; color: var(--ink-3); margin-top: 4px; }
+    .fin-growth { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; color: #16A34A; margin-top: 8px; background: rgba(34,197,94,0.08); padding: 3px 9px; border-radius: 99px; }
+    .fin-chart { display: flex; align-items: flex-end; gap: 8px; height: 90px; margin-top: 20px; }
+    .fin-bar-g { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+    .fin-bar { border-radius: 4px 4px 0 0; width: 100%; background: var(--sage-tint); transition: background 0.15s; }
+    .fin-bar.cur { background: var(--verde); }
+    .fin-bar-lbl { font-size: 9px; color: var(--ink-3); }
+    .fin-breakdown { display: flex; gap: 0; border: 1px solid var(--rule-soft); border-radius: 9px; overflow: hidden; }
+    .fin-breakdown-item { flex: 1; padding: 14px 18px; border-right: 1px solid var(--rule-soft); }
+    .fin-breakdown-item:last-child { border-right: none; }
+    .fin-bl { font-size: 10px; color: var(--ink-3); margin-bottom: 5px; }
+    .fin-bv { font-size: 1.1rem; font-weight: 700; color: var(--ink); }
+    .fin-payment-table { width: 100%; border-collapse: collapse; }
+    .fin-payment-table th { font-size: 10px; font-weight: 600; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.06em; padding: 10px 20px; text-align: left; background: var(--paper); }
+    .fin-payment-table td { padding: 11px 20px; font-size: 12px; color: var(--ink-2); border-top: 1px solid var(--rule-soft); }
+    .fin-payment-table tr:hover td { background: var(--paper); }
+    .receipt-link { color: var(--verde); font-size: 11px; font-weight: 500; cursor: pointer; }
+
+    /* ══════════════════════════════════════════════════════
+       VIEW: HUB — NOVOS PACIENTES
+    ══════════════════════════════════════════════════════ */
+    .hub-header { background: var(--white); border: 1px solid var(--rule-soft); border-radius: 11px; padding: 20px 24px; margin-bottom: 18px; display: flex; align-items: flex-start; justify-content: space-between; }
+    .hub-header-title { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+    .hub-header-sub { font-size: 12px; color: var(--ink-3); max-width: 500px; line-height: 1.55; }
+    .hub-badge { background: var(--verde); color: var(--white); font-size: 13px; font-weight: 700; padding: 5px 16px; border-radius: 99px; flex-shrink: 0; }
+    .match-card { background: var(--white); border: 1px solid var(--rule-soft); border-radius: 11px; padding: 20px 22px; margin-bottom: 12px; display: flex; gap: 16px; align-items: flex-start; transition: border-color 0.15s; }
+    .match-card:hover { border-color: rgba(61,90,65,0.25); }
+    .match-card.top { border-color: rgba(61,90,65,0.3); background: rgba(61,90,65,0.02); }
+    .match-body { flex: 1; }
+    .match-name { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+    .match-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 7px; }
+    .match-tag { font-size: 10px; padding: 2px 9px; border-radius: 99px; background: var(--paper-2); color: var(--ink-3); font-weight: 500; }
+    .match-loc { font-size: 11px; color: var(--ink-3); }
+    .match-score-col { text-align: center; flex-shrink: 0; min-width: 70px; }
+    .match-score { font-size: 22px; font-weight: 800; color: var(--verde); line-height: 1; }
+    .match-score-lbl { font-size: 9px; color: var(--ink-3); margin-top: 2px; }
+    .match-actions { display: flex; gap: 7px; margin-top: 12px; }
+
+    /* ══════════════════════════════════════════════════════
+       VIEW: VIDEOCHAMADA
+    ══════════════════════════════════════════════════════ */
+    #view-video { background: #0F1613; border-radius: 11px; overflow: hidden; position: relative; height: calc(100vh - 160px); display: none; }
+    #view-video.active { display: flex; }
+    .video-main { flex: 1; display: flex; flex-direction: column; position: relative; }
+    .video-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; position: absolute; top: 0; left: 0; right: 0; z-index: 10; background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 100%); }
+    .video-header-logo { display: flex; align-items: center; gap: 8px; }
+    .video-header-logo .logo-mark { width: 26px; height: 26px; }
+    .video-header-logo span { color: rgba(255,255,255,0.8); font-size: 13px; font-weight: 500; }
+    .video-session-info { text-align: center; }
+    .video-session-patient { color: var(--white); font-size: 13px; font-weight: 600; }
+    .video-session-time { color: rgba(255,255,255,0.6); font-size: 11px; margin-top: 2px; }
+    .video-timer { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.9); font-size: 12px; font-weight: 600; padding: 5px 13px; border-radius: 99px; }
+    .video-patient-tile { flex: 1; display: flex; align-items: center; justify-content: center; background: #1a2820; }
+    .video-patient-av { width: 120px; height: 120px; border-radius: 50%; background: var(--verde); display: flex; align-items: center; justify-content: center; font-size: 40px; font-weight: 700; color: var(--sage); font-family: var(--font-display); }
+    .video-patient-name { color: rgba(255,255,255,0.8); font-size: 14px; font-weight: 500; margin-top: 14px; text-align: center; }
+    .video-patient-status { color: rgba(255,255,255,0.4); font-size: 11px; margin-top: 4px; text-align: center; }
+    .video-self { position: absolute; bottom: 80px; right: 20px; width: 140px; height: 96px; background: #2a3830; border-radius: 9px; border: 2px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .video-self-av { width: 40px; height: 40px; border-radius: 50%; background: var(--verde-escuro); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: var(--sage); }
+    .video-controls { position: absolute; bottom: 0; left: 0; right: 0; padding: 16px 0 20px; display: flex; justify-content: center; gap: 10px; background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%); }
+    .video-ctrl-btn { width: 46px; height: 46px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.15s; }
+    .video-ctrl-btn:hover { background: rgba(255,255,255,0.2); }
+    .video-ctrl-btn svg { width: 17px; height: 17px; fill: none; stroke: var(--white); stroke-width: 1.8; stroke-linecap: round; }
+    .video-ctrl-btn.end { background: #EF4444; border-color: #EF4444; width: 52px; height: 52px; }
+    .video-ctrl-btn.end svg { stroke: var(--white); }
+    .video-side { width: 300px; background: rgba(15,22,19,0.95); border-left: 1px solid rgba(255,255,255,0.08); display: flex; flex-direction: column; }
+    .video-side-tabs { display: flex; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .video-side-tab { flex: 1; padding: 12px 8px; text-align: center; font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.4); cursor: pointer; border-bottom: 2px solid transparent; }
+    .video-side-tab.active { color: var(--sage); border-bottom-color: var(--sage); }
+    .video-side-content { flex: 1; overflow-y: auto; padding: 16px; }
+    .video-note-card { background: rgba(255,255,255,0.05); border-radius: 7px; padding: 12px 14px; margin-bottom: 10px; }
+    .video-note-date { font-size: 10px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 5px; }
+    .video-note-text { font-size: 11px; color: rgba(255,255,255,0.65); line-height: 1.6; }
+    .video-note-area { border: 1px solid rgba(255,255,255,0.1); border-radius: 7px; overflow: hidden; margin-top: 12px; }
+    .video-note-area-label { padding: 8px 12px; background: rgba(255,255,255,0.05); font-size: 10px; color: var(--sage); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+    .video-note-area textarea { width: 100%; border: none; outline: none; background: transparent; padding: 10px 12px; font-size: 11px; font-family: var(--font-sans); color: rgba(255,255,255,0.75); resize: none; height: 80px; }
+    .video-note-area textarea::placeholder { color: rgba(255,255,255,0.2); }
+
+    /* ══════════════════════════════════════════════════════
+       VIEW: MEU PERFIL
+    ══════════════════════════════════════════════════════ */
+    .profile-grid { display: grid; grid-template-columns: 1fr 340px; gap: 20px; }
+    .profile-form-card { background: var(--white); border: 1px solid var(--rule-soft); border-radius: 11px; overflow: hidden; }
+    .profile-form-head { padding: 18px 24px; border-bottom: 1px solid var(--rule-soft); }
+    .profile-form-title { font-size: 13px; font-weight: 600; color: var(--ink); }
+    .profile-form-sub { font-size: 11px; color: var(--ink-3); margin-top: 3px; }
+    .profile-form-body { padding: 20px 24px; }
+    .form-field { margin-bottom: 16px; }
+    .form-label { display: block; font-size: 11px; font-weight: 600; color: var(--ink-2); margin-bottom: 5px; }
+    .form-input { width: 100%; padding: 9px 12px; border: 1.5px solid var(--rule); border-radius: 7px; font-size: 12px; font-family: var(--font-sans); color: var(--ink); outline: none; background: var(--paper); }
+    .form-input:focus { border-color: var(--verde); background: var(--white); }
+    .form-textarea { width: 100%; padding: 9px 12px; border: 1.5px solid var(--rule); border-radius: 7px; font-size: 12px; font-family: var(--font-sans); color: var(--ink); outline: none; background: var(--paper); resize: vertical; min-height: 90px; }
+    .form-textarea:focus { border-color: var(--verde); background: var(--white); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .form-select { width: 100%; padding: 9px 12px; border: 1.5px solid var(--rule); border-radius: 7px; font-size: 12px; font-family: var(--font-sans); color: var(--ink); outline: none; background: var(--paper); -webkit-appearance: none; }
+    .form-select:focus { border-color: var(--verde); }
+    .tags-field { display: flex; flex-wrap: wrap; gap: 7px; padding: 8px; border: 1.5px solid var(--rule); border-radius: 7px; background: var(--paper); }
+    .tag-pill { display: flex; align-items: center; gap: 5px; background: var(--sage-tint); color: var(--verde); font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 99px; }
+    .tag-pill-remove { cursor: pointer; font-size: 13px; line-height: 1; color: var(--verde); opacity: 0.6; }
+    .profile-save-row { display: flex; align-items: center; gap: 10px; padding: 16px 24px; border-top: 1px solid var(--rule-soft); background: var(--paper); }
+    .profile-save-note { font-size: 11px; color: var(--ink-3); }
+
+    /* marketplace preview card */
+    .preview-card { background: var(--white); border: 1px solid var(--rule-soft); border-radius: 11px; overflow: hidden; }
+    .preview-head { padding: 14px 18px; border-bottom: 1px solid var(--rule-soft); }
+    .preview-head-title { font-size: 11px; font-weight: 600; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.08em; }
+    .preview-psi-card { margin: 16px; border: 1px solid var(--rule-soft); border-radius: 10px; overflow: hidden; }
+    .preview-psi-banner { height: 64px; background: linear-gradient(135deg, var(--verde) 0%, var(--verde-escuro) 100%); }
+    .preview-psi-body { padding: 0 16px 16px; }
+    .preview-psi-av { width: 52px; height: 52px; border-radius: 50%; background: var(--sage-tint); display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700; color: var(--verde); font-family: var(--font-display); margin-top: -26px; border: 3px solid var(--white); }
+    .preview-psi-name { font-size: 14px; font-weight: 600; color: var(--ink); margin-top: 8px; }
+    .preview-psi-crp { font-size: 11px; color: var(--ink-3); margin-top: 2px; }
+    .preview-psi-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 10px; }
+    .preview-psi-tag { font-size: 10px; padding: 2px 9px; border-radius: 99px; background: var(--paper-2); color: var(--ink-3); }
+    .preview-psi-bio { font-size: 12px; color: var(--ink-2); line-height: 1.55; margin-top: 10px; }
+    .preview-psi-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--rule-soft); }
+    .preview-psi-price { font-size: 13px; font-weight: 700; color: var(--verde); }
+    .preview-psi-avail { font-size: 10px; color: var(--ink-3); }
+    .preview-status { display: flex; align-items: center; gap: 8px; padding: 12px 16px; background: rgba(61,90,65,0.05); border-top: 1px solid var(--rule-soft); font-size: 11px; color: var(--verde); font-weight: 500; }
+    .preview-live-dot { width: 7px; height: 7px; border-radius: 50%; background: #22C55E; animation: pulse 2s infinite; }
   </style>
 </head>
 <body>
@@ -242,49 +365,55 @@
   <!-- sidebar -->
   <aside class="sidebar">
     <div class="sidebar-logo">
-      <div class="sidebar-logo-mark">
-        <svg viewBox="0 0 24 24"><path d="M12 22c4-4 8-7.5 8-12a8 8 0 0 0-16 0c0 4.5 4 8 8 12z"/></svg>
-      </div>
-      <span class="sidebar-logo-name">Hub de Psicologia</span>
+      <div class="logo-mark"><svg viewBox="0 0 24 24"><path d="M12 22c4-4 8-7.5 8-12a8 8 0 0 0-16 0c0 4.5 4 8 8 12z"/></svg></div>
+      <span class="logo-name">Hub de Psicologia</span>
     </div>
     <nav class="sidebar-nav">
-      <div class="nav-item active" data-view="dashboard">
+      <div class="nav-section">Clínica</div>
+      <div class="nav-item active" data-view="painel" data-title="Painel">
         <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
         Painel
       </div>
-      <div class="nav-item" data-view="agenda">
+      <div class="nav-item" data-view="agenda" data-title="Agenda">
         <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         Agenda
       </div>
-      <div class="nav-item" data-view="pacientes">
+      <div class="nav-item" data-view="pacientes" data-title="Pacientes">
         <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         Pacientes
       </div>
-      <div class="nav-item" data-view="dashboard">
-        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      <div class="nav-item" data-view="prontuario" data-title="Prontuário Digital">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
         Prontuário
       </div>
-      <div class="nav-item" data-view="dashboard">
+      <div class="nav-item" data-view="financeiro" data-title="Financeiro">
         <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         Financeiro
       </div>
-      <div class="sidebar-section-label">Hub</div>
-      <div class="nav-item" data-view="dashboard">
-        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+      <div class="nav-item" data-view="video" data-title="Videochamada — Em sessão">
+        <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+        Videochamada
+      </div>
+
+      <div class="nav-section">Hub</div>
+      <div class="nav-item" data-view="hub" data-title="Novos Pacientes do Hub">
+        <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
         Novos pacientes
         <span class="nav-badge">3</span>
       </div>
-      <div class="nav-item" data-view="dashboard">
-        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        Mensagens
+
+      <div class="nav-section">Conta</div>
+      <div class="nav-item" data-view="perfil" data-title="Meu Perfil no Marketplace">
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Meu perfil
       </div>
     </nav>
-    <div class="sidebar-footer">
-      <div class="sidebar-user">
-        <div class="sidebar-avatar">AL</div>
+    <div class="sidebar-user">
+      <div class="user-row">
+        <div class="user-av">AL</div>
         <div>
-          <div class="sidebar-user-name">Dra. Ana Lima</div>
-          <div class="sidebar-user-crp">CRP 12/01234</div>
+          <div class="user-name">Dra. Ana Lima</div>
+          <div class="user-crp">CRP 12/01234</div>
         </div>
       </div>
     </div>
@@ -296,412 +425,545 @@
       <div class="topbar-title" id="topbar-title">Painel</div>
       <div class="topbar-search">
         <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <span>Buscar paciente ou sessão...</span>
+        <span>Buscar paciente, sessão...</span>
       </div>
-      <div class="topbar-notif">
+      <div class="topbar-icon-btn">
         <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-        <div class="notif-dot"></div>
+        <div class="badge-dot"></div>
       </div>
-      <button class="topbar-btn">
+      <button class="topbar-cta">
         <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
         Nova sessão
       </button>
     </header>
 
-    <div class="content">
+    <!-- ── PAINEL ──────────────────────────────────────────── -->
+    <div class="scroll-area">
 
-      <!-- dashboard view -->
-      <div class="view active" id="view-dashboard">
+      <div class="view active" id="view-painel">
         <div class="hub-alert">
           <span class="hub-alert-dot"></span>
-          <div class="hub-alert-text"><strong>3 novos pacientes compatíveis</strong> estão aguardando sua resposta no hub.</div>
-          <button class="hub-alert-btn">Ver pacientes</button>
+          <div class="hub-alert-text"><strong>3 novos pacientes compatíveis</strong> aguardam sua resposta no hub. Aceite antes que outro psicólogo pegue.</div>
+          <button class="act-btn act-btn-prim" onclick="goTo('hub')">Ver pacientes</button>
         </div>
-
-        <div class="page-greeting">
-          <h1>Bom dia, Dra. Ana Lima</h1>
-          <p>Sábado, 07 de junho de 2026 · 4 sessões hoje</p>
-        </div>
-
+        <div class="pg-head"><h1>Bom dia, Dra. Ana Lima</h1><p>Sábado, 07 de junho de 2026 · 4 sessões hoje</p></div>
         <div class="stats-row">
-          <div class="stat-card">
-            <div class="stat-card-label">Sessões hoje</div>
-            <div class="stat-card-value">4</div>
-            <div class="stat-card-sub">Próxima às 09:00</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-card-label">Esta semana</div>
-            <div class="stat-card-value">18</div>
-            <div class="stat-card-sub positive">+3 vs semana passada</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-card-label">Pacientes ativos</div>
-            <div class="stat-card-value">12</div>
-            <div class="stat-card-sub">2 aguardam confirmação</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-card-label">Receita junho</div>
-            <div class="stat-card-value">R$&nbsp;2.840</div>
-            <div class="stat-card-sub positive">+18% vs maio</div>
-          </div>
+          <div class="scard"><div class="scard-label">Sessões hoje</div><div class="scard-val">4</div><div class="scard-sub">Próxima às 09:00</div></div>
+          <div class="scard"><div class="scard-label">Esta semana</div><div class="scard-val">18</div><div class="scard-sub pos">+3 vs semana passada</div></div>
+          <div class="scard"><div class="scard-label">Pacientes ativos</div><div class="scard-val">12</div><div class="scard-sub warn">2 aguardam confirmação</div></div>
+          <div class="scard"><div class="scard-label">Receita junho</div><div class="scard-val">R$ 2.840</div><div class="scard-sub pos">+18% vs maio</div></div>
         </div>
-
-        <div class="dashboard-grid">
+        <div class="dash-grid">
           <div>
             <div class="card">
-              <div class="card-header">
-                <span class="card-title">Sessões de hoje</span>
-                <span class="card-action">Ver agenda completa</span>
-              </div>
+              <div class="card-head"><span class="card-title">Sessões de hoje</span><span class="card-link" onclick="goTo('agenda')">Ver agenda completa</span></div>
               <table class="session-table">
-                <thead>
-                  <tr>
-                    <th>Horário</th>
-                    <th>Paciente</th>
-                    <th>Abordagem</th>
-                    <th>Status</th>
-                    <th></th>
-                  </tr>
-                </thead>
+                <thead><tr><th>Horário</th><th>Paciente</th><th>Abordagem</th><th>Status</th><th></th></tr></thead>
                 <tbody>
                   <tr>
-                    <td style="font-weight:600;color:var(--ink);">09:00</td>
-                    <td>
-                      <div class="patient-cell">
-                        <div class="patient-av">MS</div>
-                        <div>
-                          <div class="patient-name">Maria Silva</div>
-                          <div class="patient-approach">Sessão 18 · TCC</div>
-                        </div>
-                      </div>
-                    </td>
+                    <td style="font-weight:700;color:var(--ink);">09:00</td>
+                    <td><div class="patient-cell"><div class="av av-sm av-green">MS</div><div><div class="patient-name">Maria Silva</div><div class="patient-meta">Sessão 18 · TCC</div></div></div></td>
                     <td>TCC</td>
-                    <td><span class="status-chip chip-green"><span class="chip-dot"></span>Confirmada</span></td>
-                    <td><button class="action-btn">Iniciar</button></td>
+                    <td><span class="chip chip-green"><span class="chip-dot"></span>Confirmada</span></td>
+                    <td><button class="act-btn act-btn-prim" onclick="goTo('video')">Iniciar</button></td>
                   </tr>
                   <tr>
-                    <td style="font-weight:600;color:var(--ink);">10:00</td>
-                    <td>
-                      <div class="patient-cell">
-                        <div class="patient-av blue">JR</div>
-                        <div>
-                          <div class="patient-name">João Rodrigues</div>
-                          <div class="patient-approach">Sessão 7 · ACT</div>
-                        </div>
-                      </div>
-                    </td>
+                    <td style="font-weight:700;color:var(--ink);">10:00</td>
+                    <td><div class="patient-cell"><div class="av av-sm av-blue">JR</div><div><div class="patient-name">João Rodrigues</div><div class="patient-meta">Sessão 7 · ACT</div></div></div></td>
                     <td>ACT</td>
-                    <td><span class="status-chip chip-green"><span class="chip-dot"></span>Confirmada</span></td>
-                    <td><button class="action-btn">Iniciar</button></td>
+                    <td><span class="chip chip-green"><span class="chip-dot"></span>Confirmada</span></td>
+                    <td><button class="act-btn">Iniciar</button></td>
                   </tr>
                   <tr>
-                    <td style="font-weight:600;color:var(--ink);">11:00</td>
-                    <td>
-                      <div class="patient-cell">
-                        <div class="patient-av rose">CM</div>
-                        <div>
-                          <div class="patient-name">Carla Moura</div>
-                          <div class="patient-approach">Sessão 3 · Psicanálise</div>
-                        </div>
-                      </div>
-                    </td>
+                    <td style="font-weight:700;color:var(--ink);">11:00</td>
+                    <td><div class="patient-cell"><div class="av av-sm av-rose">CM</div><div><div class="patient-name">Carla Moura</div><div class="patient-meta">Sessão 3 · Psicanálise</div></div></div></td>
                     <td>Psicanálise</td>
-                    <td><span class="status-chip chip-yellow"><span class="chip-dot"></span>Pendente</span></td>
-                    <td><button class="action-btn">Lembrete</button></td>
+                    <td><span class="chip chip-yellow"><span class="chip-dot"></span>Pendente</span></td>
+                    <td><button class="act-btn">Lembrete</button></td>
                   </tr>
                   <tr>
-                    <td style="font-weight:600;color:var(--ink);">14:00</td>
-                    <td>
-                      <div class="patient-cell">
-                        <div class="patient-av amber">AC</div>
-                        <div>
-                          <div class="patient-name">Ana Costa</div>
-                          <div class="patient-approach">Sessão 12 · TCC</div>
-                        </div>
-                      </div>
-                    </td>
+                    <td style="font-weight:700;color:var(--ink);">14:00</td>
+                    <td><div class="patient-cell"><div class="av av-sm av-amber">AC</div><div><div class="patient-name">Ana Costa</div><div class="patient-meta">Sessão 12 · TCC</div></div></div></td>
                     <td>TCC</td>
-                    <td><span class="status-chip chip-blue"><span class="chip-dot"></span>Agendada</span></td>
-                    <td><button class="action-btn">Ver</button></td>
+                    <td><span class="chip chip-blue"><span class="chip-dot"></span>Agendada</span></td>
+                    <td><button class="act-btn">Ver</button></td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </div>
-
-          <div style="display:flex;flex-direction:column;gap:16px;">
+          <div class="side-widgets">
             <div class="card">
               <div class="mini-cal">
-                <div class="mini-cal-header">
-                  <span class="mini-cal-title">Junho 2026</span>
-                  <div style="display:flex;gap:4px;">
-                    <span class="mini-cal-nav">‹</span>
-                    <span class="mini-cal-nav">›</span>
-                  </div>
-                </div>
+                <div class="mini-cal-head"><span class="mini-cal-title">Junho 2026</span><div style="display:flex;gap:2px;"><span class="mini-cal-nav">‹</span><span class="mini-cal-nav">›</span></div></div>
                 <div class="mini-cal-grid">
-                  <div class="mini-cal-day-name">D</div><div class="mini-cal-day-name">S</div><div class="mini-cal-day-name">T</div><div class="mini-cal-day-name">Q</div><div class="mini-cal-day-name">Q</div><div class="mini-cal-day-name">S</div><div class="mini-cal-day-name">S</div>
-                  <div class="mini-cal-day other-month">1</div>
-                  <div class="mini-cal-day has-event">2</div>
-                  <div class="mini-cal-day has-event">3</div>
-                  <div class="mini-cal-day has-event">4</div>
-                  <div class="mini-cal-day has-event">5</div>
-                  <div class="mini-cal-day has-event">6</div>
-                  <div class="mini-cal-day today has-event">7</div>
-                  <div class="mini-cal-day">8</div>
-                  <div class="mini-cal-day has-event">9</div>
-                  <div class="mini-cal-day has-event">10</div>
-                  <div class="mini-cal-day has-event">11</div>
-                  <div class="mini-cal-day has-event">12</div>
-                  <div class="mini-cal-day has-event">13</div>
-                  <div class="mini-cal-day">14</div>
-                  <div class="mini-cal-day">15</div>
-                  <div class="mini-cal-day has-event">16</div>
-                  <div class="mini-cal-day has-event">17</div>
-                  <div class="mini-cal-day has-event">18</div>
-                  <div class="mini-cal-day has-event">19</div>
-                  <div class="mini-cal-day has-event">20</div>
-                  <div class="mini-cal-day">21</div>
-                  <div class="mini-cal-day">22</div>
-                  <div class="mini-cal-day has-event">23</div>
-                  <div class="mini-cal-day has-event">24</div>
-                  <div class="mini-cal-day has-event">25</div>
-                  <div class="mini-cal-day has-event">26</div>
-                  <div class="mini-cal-day has-event">27</div>
-                  <div class="mini-cal-day">28</div>
-                  <div class="mini-cal-day">29</div>
-                  <div class="mini-cal-day has-event">30</div>
+                  <div class="mcg-day-name">D</div><div class="mcg-day-name">S</div><div class="mcg-day-name">T</div><div class="mcg-day-name">Q</div><div class="mcg-day-name">Q</div><div class="mcg-day-name">S</div><div class="mcg-day-name">S</div>
+                  <div class="mcg-day off">1</div><div class="mcg-day has-ev">2</div><div class="mcg-day has-ev">3</div><div class="mcg-day has-ev">4</div><div class="mcg-day has-ev">5</div><div class="mcg-day has-ev">6</div><div class="mcg-day today has-ev">7</div>
+                  <div class="mcg-day">8</div><div class="mcg-day has-ev">9</div><div class="mcg-day has-ev">10</div><div class="mcg-day has-ev">11</div><div class="mcg-day has-ev">12</div><div class="mcg-day has-ev">13</div><div class="mcg-day">14</div>
+                  <div class="mcg-day">15</div><div class="mcg-day has-ev">16</div><div class="mcg-day has-ev">17</div><div class="mcg-day has-ev">18</div><div class="mcg-day has-ev">19</div><div class="mcg-day has-ev">20</div><div class="mcg-day">21</div>
+                  <div class="mcg-day">22</div><div class="mcg-day has-ev">23</div><div class="mcg-day has-ev">24</div><div class="mcg-day has-ev">25</div><div class="mcg-day has-ev">26</div><div class="mcg-day has-ev">27</div><div class="mcg-day">28</div>
+                  <div class="mcg-day">29</div><div class="mcg-day has-ev">30</div>
                 </div>
               </div>
             </div>
-
             <div class="card">
-              <div class="card-header">
-                <span class="card-title">Próximas sessões</span>
-              </div>
-              <div class="upcoming-list">
-                <div class="upcoming-item">
-                  <div class="upcoming-time-block"><div class="upcoming-hour">09</div><div class="upcoming-min">:00</div></div>
-                  <div>
-                    <div class="upcoming-name">Maria Silva</div>
-                    <div class="upcoming-type">TCC · Sessão 18</div>
-                  </div>
-                  <div class="upcoming-action"><button class="action-btn">Iniciar</button></div>
-                </div>
-                <div class="upcoming-item">
-                  <div class="upcoming-time-block"><div class="upcoming-hour">10</div><div class="upcoming-min">:00</div></div>
-                  <div>
-                    <div class="upcoming-name">João Rodrigues</div>
-                    <div class="upcoming-type">ACT · Sessão 7</div>
-                  </div>
-                  <div class="upcoming-action"><button class="action-btn">Iniciar</button></div>
-                </div>
-                <div class="upcoming-item">
-                  <div class="upcoming-time-block"><div class="upcoming-hour">11</div><div class="upcoming-min">:00</div></div>
-                  <div>
-                    <div class="upcoming-name">Carla Moura</div>
-                    <div class="upcoming-type">Psicanálise · Sessão 3</div>
-                  </div>
-                  <div class="upcoming-action"><button class="action-btn">Ver</button></div>
-                </div>
-              </div>
+              <div class="card-head"><span class="card-title">Próximas sessões</span></div>
+              <div class="upcoming-item"><div class="upcoming-time"><div class="upcoming-hour">09</div><div class="upcoming-min">:00</div></div><div class="upcoming-info"><div class="upcoming-name">Maria Silva</div><div class="upcoming-type">TCC · Sessão 18</div></div><button class="act-btn act-btn-prim" onclick="goTo('video')">Iniciar</button></div>
+              <div class="upcoming-item"><div class="upcoming-time"><div class="upcoming-hour">10</div><div class="upcoming-min">:00</div></div><div class="upcoming-info"><div class="upcoming-name">João Rodrigues</div><div class="upcoming-type">ACT · Sessão 7</div></div><button class="act-btn">Iniciar</button></div>
+              <div class="upcoming-item"><div class="upcoming-time"><div class="upcoming-hour">11</div><div class="upcoming-min">:00</div></div><div class="upcoming-info"><div class="upcoming-name">Carla Moura</div><div class="upcoming-type">Psicanálise · Sessão 3</div></div><button class="act-btn">Ver</button></div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- agenda view -->
+      <!-- ── AGENDA ────────────────────────────────────────── -->
       <div class="view" id="view-agenda">
-        <div class="page-greeting">
-          <h1>Agenda</h1>
-          <p>Visualize e gerencie seus horários</p>
-        </div>
-        <div class="agenda-topbar">
-          <div class="agenda-nav">
-            <button class="agenda-nav-btn">‹</button>
-            <button class="agenda-nav-btn">›</button>
-          </div>
+        <div class="pg-head"><h1>Agenda</h1><p>Gerencie seus horários e disponibilidade</p></div>
+        <div class="agenda-bar">
+          <div class="nav-pair"><button>‹</button><button>›</button></div>
           <span class="agenda-period">02 – 07 de junho de 2026</span>
-          <button class="agenda-nav-btn" style="width:auto;padding:0 12px;font-size:12px;font-weight:500;">Hoje</button>
-          <div class="agenda-view-toggle">
-            <button class="active">Semana</button>
-            <button>Mês</button>
-            <button>Dia</button>
-          </div>
-          <button class="topbar-btn" style="margin-left:8px;">
-            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            Nova sessão
-          </button>
+          <button class="act-btn">Hoje</button>
+          <div class="view-toggle"><button class="active">Semana</button><button>Mês</button><button>Dia</button></div>
+          <div style="margin-left:auto;"><button class="topbar-cta"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Nova sessão</button></div>
         </div>
-        <div class="week-grid">
-          <div class="week-header">
-            <div class="week-header-cell"></div>
-            <div class="week-header-cell">Seg<strong>02</strong></div>
-            <div class="week-header-cell">Ter<strong>03</strong></div>
-            <div class="week-header-cell">Qua<strong>04</strong></div>
-            <div class="week-header-cell">Qui<strong>05</strong></div>
-            <div class="week-header-cell">Sex<strong>06</strong></div>
-            <div class="week-header-cell today-col">Sáb<strong>07</strong></div>
+        <div class="week-grid-wrap">
+          <div class="wg-head">
+            <div class="wg-head-cell"></div>
+            <div class="wg-head-cell">Seg<strong>02</strong></div>
+            <div class="wg-head-cell">Ter<strong>03</strong></div>
+            <div class="wg-head-cell">Qua<strong>04</strong></div>
+            <div class="wg-head-cell">Qui<strong>05</strong></div>
+            <div class="wg-head-cell">Sex<strong>06</strong></div>
+            <div class="wg-head-cell today-col">Sáb<strong>07</strong></div>
           </div>
-          <div class="week-time-row">
-            <div class="week-time-cell"><span>08:00</span></div>
-            <div class="week-slot"></div><div class="week-slot"></div><div class="week-slot"></div><div class="week-slot"></div><div class="week-slot"></div><div class="week-slot"></div>
+          <div class="wg-row"><div class="wg-time"><span>08:00</span></div><div class="wg-slot"></div><div class="wg-slot"></div><div class="wg-slot"></div><div class="wg-slot"></div><div class="wg-slot"></div><div class="wg-slot"></div></div>
+          <div class="wg-row">
+            <div class="wg-time"><span>09:00</span></div>
+            <div class="wg-slot"></div>
+            <div class="wg-slot"><div class="wg-event ev-tcc"><span class="wg-event-name">Maria S.</span><span class="wg-event-type">TCC · Sessão 18</span></div></div>
+            <div class="wg-slot"></div>
+            <div class="wg-slot"><div class="wg-event ev-act"><span class="wg-event-name">Lucas F.</span><span class="wg-event-type">ACT · Sessão 4</span></div></div>
+            <div class="wg-slot"></div>
+            <div class="wg-slot"><div class="wg-event ev-tcc"><span class="wg-event-name">Maria S.</span><span class="wg-event-type">TCC · Sessão 17</span></div></div>
           </div>
-          <div class="week-time-row">
-            <div class="week-time-cell"><span>09:00</span></div>
-            <div class="week-slot"></div>
-            <div class="week-slot"><div class="week-event ev-tcc"><span class="week-event-name">Maria S.</span><span class="week-event-type">TCC · Sessão 18</span></div></div>
-            <div class="week-slot"></div>
-            <div class="week-slot"><div class="week-event ev-act"><span class="week-event-name">Lucas F.</span><span class="week-event-type">ACT · Sessão 4</span></div></div>
-            <div class="week-slot"></div>
-            <div class="week-slot"><div class="week-event ev-tcc"><span class="week-event-name">Maria S.</span><span class="week-event-type">TCC · Sessão 17</span></div></div>
+          <div class="wg-row">
+            <div class="wg-time"><span>10:00</span></div>
+            <div class="wg-slot"><div class="wg-event ev-psi"><span class="wg-event-name">Carla M.</span><span class="wg-event-type">Psicanálise</span></div></div>
+            <div class="wg-slot"></div>
+            <div class="wg-slot"><div class="wg-event ev-tcc"><span class="wg-event-name">João R.</span><span class="wg-event-type">TCC · Sessão 7</span></div></div>
+            <div class="wg-slot"></div>
+            <div class="wg-slot"><div class="wg-event ev-act"><span class="wg-event-name">Ana C.</span><span class="wg-event-type">ACT · Sessão 12</span></div></div>
+            <div class="wg-slot"><div class="wg-event ev-act"><span class="wg-event-name">João R.</span><span class="wg-event-type">ACT · Sessão 6</span></div></div>
           </div>
-          <div class="week-time-row">
-            <div class="week-time-cell"><span>10:00</span></div>
-            <div class="week-slot"><div class="week-event ev-psi"><span class="week-event-name">Carla M.</span><span class="week-event-type">Psicanálise</span></div></div>
-            <div class="week-slot"></div>
-            <div class="week-slot"><div class="week-event ev-tcc"><span class="week-event-name">João R.</span><span class="week-event-type">TCC · Sessão 7</span></div></div>
-            <div class="week-slot"></div>
-            <div class="week-slot"><div class="week-event ev-act"><span class="week-event-name">Ana C.</span><span class="week-event-type">ACT · Sessão 12</span></div></div>
-            <div class="week-slot"><div class="week-event ev-act"><span class="week-event-name">João R.</span><span class="week-event-type">ACT · Sessão 6</span></div></div>
+          <div class="wg-row">
+            <div class="wg-time"><span>11:00</span></div>
+            <div class="wg-slot"></div><div class="wg-slot"></div><div class="wg-slot"></div><div class="wg-slot"></div><div class="wg-slot"></div>
+            <div class="wg-slot"><div class="wg-event ev-psi"><span class="wg-event-name">Paulo F.</span><span class="wg-event-type">Psicanálise</span></div></div>
           </div>
-          <div class="week-time-row">
-            <div class="week-time-cell"><span>11:00</span></div>
-            <div class="week-slot"></div><div class="week-slot"></div><div class="week-slot"></div><div class="week-slot"></div><div class="week-slot"></div>
-            <div class="week-slot"><div class="week-event ev-psi"><span class="week-event-name">Paulo F.</span><span class="week-event-type">Psicanálise</span></div></div>
+          <div class="wg-row">
+            <div class="wg-time"><span>13:00</span></div>
+            <div class="wg-slot"><div class="wg-event ev-act"><span class="wg-event-name">Lucas F.</span><span class="wg-event-type">ACT · Sessão 3</span></div></div>
+            <div class="wg-slot"></div>
+            <div class="wg-slot"><div class="wg-event ev-psi"><span class="wg-event-name">Paula R.</span><span class="wg-event-type">Psicanálise</span></div></div>
+            <div class="wg-slot"></div><div class="wg-slot"></div><div class="wg-slot"></div>
           </div>
-          <div class="week-time-row">
-            <div class="week-time-cell"><span>12:00</span></div>
-            <div class="week-slot"></div><div class="week-slot"></div><div class="week-slot"></div><div class="week-slot"></div><div class="week-slot"></div><div class="week-slot"></div>
-          </div>
-          <div class="week-time-row">
-            <div class="week-time-cell"><span>13:00</span></div>
-            <div class="week-slot"><div class="week-event ev-act"><span class="week-event-name">Lucas F.</span><span class="week-event-type">ACT · Sessão 3</span></div></div>
-            <div class="week-slot"></div>
-            <div class="week-slot"><div class="week-event ev-psi"><span class="week-event-name">Paula R.</span><span class="week-event-type">Psicanálise</span></div></div>
-            <div class="week-slot"></div><div class="week-slot"></div><div class="week-slot"></div>
-          </div>
-          <div class="week-time-row">
-            <div class="week-time-cell"><span>14:00</span></div>
-            <div class="week-slot"></div><div class="week-slot"></div><div class="week-slot"></div><div class="week-slot"></div>
-            <div class="week-slot"><div class="week-event ev-tcc"><span class="week-event-name">Ana Costa</span><span class="week-event-type">TCC · Sessão 11</span></div></div>
-            <div class="week-slot"><div class="week-event ev-tcc"><span class="week-event-name">Ana Costa</span><span class="week-event-type">TCC · Sessão 12</span></div></div>
+          <div class="wg-row">
+            <div class="wg-time"><span>14:00</span></div>
+            <div class="wg-slot"></div><div class="wg-slot"></div><div class="wg-slot"></div><div class="wg-slot"></div>
+            <div class="wg-slot"><div class="wg-event ev-tcc"><span class="wg-event-name">Ana Costa</span><span class="wg-event-type">TCC · Sessão 11</span></div></div>
+            <div class="wg-slot"><div class="wg-event ev-tcc"><span class="wg-event-name">Ana Costa</span><span class="wg-event-type">TCC · Sessão 12</span></div></div>
           </div>
         </div>
       </div>
 
-      <!-- pacientes view -->
+      <!-- ── PACIENTES ──────────────────────────────────────── -->
       <div class="view" id="view-pacientes">
-        <div class="page-greeting">
-          <h1>Pacientes</h1>
-          <p>12 pacientes ativos · 3 novos indicados pelo hub</p>
+        <div class="pg-head"><h1>Pacientes</h1><p>12 pacientes ativos · 4 vieram do hub</p></div>
+        <div class="patient-bar">
+          <div class="search-box"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input placeholder="Buscar por nome, abordagem..."></div>
+          <button class="filter-pill active">Todos (12)</button>
+          <button class="filter-pill">Ativos (10)</button>
+          <button class="filter-pill">Pausados (2)</button>
+          <button class="filter-pill" style="border-color:var(--verde);color:var(--verde);">Do hub (4)</button>
+          <div style="margin-left:auto;"><button class="topbar-cta"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Novo paciente</button></div>
         </div>
-        <div class="patients-topbar">
-          <div class="patients-search">
-            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <input placeholder="Buscar por nome, abordagem...">
-          </div>
-          <button class="filter-chip active">Todos (12)</button>
-          <button class="filter-chip">Ativos (10)</button>
-          <button class="filter-chip">Pausados (2)</button>
-          <button class="filter-chip" style="border-color:var(--verde);color:var(--verde);">Do hub (4)</button>
-          <div style="margin-left:auto;">
-            <button class="topbar-btn">
-              <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-              Novo paciente
-            </button>
-          </div>
-        </div>
-        <div class="patients-table">
-          <table>
-            <thead>
-              <tr>
-                <th>Paciente</th>
-                <th>Abordagem</th>
-                <th>Sessões</th>
-                <th>Última sessão</th>
-                <th>Próxima sessão</th>
-                <th>Status</th>
-                <th></th>
-              </tr>
-            </thead>
+        <div class="pat-table-wrap">
+          <table class="pat-table">
+            <thead><tr><th>Paciente</th><th>Abordagem</th><th>Sessões</th><th>Última sessão</th><th>Próxima sessão</th><th>Status</th><th></th></tr></thead>
             <tbody>
-              <tr>
-                <td><div class="patient-cell"><div class="patient-av">MS</div><div><div class="patient-name">Maria Silva</div><div class="patient-approach">Iniciou em jan 2026</div></div></div></td>
-                <td>TCC</td>
-                <td><span class="sessions-count">18</span></td>
-                <td>03/06/2026</td>
-                <td>07/06/2026 09:00</td>
-                <td><span class="status-chip chip-green"><span class="chip-dot"></span>Ativa</span></td>
-                <td><button class="action-btn">Ver prontuário</button></td>
-              </tr>
-              <tr>
-                <td><div class="patient-cell"><div class="patient-av blue">JR</div><div><div class="patient-name">João Rodrigues</div><div class="patient-approach">Indicado pelo hub</div></div></div></td>
-                <td>ACT</td>
-                <td><span class="sessions-count">7</span></td>
-                <td>04/06/2026</td>
-                <td>07/06/2026 10:00</td>
-                <td><span class="status-chip chip-green"><span class="chip-dot"></span>Ativa</span></td>
-                <td><button class="action-btn">Ver prontuário</button></td>
-              </tr>
-              <tr>
-                <td><div class="patient-cell"><div class="patient-av amber">AC</div><div><div class="patient-name">Ana Costa</div><div class="patient-approach">Indicado pelo hub</div></div></div></td>
-                <td>TCC</td>
-                <td><span class="sessions-count">12</span></td>
-                <td>04/06/2026</td>
-                <td>07/06/2026 14:00</td>
-                <td><span class="status-chip chip-green"><span class="chip-dot"></span>Ativa</span></td>
-                <td><button class="action-btn">Ver prontuário</button></td>
-              </tr>
-              <tr>
-                <td><div class="patient-cell"><div class="patient-av rose">CM</div><div><div class="patient-name">Carla Moura</div><div class="patient-approach">Iniciou em mar 2026</div></div></div></td>
-                <td>Psicanálise</td>
-                <td><span class="sessions-count">3</span></td>
-                <td>01/06/2026</td>
-                <td>07/06/2026 11:00</td>
-                <td><span class="status-chip chip-yellow"><span class="chip-dot"></span>Pendente</span></td>
-                <td><button class="action-btn">Ver prontuário</button></td>
-              </tr>
-              <tr>
-                <td><div class="patient-cell"><div class="patient-av">PF</div><div><div class="patient-name">Paulo Ferreira</div><div class="patient-approach">Iniciou em fev 2026</div></div></div></td>
-                <td>Psicanálise</td>
-                <td><span class="sessions-count">9</span></td>
-                <td>06/06/2026</td>
-                <td>14/06/2026 11:00</td>
-                <td><span class="status-chip chip-green"><span class="chip-dot"></span>Ativa</span></td>
-                <td><button class="action-btn">Ver prontuário</button></td>
-              </tr>
-              <tr>
-                <td><div class="patient-cell"><div class="patient-av blue">LF</div><div><div class="patient-name">Lucas Fontes</div><div class="patient-approach">Indicado pelo hub</div></div></div></td>
-                <td>ACT</td>
-                <td><span class="sessions-count">4</span></td>
-                <td>05/06/2026</td>
-                <td>09/06/2026 13:00</td>
-                <td><span class="status-chip chip-green"><span class="chip-dot"></span>Ativa</span></td>
-                <td><button class="action-btn">Ver prontuário</button></td>
-              </tr>
+              <tr><td><div class="patient-cell"><div class="av av-sm av-green">MS</div><div><div class="patient-name">Maria Silva</div><div class="patient-meta">Desde jan 2026</div></div></div></td><td>TCC</td><td style="font-weight:700;color:var(--ink);">18</td><td>03/06/2026</td><td>07/06 09:00</td><td><span class="chip chip-green"><span class="chip-dot"></span>Ativa</span></td><td><button class="act-btn" onclick="goTo('prontuario')">Prontuário</button></td></tr>
+              <tr><td><div class="patient-cell"><div class="av av-sm av-blue">JR</div><div><div class="patient-name">João Rodrigues</div><div class="patient-meta">Hub · desde abr 2026</div></div></div></td><td>ACT</td><td style="font-weight:700;color:var(--ink);">7</td><td>04/06/2026</td><td>07/06 10:00</td><td><span class="chip chip-green"><span class="chip-dot"></span>Ativa</span></td><td><button class="act-btn" onclick="goTo('prontuario')">Prontuário</button></td></tr>
+              <tr><td><div class="patient-cell"><div class="av av-sm av-amber">AC</div><div><div class="patient-name">Ana Costa</div><div class="patient-meta">Hub · desde mar 2026</div></div></div></td><td>TCC</td><td style="font-weight:700;color:var(--ink);">12</td><td>04/06/2026</td><td>07/06 14:00</td><td><span class="chip chip-green"><span class="chip-dot"></span>Ativa</span></td><td><button class="act-btn" onclick="goTo('prontuario')">Prontuário</button></td></tr>
+              <tr><td><div class="patient-cell"><div class="av av-sm av-rose">CM</div><div><div class="patient-name">Carla Moura</div><div class="patient-meta">Desde mar 2026</div></div></div></td><td>Psicanálise</td><td style="font-weight:700;color:var(--ink);">3</td><td>01/06/2026</td><td>07/06 11:00</td><td><span class="chip chip-yellow"><span class="chip-dot"></span>Pendente</span></td><td><button class="act-btn" onclick="goTo('prontuario')">Prontuário</button></td></tr>
+              <tr><td><div class="patient-cell"><div class="av av-sm av-green">PF</div><div><div class="patient-name">Paulo Ferreira</div><div class="patient-meta">Desde fev 2026</div></div></div></td><td>Psicanálise</td><td style="font-weight:700;color:var(--ink);">9</td><td>06/06/2026</td><td>14/06 11:00</td><td><span class="chip chip-green"><span class="chip-dot"></span>Ativa</span></td><td><button class="act-btn" onclick="goTo('prontuario')">Prontuário</button></td></tr>
+              <tr><td><div class="patient-cell"><div class="av av-sm av-teal">LF</div><div><div class="patient-name">Lucas Fontes</div><div class="patient-meta">Hub · desde mai 2026</div></div></div></td><td>ACT</td><td style="font-weight:700;color:var(--ink);">4</td><td>05/06/2026</td><td>09/06 13:00</td><td><span class="chip chip-green"><span class="chip-dot"></span>Ativa</span></td><td><button class="act-btn" onclick="goTo('prontuario')">Prontuário</button></td></tr>
             </tbody>
           </table>
         </div>
       </div>
 
+      <!-- ── PRONTUÁRIO ─────────────────────────────────────── -->
+      <div class="view" id="view-prontuario">
+        <div class="pg-head"><h1>Prontuário Digital</h1><p>Notas de sessão, evolução e histórico de cada paciente</p></div>
+        <div class="pronut-layout">
+          <div class="pronut-list-col">
+            <div class="pronut-list-head"><input class="pronut-search" placeholder="Buscar paciente..."></div>
+            <div class="pronut-list-scroll">
+              <div class="pronut-pat"><div class="av av-sm av-green">MS</div><div><div class="pronut-pat-name">Maria Silva</div><div class="pronut-pat-meta">18 sessões · TCC</div></div><span class="pronut-status-dot"></span></div>
+              <div class="pronut-pat"><div class="av av-sm av-blue">JR</div><div><div class="pronut-pat-name">João Rodrigues</div><div class="pronut-pat-meta">7 sessões · ACT</div></div><span class="pronut-status-dot"></span></div>
+              <div class="pronut-pat active"><div class="av av-sm av-amber">AC</div><div><div class="pronut-pat-name">Ana Costa</div><div class="pronut-pat-meta">12 sessões · TCC</div></div><span class="pronut-status-dot"></span></div>
+              <div class="pronut-pat"><div class="av av-sm av-rose">CM</div><div><div class="pronut-pat-name">Carla Moura</div><div class="pronut-pat-meta">3 sessões · Psicanálise</div></div><span class="pronut-status-dot off"></span></div>
+              <div class="pronut-pat"><div class="av av-sm av-green">PF</div><div><div class="pronut-pat-name">Paulo Ferreira</div><div class="pronut-pat-meta">9 sessões · Psicanálise</div></div><span class="pronut-status-dot"></span></div>
+              <div class="pronut-pat"><div class="av av-sm av-teal">LF</div><div><div class="pronut-pat-name">Lucas Fontes</div><div class="pronut-pat-meta">4 sessões · ACT</div></div><span class="pronut-status-dot"></span></div>
+            </div>
+          </div>
+          <div class="pronut-detail-col">
+            <div class="pronut-detail-head">
+              <div class="av av-md av-amber">AC</div>
+              <div class="pronut-detail-info">
+                <div class="pronut-detail-name">Ana Costa</div>
+                <div class="pronut-detail-sub">TCC · 12 sessões · Indicada pelo hub · Iniciou em março 2026</div>
+              </div>
+              <div class="pronut-detail-actions">
+                <button class="act-btn act-btn-prim">Nova nota</button>
+                <button class="act-btn">Emitir recibo</button>
+                <button class="act-btn">Agendar sessão</button>
+              </div>
+            </div>
+            <div class="pronut-notes-scroll">
+              <div class="note-card">
+                <div class="note-card-head"><span class="note-date">04 jun 2026</span><span class="note-session">Sessão 12</span></div>
+                <div class="note-text">Paciente relatou melhora nos padrões de pensamento automáticos negativos durante a semana. Trabalhamos reestruturação cognitiva com foco em situações de trabalho e relacionamento com a liderança. Identificamos o pensamento "não sou capaz o suficiente" como central. Tarefa para a semana: registro diário de pensamentos e evidências contrárias. Próxima sessão: revisar o registro e avançar para técnicas de exposição gradual em situações de apresentação.</div>
+              </div>
+              <div class="note-card">
+                <div class="note-card-head"><span class="note-date">28 mai 2026</span><span class="note-session">Sessão 11</span></div>
+                <div class="note-text">Abordamos o episódio de ansiedade intensa relatado na terça-feira. Paciente identificou o gatilho corretamente (reunião com gestor) e aplicou a técnica de respiração 4-7-8. Psicoeducação sobre o ciclo ansiedade-evitação e como a evitação reforça o medo. Evolução positiva na adesão às tarefas entre sessões.</div>
+              </div>
+              <div class="note-card">
+                <div class="note-card-head"><span class="note-date">21 mai 2026</span><span class="note-session">Sessão 10</span></div>
+                <div class="note-text">Marco importante: paciente verbalizou pela primeira vez que sente melhora perceptível no dia a dia. Revisamos os progressos desde a sessão 1 usando linha do tempo. Introduzimos o conceito de prevenção de recaída. Paciente demonstra boa aliança terapêutica e engajamento com o processo.</div>
+              </div>
+              <div class="note-editor" id="note-editor" style="display:none;">
+                <div class="note-editor-head">
+                  <svg viewBox="0 0 24 24" style="width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                  Nova nota — Sessão 13 · 14/06/2026
+                </div>
+                <textarea placeholder="Registre as observações da sessão..."></textarea>
+                <div class="note-editor-foot">
+                  <button class="act-btn" onclick="document.getElementById('note-editor').style.display='none'">Cancelar</button>
+                  <button class="act-btn act-btn-prim">Salvar nota</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── FINANCEIRO ─────────────────────────────────────── -->
+      <div class="view" id="view-financeiro">
+        <div class="pg-head"><h1>Financeiro</h1><p>Receitas, pagamentos e emissão de recibos</p></div>
+        <div class="stats-row">
+          <div class="scard"><div class="scard-label">Receita junho</div><div class="scard-val">R$ 2.840</div><div class="scard-sub pos">+18% vs maio</div></div>
+          <div class="scard"><div class="scard-label">Sessões pagas</div><div class="scard-val">16</div><div class="scard-sub">2 aguardando</div></div>
+          <div class="scard"><div class="scard-label">Ticket médio</div><div class="scard-val">R$ 197</div><div class="scard-sub pos">+R$12 vs maio</div></div>
+          <div class="scard"><div class="scard-label">Comissão hub</div><div class="scard-val">R$ 176</div><div class="scard-sub">Sobre 4 pacientes do hub</div></div>
+        </div>
+        <div class="fin-grid">
+          <div class="fin-big-card">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;">
+              <div>
+                <div style="font-size:11px;color:var(--ink-3);margin-bottom:4px;">Receita total 2026</div>
+                <div class="fin-amount">R$ 14.280</div>
+                <div class="fin-period">Janeiro – Junho 2026 (parcial)</div>
+              </div>
+              <span class="fin-growth">+31% vs 2025</span>
+            </div>
+            <div class="fin-chart">
+              <div class="fin-bar-g"><div class="fin-bar" style="height:52px"></div><div class="fin-bar-lbl">jan</div></div>
+              <div class="fin-bar-g"><div class="fin-bar" style="height:60px"></div><div class="fin-bar-lbl">fev</div></div>
+              <div class="fin-bar-g"><div class="fin-bar" style="height:44px"></div><div class="fin-bar-lbl">mar</div></div>
+              <div class="fin-bar-g"><div class="fin-bar" style="height:72px"></div><div class="fin-bar-lbl">abr</div></div>
+              <div class="fin-bar-g"><div class="fin-bar" style="height:84px"></div><div class="fin-bar-lbl">mai</div></div>
+              <div class="fin-bar-g"><div class="fin-bar cur" style="height:66px"></div><div class="fin-bar-lbl">jun</div></div>
+            </div>
+          </div>
+          <div>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <div class="fin-breakdown" style="background:var(--white);border-radius:9px;">
+                <div class="fin-breakdown-item"><div class="fin-bl">Seus pacientes</div><div class="fin-bv">R$ 2.424</div></div>
+                <div class="fin-breakdown-item"><div class="fin-bl">Via hub</div><div class="fin-bv">R$ 592</div></div>
+                <div class="fin-breakdown-item"><div class="fin-bl">Comissão hub</div><div class="fin-bv" style="color:#DC2626;">-R$ 176</div></div>
+              </div>
+              <div style="display:flex;gap:8px;">
+                <button class="topbar-cta" style="flex:1;justify-content:center;">Emitir recibo</button>
+                <button class="act-btn" style="flex:1;">Exportar relatório</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><span class="card-title">Últimos pagamentos</span><span class="card-link">Ver todos</span></div>
+          <table class="fin-payment-table">
+            <thead><tr><th>Data</th><th>Paciente</th><th>Sessão</th><th>Valor</th><th>Status</th><th>Recibo</th></tr></thead>
+            <tbody>
+              <tr><td>07/06/2026</td><td><div class="patient-cell"><div class="av av-sm av-amber">AC</div><span style="margin-left:8px;">Ana Costa</span></div></td><td>Sessão 12</td><td style="font-weight:700;color:var(--ink);">R$ 220</td><td><span class="chip chip-green"><span class="chip-dot"></span>Pago</span></td><td><span class="receipt-link">Emitir</span></td></tr>
+              <tr><td>05/06/2026</td><td><div class="patient-cell"><div class="av av-sm av-green">MS</div><span style="margin-left:8px;">Maria Silva</span></div></td><td>Sessão 18</td><td style="font-weight:700;color:var(--ink);">R$ 200</td><td><span class="chip chip-green"><span class="chip-dot"></span>Pago</span></td><td><span class="receipt-link">Ver</span></td></tr>
+              <tr><td>04/06/2026</td><td><div class="patient-cell"><div class="av av-sm av-blue">JR</div><span style="margin-left:8px;">João Rodrigues</span></div></td><td>Sessão 7</td><td style="font-weight:700;color:var(--ink);">R$ 200</td><td><span class="chip chip-green"><span class="chip-dot"></span>Pago</span></td><td><span class="receipt-link">Ver</span></td></tr>
+              <tr><td>03/06/2026</td><td><div class="patient-cell"><div class="av av-sm av-teal">LF</div><span style="margin-left:8px;">Lucas Fontes</span></div></td><td>Sessão 4</td><td style="font-weight:700;color:var(--ink);">R$ 180</td><td><span class="chip chip-green"><span class="chip-dot"></span>Pago</span></td><td><span class="receipt-link">Ver</span></td></tr>
+              <tr><td>02/06/2026</td><td><div class="patient-cell"><div class="av av-sm av-rose">CM</div><span style="margin-left:8px;">Carla Moura</span></div></td><td>Sessão 3</td><td style="font-weight:700;color:var(--ink);">R$ 180</td><td><span class="chip chip-yellow"><span class="chip-dot"></span>Aguardando</span></td><td><span class="receipt-link" style="color:var(--ink-3);">Após pagamento</span></td></tr>
+              <tr><td>01/06/2026</td><td><div class="patient-cell"><div class="av av-sm av-green">PF</div><span style="margin-left:8px;">Paulo Ferreira</span></div></td><td>Sessão 9</td><td style="font-weight:700;color:var(--ink);">R$ 200</td><td><span class="chip chip-green"><span class="chip-dot"></span>Pago</span></td><td><span class="receipt-link">Ver</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ── HUB: NOVOS PACIENTES ───────────────────────────── -->
+      <div class="view" id="view-hub">
+        <div class="pg-head"><h1>Novos Pacientes do Hub</h1><p>O hub encontrou pacientes alinhados ao seu perfil, abordagem e disponibilidade</p></div>
+        <div class="hub-header">
+          <div>
+            <div class="hub-header-title">Como funciona o matching</div>
+            <div class="hub-header-sub">Quando um paciente responde o quiz no marketplace, o algoritmo encontra os psicólogos com maior compatibilidade. Você recebe a indicação, analisa o perfil e decide se aceita. Após aceitar, o paciente agenda diretamente na sua agenda.</div>
+          </div>
+          <span class="hub-badge">3 novos</span>
+        </div>
+        <div class="match-card top">
+          <div class="av av-lg av-teal">LM</div>
+          <div class="match-body">
+            <div class="match-name">Lucas Mendes, 29 anos</div>
+            <div class="match-tags"><span class="match-tag">Ansiedade generalizada</span><span class="match-tag">ACT</span><span class="match-tag">Online</span><span class="match-tag">Manhãs</span></div>
+            <div class="match-loc">São José, SC · Disponível: seg, qua e sex manhãs · Faixa de preço: até R$ 200</div>
+            <div class="match-actions">
+              <button class="act-btn act-btn-prim">Aceitar paciente</button>
+              <button class="act-btn">Ver perfil completo</button>
+              <button class="act-btn act-btn-red">Recusar</button>
+            </div>
+          </div>
+          <div class="match-score-col"><div class="match-score">98%</div><div class="match-score-lbl">compatível</div></div>
+        </div>
+        <div class="match-card">
+          <div class="av av-lg av-blue">JP</div>
+          <div class="match-body">
+            <div class="match-name">Julia Pereira, 34 anos</div>
+            <div class="match-tags"><span class="match-tag">Depressão</span><span class="match-tag">TCC</span><span class="match-tag">Online</span><span class="match-tag">Tardes</span></div>
+            <div class="match-loc">Florianópolis, SC · Disponível: ter e qui tardes · Faixa de preço: até R$ 220</div>
+            <div class="match-actions">
+              <button class="act-btn act-btn-prim">Aceitar paciente</button>
+              <button class="act-btn">Ver perfil completo</button>
+              <button class="act-btn act-btn-red">Recusar</button>
+            </div>
+          </div>
+          <div class="match-score-col"><div class="match-score">92%</div><div class="match-score-lbl">compatível</div></div>
+        </div>
+        <div class="match-card">
+          <div class="av av-lg av-rose">RF</div>
+          <div class="match-body">
+            <div class="match-name">Rafael Fontes, 27 anos</div>
+            <div class="match-tags"><span class="match-tag">Relacionamentos</span><span class="match-tag">ACT</span><span class="match-tag">Online</span><span class="match-tag">Noites</span></div>
+            <div class="match-loc">Palhoça, SC · Disponível: seg, qua e sex noites · Faixa de preço: até R$ 180</div>
+            <div class="match-actions">
+              <button class="act-btn act-btn-prim">Aceitar paciente</button>
+              <button class="act-btn">Ver perfil completo</button>
+              <button class="act-btn act-btn-red">Recusar</button>
+            </div>
+          </div>
+          <div class="match-score-col"><div class="match-score">87%</div><div class="match-score-lbl">compatível</div></div>
+        </div>
+      </div>
+
+      <!-- ── PERFIL ──────────────────────────────────────────── -->
+      <div class="view" id="view-perfil">
+        <div class="pg-head"><h1>Meu Perfil no Marketplace</h1><p>Como os pacientes te encontram no hub</p></div>
+        <div class="profile-grid">
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div class="profile-form-card">
+              <div class="profile-form-head"><div class="profile-form-title">Informações profissionais</div><div class="profile-form-sub">Visível publicamente no marketplace</div></div>
+              <div class="profile-form-body">
+                <div class="form-row">
+                  <div class="form-field"><label class="form-label">Nome completo</label><input class="form-input" value="Dra. Ana Lima"></div>
+                  <div class="form-field"><label class="form-label">CRP</label><input class="form-input" value="12/01234"></div>
+                </div>
+                <div class="form-field"><label class="form-label">Abordagem principal</label>
+                  <select class="form-select"><option selected>Terapia Cognitivo-Comportamental (TCC)</option><option>Psicanálise</option><option>ACT</option><option>Humanista</option><option>Sistêmica</option></select>
+                </div>
+                <div class="form-field"><label class="form-label">Bio (exibida no marketplace)</label>
+                  <textarea class="form-textarea">Psicóloga com 6 anos de experiência em TCC, especializada em ansiedade, depressão e transições de vida. Atendo adultos de forma online com foco em resultados práticos e duradouros.</textarea>
+                </div>
+                <div class="form-field"><label class="form-label">Especialidades</label>
+                  <div class="tags-field">
+                    <span class="tag-pill">Ansiedade <span class="tag-pill-remove">×</span></span>
+                    <span class="tag-pill">Depressão <span class="tag-pill-remove">×</span></span>
+                    <span class="tag-pill">Luto <span class="tag-pill-remove">×</span></span>
+                    <span class="tag-pill">Transições de vida <span class="tag-pill-remove">×</span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="profile-save-row">
+                <button class="topbar-cta">Salvar alterações</button>
+                <span class="profile-save-note">Alterações ficam visíveis no marketplace em até 10 minutos</span>
+              </div>
+            </div>
+            <div class="profile-form-card">
+              <div class="profile-form-head"><div class="profile-form-title">Disponibilidade e valor</div></div>
+              <div class="profile-form-body">
+                <div class="form-row">
+                  <div class="form-field"><label class="form-label">Valor por sessão (R$)</label><input class="form-input" value="200"></div>
+                  <div class="form-field"><label class="form-label">Duração da sessão</label><select class="form-select"><option selected>50 minutos</option><option>60 minutos</option></select></div>
+                </div>
+                <div class="form-field"><label class="form-label">Horários disponíveis para o hub</label>
+                  <div style="font-size:11px;color:var(--ink-3);margin-bottom:8px;">Esses horários serão disponibilizados para pacientes do hub agendarem</div>
+                  <select class="form-select"><option selected>Seg e Qui — 08:00 a 12:00</option></select>
+                </div>
+              </div>
+              <div class="profile-save-row"><button class="topbar-cta">Salvar</button></div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div class="preview-card">
+              <div class="preview-head"><div class="preview-head-title">Pré-visualização no marketplace</div></div>
+              <div class="preview-psi-card">
+                <div class="preview-psi-banner"></div>
+                <div class="preview-psi-body">
+                  <div class="preview-psi-av">AL</div>
+                  <div class="preview-psi-name">Dra. Ana Lima</div>
+                  <div class="preview-psi-crp">CRP 12/01234 · TCC</div>
+                  <div class="preview-psi-tags">
+                    <span class="preview-psi-tag">Ansiedade</span>
+                    <span class="preview-psi-tag">Depressão</span>
+                    <span class="preview-psi-tag">Luto</span>
+                  </div>
+                  <div class="preview-psi-bio">Psicóloga com 6 anos de experiência em TCC, especializada em ansiedade, depressão e transições de vida.</div>
+                  <div class="preview-psi-footer">
+                    <div class="preview-psi-price">R$ 200 / sessão</div>
+                    <div class="preview-psi-avail">Disponível seg e qui</div>
+                  </div>
+                </div>
+              </div>
+              <div class="preview-status"><span class="preview-live-dot"></span>Perfil ativo no marketplace</div>
+            </div>
+            <div class="card" style="padding:16px 18px;">
+              <div style="font-size:12px;font-weight:600;color:var(--ink);margin-bottom:10px;">Estatísticas do perfil</div>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--ink-3);">Visualizações este mês</span><span style="font-weight:600;color:var(--ink);">47</span></div>
+                <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--ink-3);">Contatos recebidos</span><span style="font-weight:600;color:var(--ink);">8</span></div>
+                <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--ink-3);">Taxa de conversão</span><span style="font-weight:600;color:#16A34A;">50%</span></div>
+                <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--ink-3);">Posição no marketplace</span><span style="font-weight:600;color:var(--ink);">#3 em TCC</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end scroll-area -->
+
+    <!-- ── VIDEOCHAMADA (full height) ────────────────────────── -->
+    <div class="view" id="view-video" style="position:absolute;top:0;left:var(--sidebar-w);right:0;bottom:0;z-index:50;border-radius:0;">
+      <div class="video-main">
+        <div class="video-header">
+          <div class="video-header-logo">
+            <div class="logo-mark"><svg viewBox="0 0 24 24"><path d="M12 22c4-4 8-7.5 8-12a8 8 0 0 0-16 0c0 4.5 4 8 8 12z"/></svg></div>
+            <span>Hub de Psicologia</span>
+          </div>
+          <div class="video-session-info">
+            <div class="video-session-patient">Maria Silva · Sessão 18 · TCC</div>
+            <div class="video-session-time">07 jun 2026 · 09:00</div>
+          </div>
+          <div class="video-timer" id="timer">00:00</div>
+        </div>
+        <div class="video-patient-tile">
+          <div style="text-align:center;">
+            <div class="video-patient-av">MS</div>
+            <div class="video-patient-name">Maria Silva</div>
+            <div class="video-patient-status">Câmera desativada</div>
+          </div>
+        </div>
+        <div class="video-self">
+          <div class="video-self-av">AL</div>
+        </div>
+        <div class="video-controls">
+          <div class="video-ctrl-btn" title="Microfone">
+            <svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          </div>
+          <div class="video-ctrl-btn" title="Câmera">
+            <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+          </div>
+          <div class="video-ctrl-btn" title="Compartilhar tela">
+            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <div class="video-ctrl-btn end" title="Encerrar sessão" onclick="goTo('prontuario')">
+            <svg viewBox="0 0 24 24"><path d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07C9.44 17.43 8 15.92 6.91 14.1L5.07 12.26A19.79 19.79 0 0 1 2 3.63 2 2 0 0 1 4 1.45h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91"/><line x1="23" y1="1" x2="1" y2="23"/></svg>
+          </div>
+          <div class="video-ctrl-btn" title="Chat">
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="video-side">
+        <div class="video-side-tabs">
+          <div class="video-side-tab active">Prontuário</div>
+          <div class="video-side-tab">Chat</div>
+        </div>
+        <div class="video-side-content">
+          <div style="font-size:10px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;">Maria Silva — Sessão 18 — TCC</div>
+          <div class="video-note-card">
+            <div class="video-note-date">Sessão 17 · 03 jun 2026</div>
+            <div class="video-note-text">Retomamos os registros de pensamento. Paciente demonstrou evolução significativa na identificação de distorções cognitivas. Catastrofização ainda presente em contextos de avaliação no trabalho. Tarefa: 3 registros de pensamento antes da próxima sessão.</div>
+          </div>
+          <div class="video-note-card">
+            <div class="video-note-date">Sessão 16 · 27 mai 2026</div>
+            <div class="video-note-text">Trabalhamos ativação comportamental após semana com sintomas depressivos mais intensos. Criamos lista de atividades prazerosas e elaboramos plano de ação para a semana seguinte.</div>
+          </div>
+          <div class="video-note-area">
+            <div class="video-note-area-label">Nota desta sessão</div>
+            <textarea placeholder="Registre observações durante a sessão..."></textarea>
+          </div>
+        </div>
+      </div>
     </div>
+
   </main>
 
   <script>
-    var titles = { dashboard: 'Painel', agenda: 'Agenda', pacientes: 'Pacientes' };
+    var titles = {};
+    document.querySelectorAll('.nav-item[data-view]').forEach(function(item) {
+      titles[item.dataset.view] = item.dataset.title || item.textContent.trim();
+    });
+
+    function goTo(viewId) {
+      document.querySelectorAll('.nav-item').forEach(function(n) { n.classList.remove('active'); });
+      var navItem = document.querySelector('.nav-item[data-view="' + viewId + '"]');
+      if (navItem) navItem.classList.add('active');
+
+      document.querySelectorAll('.view').forEach(function(v) { v.classList.remove('active'); });
+      var target = document.getElementById('view-' + viewId);
+      if (target) target.classList.add('active');
+
+      var t = titles[viewId] || viewId;
+      document.getElementById('topbar-title').textContent = t;
+    }
 
     document.querySelectorAll('.nav-item[data-view]').forEach(function(item) {
-      item.addEventListener('click', function() {
-        var v = item.dataset.view;
-        document.querySelectorAll('.nav-item').forEach(function(n) { n.classList.remove('active'); });
-        item.classList.add('active');
-        document.querySelectorAll('.view').forEach(function(view) { view.classList.remove('active'); });
-        var target = document.getElementById('view-' + v);
-        if (target) target.classList.add('active');
-        document.getElementById('topbar-title').textContent = titles[v] || 'Painel';
+      item.addEventListener('click', function() { goTo(item.dataset.view); });
+    });
+
+    // prontuário: show note editor
+    document.querySelectorAll('.pronut-detail-actions .act-btn-prim').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var ed = document.getElementById('note-editor');
+        if (ed) { ed.style.display = 'block'; ed.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
       });
     });
+
+    // video call timer
+    var seconds = 0;
+    function tick() {
+      seconds++;
+      var m = String(Math.floor(seconds / 60)).padStart(2,'0');
+      var s = String(seconds % 60).padStart(2,'0');
+      var el = document.getElementById('timer');
+      if (el) el.textContent = m + ':' + s;
+    }
+    setInterval(tick, 1000);
   </script>
 </body>
 </html>
