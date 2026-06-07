@@ -667,6 +667,39 @@
     .depo-name { font-size: 0.95rem; font-weight: 600; color: var(--ink); text-align: left; }
     .depo-meta { font-size: 0.82rem; color: var(--ink-3); margin-top: 2px; text-align: left; }
 
+    /* ── mobile feature cards (substituem browser-frames no mobile) ─── */
+    .mobile-feature-card { display: none; }
+    .mfc-icon { width: 56px; height: 56px; background: var(--sage-tint); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+    .mfc-icon svg { width: 26px; height: 26px; stroke: var(--verde); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .mfc-title { font-family: var(--font-display); font-size: 1.4rem; color: var(--ink); margin-bottom: 6px; line-height: 1.2; }
+    .mfc-sub { font-size: 0.9rem; color: var(--ink-3); margin-bottom: 24px; line-height: 1.55; }
+    .mfc-items { display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px; }
+    .mfc-item { display: flex; align-items: flex-start; gap: 12px; }
+    .mfc-check { width: 20px; height: 20px; background: var(--sage-tint); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .mfc-check svg { width: 10px; height: 10px; stroke: var(--verde); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .mfc-item > span:last-child { font-size: 0.95rem; color: var(--ink-2); line-height: 1.55; }
+    .mfc-preview { background: var(--paper); border-radius: 10px; padding: 14px 16px; border: 1px solid var(--rule-soft); }
+    .mfc-session-row { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-bottom: 1px solid var(--rule-soft); }
+    .mfc-session-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .mfc-session-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+    .mfc-session-time { font-size: 11px; color: var(--ink-3); width: 34px; flex-shrink: 0; font-family: var(--font-sans); }
+    .mfc-session-name { font-size: 13px; color: var(--ink); flex: 1; font-family: var(--font-sans); font-weight: 500; }
+    .mfc-session-tag { font-size: 10px; padding: 2px 8px; border-radius: 99px; font-family: var(--font-sans); font-weight: 600; flex-shrink: 0; }
+    .mfc-note-card { background: var(--white); border: 1px solid var(--rule-soft); border-radius: 8px; padding: 14px 16px; }
+    .mfc-note-date { font-size: 10px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; font-family: var(--font-sans); font-weight: 600; }
+    .mfc-note-text { font-size: 13px; color: var(--ink-2); line-height: 1.6; font-family: var(--font-sans); }
+    .mfc-match-mini { display: flex; align-items: center; gap: 12px; background: var(--white); border: 1px solid var(--rule-soft); border-radius: 8px; padding: 12px 14px; margin-bottom: 8px; }
+    .mfc-match-mini:last-child { margin-bottom: 0; }
+    .mfc-match-av { width: 36px; height: 36px; border-radius: 50%; background: var(--sage-tint); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: var(--verde); flex-shrink: 0; font-family: var(--font-sans); }
+    .mfc-match-name { font-size: 13px; font-weight: 600; color: var(--ink); font-family: var(--font-sans); }
+    .mfc-match-sub { font-size: 11px; color: var(--ink-3); margin-top: 2px; font-family: var(--font-sans); }
+    .mfc-fin-amount { font-size: 30px; font-weight: 700; color: var(--ink); line-height: 1; margin-bottom: 4px; font-family: var(--font-sans); }
+    .mfc-fin-label { font-size: 11px; color: var(--ink-3); margin-bottom: 16px; font-family: var(--font-sans); }
+    .mfc-fin-growth { font-size: 12px; color: #16A34A; font-weight: 600; margin-bottom: 16px; font-family: var(--font-sans); }
+    .mfc-fin-bar-row { display: flex; align-items: flex-end; gap: 5px; height: 52px; }
+    .mfc-fin-bar { border-radius: 3px 3px 0 0; background: var(--sage-tint); flex: 1; }
+    .mfc-fin-bar.cur { background: var(--verde); }
+
     /* responsive: tablet */
     @media (max-width: 900px) {
       .nav-links { display: none; }
@@ -708,28 +741,16 @@
 
       /* plataforma: tabs em grid 2×2 */
       .platform-tabs { flex-wrap: wrap; gap: 6px; padding: 6px; }
-      .platform-tab { flex: 1 1 calc(50% - 3px); min-width: 0; font-size: 0.82rem; padding: 10px 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .platform-tab { flex: 1 1 calc(50% - 3px); min-width: 0; font-size: 0.84rem; padding: 10px 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-      /* browser-frame: scroll horizontal habilitado para mockups */
-      .platform-view .browser-frame { overflow-x: auto; border-radius: 8px; }
-
-      /* agenda mockup: largura mínima para scroll horizontal */
-      .agenda-view { min-width: 560px; }
-
-      /* prontuário mockup: coluna única, só mostra detalhe */
-      .pronut-wrap { grid-template-columns: 1fr; height: auto; }
-      .pronut-list { display: none; }
-      .pronut-detail { padding: 16px; }
-      .pronut-session-card { padding: 12px; }
-
-      /* match cards */
-      .match-wrap { padding: 14px 16px; }
-      .match-card { padding: 12px 14px; gap: 10px; }
-
-      /* financeiro */
-      .fin-wrap { grid-template-columns: 1fr; padding: 14px 16px; gap: 16px; }
-      .fin-amount { font-size: 22px; }
-      .fin-chart { height: 72px; }
+      /* browser-frames ocultos; mobile-feature-cards visíveis */
+      .platform-view .browser-frame { display: none; }
+      .mobile-feature-card {
+        display: block;
+        background: var(--white); border: 1px solid var(--rule-soft);
+        border-radius: var(--radius-lg); padding: 28px 24px;
+        box-shadow: var(--shadow-md);
+      }
 
       /* formulário */
       .form-row { grid-template-columns: 1fr; }
@@ -930,6 +951,38 @@
 
       <!-- Agenda view -->
       <div class="platform-view active" id="view-agenda">
+        <div class="mobile-feature-card">
+          <div class="mfc-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <h3 class="mfc-title">Agenda inteligente</h3>
+          <p class="mfc-sub">Visualize e organize toda sua semana de atendimentos em um só lugar.</p>
+          <div class="mfc-items">
+            <div class="mfc-item"><span class="mfc-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span>Semana, quinzena e mês em uma tela</span></div>
+            <div class="mfc-item"><span class="mfc-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span>Confirmação automática de sessões por e-mail</span></div>
+            <div class="mfc-item"><span class="mfc-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span>Bloqueio de horários com um toque</span></div>
+          </div>
+          <div class="mfc-preview">
+            <div class="mfc-session-row">
+              <span class="mfc-session-time">09:00</span>
+              <span class="mfc-session-dot" style="background:rgba(61,90,65,0.3)"></span>
+              <span class="mfc-session-name">Maria S.</span>
+              <span class="mfc-session-tag" style="background:rgba(34,197,94,0.12);color:#16A34A">TCC · Confirmada</span>
+            </div>
+            <div class="mfc-session-row">
+              <span class="mfc-session-time">10:00</span>
+              <span class="mfc-session-dot" style="background:rgba(100,130,200,0.35)"></span>
+              <span class="mfc-session-name">João R.</span>
+              <span class="mfc-session-tag" style="background:rgba(34,197,94,0.12);color:#16A34A">ACT · Confirmada</span>
+            </div>
+            <div class="mfc-session-row">
+              <span class="mfc-session-time">11:00</span>
+              <span class="mfc-session-dot" style="background:rgba(180,90,120,0.3)"></span>
+              <span class="mfc-session-name">Ana Costa</span>
+              <span class="mfc-session-tag" style="background:rgba(234,179,8,0.12);color:#B45309">Pendente</span>
+            </div>
+          </div>
+        </div>
         <div class="browser-frame">
           <div class="browser-bar">
             <div class="browser-dots"><span></span><span></span><span></span></div>
@@ -999,6 +1052,24 @@
 
       <!-- Prontuário view -->
       <div class="platform-view" id="view-prontuario">
+        <div class="mobile-feature-card">
+          <div class="mfc-icon">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <h3 class="mfc-title">Prontuário digital</h3>
+          <p class="mfc-sub">Notas de sessão protegidas e organizadas por paciente, acessíveis só por você.</p>
+          <div class="mfc-items">
+            <div class="mfc-item"><span class="mfc-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span>Histórico completo por paciente com busca</span></div>
+            <div class="mfc-item"><span class="mfc-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span>Notas criptografadas e acessíveis só por você</span></div>
+            <div class="mfc-item"><span class="mfc-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span>Emissão de recibos com um clique</span></div>
+          </div>
+          <div class="mfc-preview">
+            <div class="mfc-note-card">
+              <div class="mfc-note-date">Sessão 12 · 04 jun 2026</div>
+              <div class="mfc-note-text">Paciente relatou melhora nos padrões de pensamento automáticos negativos. Trabalhamos reestruturação cognitiva com foco em situações de trabalho.</div>
+            </div>
+          </div>
+        </div>
         <div class="browser-frame">
           <div class="browser-bar">
             <div class="browser-dots"><span></span><span></span><span></span></div>
@@ -1063,6 +1134,28 @@
 
       <!-- Pacientes (matching) view -->
       <div class="platform-view" id="view-pacientes">
+        <div class="mobile-feature-card">
+          <div class="mfc-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3 class="mfc-title">Novos pacientes</h3>
+          <p class="mfc-sub">O hub encontra candidatos compatíveis com seu perfil, abordagem e disponibilidade.</p>
+          <div class="mfc-items">
+            <div class="mfc-item"><span class="mfc-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span>Saiba o que o paciente busca antes de aceitar</span></div>
+            <div class="mfc-item"><span class="mfc-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span>Horários e faixa de preço já filtrados para você</span></div>
+            <div class="mfc-item"><span class="mfc-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span>Aceite ou recuse com contexto completo</span></div>
+          </div>
+          <div class="mfc-preview">
+            <div class="mfc-match-mini">
+              <div class="mfc-match-av">LM</div>
+              <div><div class="mfc-match-name">Lucas Mendes</div><div class="mfc-match-sub">Ansiedade · ACT · São José · Manhãs</div></div>
+            </div>
+            <div class="mfc-match-mini">
+              <div class="mfc-match-av" style="background:rgba(100,130,200,0.15);color:#3456A0">JP</div>
+              <div><div class="mfc-match-name">Julia Pereira</div><div class="mfc-match-sub">Depressão · TCC · Florianópolis · Tardes</div></div>
+            </div>
+          </div>
+        </div>
         <div class="browser-frame">
           <div class="browser-bar">
             <div class="browser-dots"><span></span><span></span><span></span></div>
@@ -1142,6 +1235,31 @@
 
       <!-- Financeiro view -->
       <div class="platform-view" id="view-financeiro">
+        <div class="mobile-feature-card">
+          <div class="mfc-icon">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <h3 class="mfc-title">Controle financeiro</h3>
+          <p class="mfc-sub">Receita consolidada, histórico de pagamentos e comissões do hub, tudo separado.</p>
+          <div class="mfc-items">
+            <div class="mfc-item"><span class="mfc-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span>Receita do mês em tempo real</span></div>
+            <div class="mfc-item"><span class="mfc-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span>Histórico de pagamentos por paciente</span></div>
+            <div class="mfc-item"><span class="mfc-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span>Separa seus pacientes dos indicados pelo hub</span></div>
+          </div>
+          <div class="mfc-preview">
+            <div class="mfc-fin-amount">R$ 2.840</div>
+            <div class="mfc-fin-growth">+18% em relação a maio</div>
+            <div class="mfc-fin-label">Junho 2026 (parcial)</div>
+            <div class="mfc-fin-bar-row">
+              <div class="mfc-fin-bar" style="height:30px"></div>
+              <div class="mfc-fin-bar" style="height:35px"></div>
+              <div class="mfc-fin-bar" style="height:28px"></div>
+              <div class="mfc-fin-bar" style="height:44px"></div>
+              <div class="mfc-fin-bar" style="height:52px"></div>
+              <div class="mfc-fin-bar cur" style="height:42px"></div>
+            </div>
+          </div>
+        </div>
         <div class="browser-frame">
           <div class="browser-bar">
             <div class="browser-dots"><span></span><span></span><span></span></div>
