@@ -589,11 +589,10 @@
       </a>
       <ul class="nav-links">
         <li><a href="#plataforma">Plataforma</a></li>
-        <li><a href="#para-psicologos">Para psicólogos</a></li>
-        <li><a href="#para-pacientes">Para pacientes</a></li>
+        <li><a href="#como-funciona-psi">Como funciona</a></li>
         <li><a href="#precos">Preços</a></li>
       </ul>
-      <a href="#cadastro-psicologo" class="btn btn-primary nav-cta">Sou psicólogo</a>
+      <a href="#cadastro-psicologo" class="btn btn-primary nav-cta">Cadastre-se grátis</a>
     </div>
   </nav>
 
@@ -604,20 +603,20 @@
         <div class="hero-content">
           <div class="hero-badge">
             <span class="hero-badge-dot"></span>
-            Grande Florianópolis
+            Para psicólogos · Grande Florianópolis
           </div>
           <h1 class="display-heading hero-heading">
-            A maior rede de psicólogos<br>
-            <em>da Grande Florianópolis</em>
+            Cresça sua prática.<br>
+            <em>Sem depender de indicação.</em>
           </h1>
           <p class="body-lg hero-sub">
-            Conectamos pacientes a profissionais qualificados e ajudamos psicólogos a crescerem suas agendas, sem depender de indicação.
+            Marketplace de indicações, agenda inteligente, prontuário digital e videochamada em um só lugar. Você cuida dos pacientes, a plataforma cuida do resto.
           </p>
           <div class="hero-actions">
-            <a href="#cadastro-psicologo" class="btn btn-primary btn-lg">Sou psicólogo, quero parceiros</a>
-            <a href="#para-pacientes" class="btn btn-ghost btn-lg">Sou paciente</a>
+            <a href="#cadastro-psicologo" class="btn btn-primary btn-lg">Começar gratuitamente</a>
+            <a href="#plataforma" class="btn btn-ghost btn-lg">Ver a plataforma</a>
           </div>
-          <p class="hero-note">Regulamentado pela Resolução CFP 09/2024. Atendimento online.</p>
+          <p class="hero-note">30 dias grátis, sem cartão. Regulamentado pela Resolução CFP 09/2024.</p>
         </div>
 
         <div class="hero-product">
@@ -1024,7 +1023,7 @@
     <div class="container">
       <div class="psi-grid">
         <div class="psi-content">
-          <span class="section-tag">Para psicólogos</span>
+          <span class="section-tag">Comece hoje</span>
           <h2 class="section-heading">Preencha sua agenda com pacientes qualificados</h2>
           <p class="body-md" style="margin-top:16px;">Você traz sua expertise. Nós trazemos os pacientes. Um sistema simples cuida do resto.</p>
           <div class="psi-benefits">
@@ -1152,104 +1151,6 @@
     </div>
   </section>
 
-  <!-- para pacientes -->
-  <section id="para-pacientes">
-    <div class="container">
-      <div class="pac-grid">
-        <div class="pac-content">
-          <span class="section-tag">Para pacientes</span>
-          <h2 class="section-heading">Encontre o psicólogo certo para você</h2>
-          <p class="body-md" style="margin-top:16px;">Sem pesquisa interminável no Google. Respondendo algumas perguntas simples, você encontra profissionais compatíveis com o que você precisa.</p>
-          <div class="pac-benefits">
-            <div class="pac-benefit-item">
-              <div class="pac-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-              <p>Match por objetivo de terapia, não só por preço</p>
-            </div>
-            <div class="pac-benefit-item">
-              <div class="pac-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-              <p>Psicólogos verificados com CRP ativo em Santa Catarina</p>
-            </div>
-            <div class="pac-benefit-item">
-              <div class="pac-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-              <p>Agendamento online, sem ligação e sem espera</p>
-            </div>
-            <div class="pac-benefit-item">
-              <div class="pac-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-              <p>Atendimento online com preços acessíveis</p>
-            </div>
-            <div class="pac-benefit-item">
-              <div class="pac-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-              <p>Profissionais da Grande Florianópolis que conhecem a realidade local</p>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="waitlist-card">
-            <h3>Entre na lista de espera</h3>
-            <p class="form-sub">A plataforma está em fase de lançamento. Seja avisado primeiro quando abrirmos para pacientes.</p>
-            <form id="form-paciente" onsubmit="handlePacSubmit(event)">
-              <div class="form-group">
-                <label for="pac-nome">Seu nome</label>
-                <input type="text" id="pac-nome" placeholder="Maria Silva" required>
-              </div>
-              <div class="form-group">
-                <label for="pac-email">E-mail</label>
-                <input type="email" id="pac-email" placeholder="maria@exemplo.com" required>
-              </div>
-              <div class="form-group">
-                <label for="pac-objetivo">O que você está buscando?</label>
-                <select id="pac-objetivo" required>
-                  <option value="" disabled selected>Selecione</option>
-                  <option>Ansiedade ou estresse</option>
-                  <option>Depressão ou tristeza</option>
-                  <option>Relacionamentos</option>
-                  <option>Luto ou perda</option>
-                  <option>Autoconhecimento</option>
-                  <option>Carreira e propósito</option>
-                  <option>Outros</option>
-                </select>
-              </div>
-              <button type="submit" class="btn btn-primary btn-lg form-submit">Quero ser avisado</button>
-              <p class="form-legal">Sem spam. Apenas um aviso quando a plataforma estiver disponível.</p>
-            </form>
-            <div class="form-success" id="pac-success">
-              <div class="success-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-              <h4>Você está na lista!</h4>
-              <p>Você será o primeiro a saber quando a plataforma abrir para pacientes.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- como funciona: paciente -->
-  <section id="como-funciona-pac" class="como-funciona">
-    <div class="container">
-      <div class="steps-header">
-        <span class="section-tag">Como funciona para pacientes</span>
-        <h2 class="section-heading">Do quiz ao atendimento em minutos</h2>
-      </div>
-      <div class="steps-grid">
-        <div class="step-item">
-          <div class="step-number">1</div>
-          <h4>Responda um quiz rápido</h4>
-          <p>Cinco perguntas sobre o que você precisa, disponibilidade e preferências. Sem criar conta ainda.</p>
-        </div>
-        <div class="step-item">
-          <div class="step-number">2</div>
-          <h4>Veja profissionais compatíveis</h4>
-          <p>Receba uma lista de psicólogos ranqueados por compatibilidade, com perfil, abordagem e disponibilidade.</p>
-        </div>
-        <div class="step-item">
-          <div class="step-number">3</div>
-          <h4>Agende e comece</h4>
-          <p>Escolha o horário, pague online e receba o link da videochamada. Sem burocracia.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- preços -->
   <section id="precos">
     <div class="container">
@@ -1371,11 +1272,11 @@
   <!-- CTA final -->
   <section id="cta-final">
     <div class="container">
-      <h2 class="section-heading">Pronto para começar?</h2>
-      <p class="body-md">Seja você psicólogo querendo uma agenda mais cheia, ou paciente buscando o profissional certo.</p>
+      <h2 class="section-heading">30 dias grátis para testar tudo.</h2>
+      <p class="body-md">Sem cartão de crédito. Sem compromisso. Configure sua agenda e comece a receber pacientes hoje.</p>
       <div class="cta-final-actions">
-        <a href="#cadastro-psicologo" class="btn btn-white btn-lg">Sou psicólogo, quero parceiros</a>
-        <a href="#para-pacientes" class="btn btn-ghost btn-lg" style="border-color:rgba(199,210,181,0.4);color:var(--sage);">Sou paciente, quero encontrar um psicólogo</a>
+        <a href="#cadastro-psicologo" class="btn btn-white btn-lg">Criar conta gratuitamente</a>
+        <a href="#plataforma" class="btn btn-ghost btn-lg" style="border-color:rgba(199,210,181,0.4);color:var(--sage);">Ver como funciona</a>
       </div>
     </div>
   </section>
@@ -1391,15 +1292,15 @@
             </div>
             <span class="nav-logo-text">Hub de Psicologia</span>
           </div>
-          <p class="footer-desc">Conectando psicólogos e pacientes na Grande Florianópolis. Gestão simples para profissionais, encontro certo para pacientes.</p>
+          <p class="footer-desc">A plataforma de gestão e marketplace para psicólogos da Grande Florianópolis. Agenda, prontuário, financeiro e indicações em um só lugar.</p>
         </div>
         <div class="footer-col">
           <h5>Plataforma</h5>
           <ul>
-            <li><a href="#plataforma">Como funciona</a></li>
-            <li><a href="#para-psicologos">Para psicólogos</a></li>
-            <li><a href="#para-pacientes">Para pacientes</a></li>
+            <li><a href="#plataforma">Recursos</a></li>
+            <li><a href="#como-funciona-psi">Como funciona</a></li>
             <li><a href="#precos">Preços</a></li>
+            <li><a href="#" style="color:var(--ink-3);cursor:default;">Para pacientes (em breve)</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -1434,11 +1335,6 @@
       e.preventDefault();
       document.getElementById('form-psicologo').style.display = 'none';
       document.getElementById('psi-success').classList.add('visible');
-    }
-    function handlePacSubmit(e) {
-      e.preventDefault();
-      document.getElementById('form-paciente').style.display = 'none';
-      document.getElementById('pac-success').classList.add('visible');
     }
   </script>
 </body>
