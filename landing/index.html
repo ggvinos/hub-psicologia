@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hub de Psicologia — Grande Florianópolis</title>
-  <meta name="description" content="A maior rede de psicólogos da Grande Florianópolis. Conectamos pacientes a profissionais qualificados e ajudamos psicólogos a crescerem suas agendas.">
+  <meta name="description" content="Plataforma de gestão para psicólogos da Grande Florianópolis. Agenda, prontuário digital, videochamada e controle financeiro em um só lugar.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
@@ -700,6 +700,24 @@
     .mfc-fin-bar { border-radius: 3px 3px 0 0; background: var(--sage-tint); flex: 1; }
     .mfc-fin-bar.cur { background: var(--verde); }
 
+    /* video call view */
+    .vc-wrap { background: #1a1f1a; border-radius: 0 0 var(--radius-lg) var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; height: 340px; }
+    .vc-main { flex: 1; position: relative; }
+    .vc-patient-video { width: 100%; height: 100%; background: #252b25; display: flex; align-items: center; justify-content: center; position: relative; }
+    .vc-patient-av { width: 64px; height: 64px; border-radius: 50%; background: rgba(107,140,111,0.18); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 600; color: var(--sage); }
+    .vc-patient-name { position: absolute; bottom: 10px; left: 10px; background: rgba(0,0,0,0.55); color: #e8ede8; font-size: 0.72rem; padding: 2px 8px; border-radius: 4px; }
+    .vc-timer { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.55); color: #e8ede8; font-size: 0.7rem; font-variant-numeric: tabular-nums; padding: 2px 10px; border-radius: 20px; }
+    .vc-self-view { position: absolute; top: 10px; right: 10px; width: 76px; height: 58px; background: #333a33; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; }
+    .vc-self-av { font-size: 0.7rem; font-weight: 600; color: var(--sage); opacity: 0.6; }
+    .vc-controls { height: 52px; background: #111511; display: flex; align-items: center; justify-content: center; gap: 14px; }
+    .vc-btn { width: 34px; height: 34px; border-radius: 50%; border: none; display: flex; align-items: center; justify-content: center; cursor: default; }
+    .vc-btn-green { background: rgba(107,140,111,0.22); }
+    .vc-btn-green svg { stroke: var(--sage); }
+    .vc-btn-red { background: rgba(220,60,60,0.28); }
+    .vc-btn-red svg { stroke: #f87171; }
+    .mfc-video-row { display: flex; align-items: center; gap: 10px; padding: 12px; background: var(--paper-2); border-radius: 8px; }
+    .mfc-video-av { width: 40px; height: 40px; border-radius: 50%; background: rgba(107,140,111,0.15); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 600; color: var(--verde-escuro); flex-shrink: 0; }
+
     /* responsive: tablet */
     @media (max-width: 900px) {
       .nav-links { display: none; }
@@ -817,11 +835,11 @@
             Para psicólogos · Grande Florianópolis
           </div>
           <h1 class="display-heading hero-heading">
-            Cresça sua prática.<br>
-            <em>Sem depender de indicação.</em>
+            Gerencie sua prática.<br>
+            <em>Do jeito certo.</em>
           </h1>
           <p class="body-lg hero-sub">
-            Marketplace de indicações, agenda inteligente, prontuário digital e videochamada em um só lugar. Você cuida dos pacientes, a plataforma cuida do resto.
+            Agenda inteligente, prontuário digital, videochamada e controle financeiro em um só lugar. Você cuida dos pacientes, a plataforma cuida do resto.
           </p>
           <div class="hero-actions">
             <a href="#cadastro-psicologo" class="btn btn-primary btn-lg">Começar gratuitamente</a>
@@ -911,7 +929,7 @@
           </div>
           <div class="hero-product-float">
             <span class="hero-product-float-dot"></span>
-            1 novo paciente do hub
+            Sessão confirmada automaticamente
           </div>
         </div>
       </div>
@@ -939,13 +957,13 @@
       <div class="platform-header">
         <span class="section-tag">Plataforma</span>
         <h2 class="section-heading">Tudo que você precisa para gerenciar sua prática</h2>
-        <p class="body-md">Agenda, prontuário, matching com pacientes e financeiro em um só lugar. Sem planilha, sem WhatsApp para confirmar sessão.</p>
+        <p class="body-md">Agenda, prontuário, videochamada e financeiro em um só lugar. Sem planilha, sem WhatsApp para confirmar sessão.</p>
       </div>
 
       <div class="platform-tabs">
         <button class="platform-tab active" data-tab="agenda">Agenda</button>
         <button class="platform-tab" data-tab="prontuario">Prontuário</button>
-        <button class="platform-tab" data-tab="pacientes">Pacientes do Hub</button>
+        <button class="platform-tab" data-tab="video">Videochamada</button>
         <button class="platform-tab" data-tab="financeiro">Financeiro</button>
       </div>
 
@@ -1132,102 +1150,53 @@
         </div>
       </div>
 
-      <!-- Pacientes (matching) view -->
-      <div class="platform-view" id="view-pacientes">
+      <!-- Videochamada view -->
+      <div class="platform-view" id="view-video">
         <div class="mobile-feature-card">
           <div class="mfc-icon">
-            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
           </div>
-          <h3 class="mfc-title">Novos pacientes</h3>
-          <p class="mfc-sub">O hub encontra candidatos compatíveis com seu perfil, abordagem e disponibilidade.</p>
+          <h3 class="mfc-title">Videochamada integrada</h3>
+          <p class="mfc-sub">Atenda online sem sair da plataforma. Sem app externo, sem link avulso.</p>
           <div class="mfc-items">
-            <div class="mfc-item"><span class="mfc-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span>Saiba o que o paciente busca antes de aceitar</span></div>
-            <div class="mfc-item"><span class="mfc-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span>Horários e faixa de preço já filtrados para você</span></div>
-            <div class="mfc-item"><span class="mfc-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span>Aceite ou recuse com contexto completo</span></div>
+            <div class="mfc-item"><span class="mfc-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span>Sala criada automaticamente para cada sessão</span></div>
+            <div class="mfc-item"><span class="mfc-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span>Link enviado ao paciente por e-mail</span></div>
+            <div class="mfc-item"><span class="mfc-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span>Acesse o prontuário direto durante a sessão</span></div>
           </div>
           <div class="mfc-preview">
-            <div class="mfc-match-mini">
-              <div class="mfc-match-av">LM</div>
-              <div><div class="mfc-match-name">Lucas Mendes</div><div class="mfc-match-sub">Ansiedade · ACT · São José · Manhãs</div></div>
-            </div>
-            <div class="mfc-match-mini">
-              <div class="mfc-match-av" style="background:rgba(100,130,200,0.15);color:#3456A0">JP</div>
-              <div><div class="mfc-match-name">Julia Pereira</div><div class="mfc-match-sub">Depressão · TCC · Florianópolis · Tardes</div></div>
+            <div class="mfc-video-row">
+              <div class="mfc-video-av">MS</div>
+              <div>
+                <div class="mfc-match-name">Maria S. · Sessão em andamento</div>
+                <div class="mfc-match-sub">00:23:14 · Online</div>
+              </div>
             </div>
           </div>
         </div>
         <div class="browser-frame">
           <div class="browser-bar">
             <div class="browser-dots"><span></span><span></span><span></span></div>
-            <div class="browser-url">app.hubpsicologia.com.br/hub/novos-pacientes</div>
+            <div class="browser-url">app.hubpsicologia.com.br/sessao/12</div>
           </div>
-          <div class="match-wrap">
-            <div class="match-header">
-              <div>
-                <div class="match-title">Novos pacientes compatíveis</div>
-                <div style="font-size:12px;color:var(--ink-3);margin-top:3px;">O hub encontrou pacientes alinhados ao seu perfil e disponibilidade</div>
-              </div>
-              <span class="match-badge">3 novos</span>
-            </div>
-            <div class="match-card highlight">
-              <div class="match-av">LM</div>
-              <div class="match-info">
-                <div class="match-name">Lucas Mendes</div>
-                <div class="match-tags">
-                  <span class="match-tag">Ansiedade</span>
-                  <span class="match-tag">ACT</span>
-                  <span class="match-tag">Online</span>
-                </div>
-                <div class="match-seeking">Busca ajuda com <strong>ansiedade generalizada</strong></div>
-                <div class="match-details-row">
-                  <span>São José, SC</span><span>·</span><span>Manhãs e tardes</span><span>·</span><span>Até R$ 180/sessão</span>
-                </div>
-                <div class="match-reason">Procura abordagem ACT, disponibilidade coincide com seus horários vagos de terça e quinta.</div>
-                <div class="match-actions">
-                  <button class="match-btn match-btn-accept">Aceitar paciente</button>
-                  <button class="match-btn match-btn-see">Ver perfil</button>
-                </div>
+          <div class="vc-wrap">
+            <div class="vc-main">
+              <div class="vc-patient-video">
+                <div class="vc-patient-av">MS</div>
+                <div class="vc-patient-name">Maria S.</div>
+                <div class="vc-timer">00:23:14</div>
+                <div class="vc-self-view"><span class="vc-self-av">AL</span></div>
               </div>
             </div>
-            <div class="match-card">
-              <div class="match-av av2">JP</div>
-              <div class="match-info">
-                <div class="match-name">Julia Pereira</div>
-                <div class="match-tags">
-                  <span class="match-tag">Depressão</span>
-                  <span class="match-tag">TCC</span>
-                  <span class="match-tag">Online</span>
-                </div>
-                <div class="match-seeking">Busca ajuda com <strong>depressão e baixa autoestima</strong></div>
-                <div class="match-details-row">
-                  <span>Florianópolis, SC</span><span>·</span><span>Tardes</span><span>·</span><span>Até R$ 220/sessão</span>
-                </div>
-                <div class="match-reason">Busca TCC, horário de tarde alinha com seus slots de quarta e sexta ainda disponíveis.</div>
-                <div class="match-actions">
-                  <button class="match-btn match-btn-accept">Aceitar paciente</button>
-                  <button class="match-btn match-btn-see">Ver perfil</button>
-                </div>
-              </div>
-            </div>
-            <div class="match-card">
-              <div class="match-av av3">RF</div>
-              <div class="match-info">
-                <div class="match-name">Rafael Fontes</div>
-                <div class="match-tags">
-                  <span class="match-tag">Relacionamentos</span>
-                  <span class="match-tag">ACT</span>
-                  <span class="match-tag">Online</span>
-                </div>
-                <div class="match-seeking">Busca ajuda com <strong>dificuldades em relacionamentos</strong></div>
-                <div class="match-details-row">
-                  <span>Palhoça, SC</span><span>·</span><span>Noites</span><span>·</span><span>Até R$ 160/sessão</span>
-                </div>
-                <div class="match-reason">Prefere atendimento ACT com foco em comunicação. Horário noturno coincide com sua agenda de segunda.</div>
-                <div class="match-actions">
-                  <button class="match-btn match-btn-accept">Aceitar paciente</button>
-                  <button class="match-btn match-btn-see">Ver perfil</button>
-                </div>
-              </div>
+            <div class="vc-controls">
+              <button class="vc-btn vc-btn-green">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="23" y2="23"/><path d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6"/><path d="M17 16.95A7 7 0 0 1 5 12v-2m14 0v2a7 7 0 0 1-.11 1.23"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+              </button>
+              <button class="vc-btn vc-btn-red">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.42 19.42 0 0 1 4.43 9.88a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.34 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.3 8.9"/><line x1="23" y1="1" x2="1" y2="23"/></svg>
+              </button>
+              <button class="vc-btn vc-btn-green">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+              </button>
             </div>
           </div>
         </div>
@@ -1240,11 +1209,10 @@
             <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
           </div>
           <h3 class="mfc-title">Controle financeiro</h3>
-          <p class="mfc-sub">Receita consolidada, histórico de pagamentos e comissões do hub, tudo separado.</p>
+          <p class="mfc-sub">Receita consolidada e histórico de pagamentos organizados em um só lugar.</p>
           <div class="mfc-items">
             <div class="mfc-item"><span class="mfc-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span>Receita do mês em tempo real</span></div>
             <div class="mfc-item"><span class="mfc-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span>Histórico de pagamentos por paciente</span></div>
-            <div class="mfc-item"><span class="mfc-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span>Separa seus pacientes dos indicados pelo hub</span></div>
           </div>
           <div class="mfc-preview">
             <div class="mfc-fin-amount">R$ 2.840</div>
@@ -1332,16 +1300,16 @@
       <div class="psi-grid">
         <div class="psi-content">
           <span class="section-tag">Comece hoje</span>
-          <h2 class="section-heading">Preencha sua agenda com pacientes qualificados</h2>
-          <p class="body-md" style="margin-top:16px;">Você traz sua expertise. Nós trazemos os pacientes. Um sistema simples cuida do resto.</p>
+          <h2 class="section-heading">Organize sua prática e foque no que importa</h2>
+          <p class="body-md" style="margin-top:16px;">Menos tempo com planilha, WhatsApp e papel. Mais tempo com seus pacientes.</p>
           <div class="psi-benefits">
             <div class="benefit-item">
               <div class="benefit-icon">
                 <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
               </div>
               <div class="benefit-text">
-                <h4>Agenda sempre cheia</h4>
-                <p>Libere seus horários vagos para o hub e receba indicações de pacientes compatíveis com seu perfil.</p>
+                <h4>Agenda organizada</h4>
+                <p>Visualize toda a semana, bloqueie horários e envie confirmações automáticas por e-mail. Sem planilha, sem WhatsApp.</p>
               </div>
             </div>
             <div class="benefit-item">
@@ -1359,16 +1327,16 @@
               </div>
               <div class="benefit-text">
                 <h4>Custo acessível</h4>
-                <p>Assinatura mensal mais barata que os concorrentes nacionais. Comissão só sobre pacientes que a plataforma trouxer.</p>
+                <p>Assinatura mensal mais barata que os concorrentes nacionais. Sem taxa de adesão e sem fidelidade.</p>
               </div>
             </div>
             <div class="benefit-item">
               <div class="benefit-icon">
-                <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
               </div>
               <div class="benefit-text">
-                <h4>Pacientes compatíveis</h4>
-                <p>Nosso sistema de matching filtra por especialidade, abordagem e objetivo. Você atende quem realmente pode ajudar.</p>
+                <h4>Videochamada integrada</h4>
+                <p>Atenda online direto pela plataforma. Sem Zoom, sem Meet, sem link avulso. A sala é criada automaticamente para cada sessão.</p>
               </div>
             </div>
           </div>
@@ -1409,15 +1377,6 @@
                   <option>Outra</option>
                 </select>
               </div>
-              <div class="form-group">
-                <label for="psi-horarios">Horários vagos por semana (estimativa)</label>
-                <select id="psi-horarios" required>
-                  <option value="" disabled selected>Selecione</option>
-                  <option>1 a 3 horários</option>
-                  <option>4 a 8 horários</option>
-                  <option>Mais de 8 horários</option>
-                </select>
-              </div>
               <button type="submit" class="btn btn-primary btn-lg form-submit">Quero ser parceiro</button>
               <p class="form-legal">Seus dados não são compartilhados com terceiros. Entraremos em contato em até 48h.</p>
             </form>
@@ -1453,23 +1412,23 @@
     <div class="container">
       <div class="steps-header">
         <span class="section-tag">Como funciona para psicólogos</span>
-        <h2 class="section-heading">Três passos para uma agenda mais cheia</h2>
+        <h2 class="section-heading">Três passos para começar</h2>
       </div>
       <div class="steps-grid">
         <div class="steps-connector"></div>
         <div class="step-item">
           <div class="step-number">1</div>
           <h4>Cadastre-se e configure seu perfil</h4>
-          <p>Preencha sua bio, abordagem, especialidades e disponibilidade. O perfil fica visível no marketplace após validação do CRP.</p>
+          <p>Preencha sua bio, abordagem, especialidades e disponibilidade. Configure e comece a usar no mesmo dia.</p>
         </div>
         <div class="step-item">
           <div class="step-number">2</div>
-          <h4>Libere os horários para o hub</h4>
-          <p>Defina quais horários vagos você quer disponibilizar. O sistema cuida do agendamento, pagamento e confirmações.</p>
+          <h4>Configure sua agenda</h4>
+          <p>Defina seus horários de atendimento. O sistema cuida das confirmações automáticas e dos lembretes.</p>
         </div>
         <div class="step-item">
           <div class="step-number">3</div>
-          <h4>Receba pacientes e gerencie tudo</h4>
+          <h4>Atenda e gerencie tudo</h4>
           <p>Atenda pela plataforma, registre notas de sessão, emita recibos e acompanhe seus atendimentos em um só lugar.</p>
         </div>
       </div>
@@ -1488,7 +1447,7 @@
           <span class="depo-star">&#9733;</span>
         </div>
         <blockquote class="depo-quote">
-          "Nos primeiros 30 dias recebi 2 novos pacientes pelo hub. Minha agenda tinha 4 horários vagos toda semana. Hoje estou com lista de espera."
+          "Antes eu perdia 40 minutos por dia só confirmando sessão pelo WhatsApp. Hoje a plataforma faz isso automaticamente. Organização que faz diferença."
         </blockquote>
         <div class="depo-author">
           <div class="depo-av">BL</div>
@@ -1539,19 +1498,10 @@
             </li>
             <li class="pricing-feature">
               <span class="pricing-feature-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
-              Até 3 novos pacientes/mês via marketplace do hub
-            </li>
-            <li class="pricing-feature">
-              <span class="pricing-feature-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
-              Perfil público no marketplace verificado por CRP
-            </li>
-            <li class="pricing-feature">
-              <span class="pricing-feature-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
               Suporte via WhatsApp em horário comercial
             </li>
           </ul>
           <a href="#cadastro-psicologo" class="btn btn-primary btn-lg pricing-cta">Começar gratuitamente</a>
-          <p class="pricing-note">20% de comissão sobre pacientes indicados pelo hub após o período gratuito. Sem cobrança sobre seus pacientes próprios.</p>
         </div>
         <div class="pricing-info-col">
           <div class="pricing-info-item">
@@ -1569,7 +1519,7 @@
             </div>
             <div>
               <div class="pricing-info-title">Setup em 10 minutos</div>
-              <div class="pricing-info-desc">Cadastro, validação de CRP e configuração da agenda. Você começa a receber pacientes no mesmo dia.</div>
+              <div class="pricing-info-desc">Cadastro, validação de CRP e configuração da agenda. Você começa a atender no mesmo dia.</div>
             </div>
           </div>
           <div class="pricing-info-item">
@@ -1577,8 +1527,8 @@
               <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
             </div>
             <div>
-              <div class="pricing-info-title">Pacientes próprios: sem custo extra</div>
-              <div class="pricing-info-desc">A comissão de 20% se aplica apenas a pacientes que o hub indicou. Seus pacientes diretos não geram comissão.</div>
+              <div class="pricing-info-title">Suporte real, não chatbot</div>
+              <div class="pricing-info-desc">Atendimento via WhatsApp em horário comercial por quem conhece a plataforma. Sem fila de ticket.</div>
             </div>
           </div>
         </div>
@@ -1623,7 +1573,7 @@
   <section id="cta-final">
     <div class="container">
       <h2 class="section-heading">30 dias grátis para testar tudo.</h2>
-      <p class="body-md">Sem cartão de crédito. Sem compromisso. Configure sua agenda e comece a receber pacientes hoje.</p>
+      <p class="body-md">Sem cartão de crédito. Sem compromisso. Configure sua agenda e comece a atender com mais organização hoje.</p>
       <div class="cta-final-actions">
         <a href="#cadastro-psicologo" class="btn btn-white btn-lg">Criar conta gratuitamente</a>
         <a href="#plataforma" class="btn btn-ghost btn-lg" style="border-color:rgba(199,210,181,0.4);color:var(--sage);">Ver como funciona</a>
@@ -1642,7 +1592,7 @@
             </div>
             <span class="nav-logo-text">Hub de Psicologia</span>
           </div>
-          <p class="footer-desc">A plataforma de gestão e marketplace para psicólogos da Grande Florianópolis. Agenda, prontuário, financeiro e indicações em um só lugar.</p>
+          <p class="footer-desc">A plataforma de gestão para psicólogos da Grande Florianópolis. Agenda, prontuário, videochamada e financeiro em um só lugar.</p>
         </div>
         <div class="footer-col">
           <h5>Plataforma</h5>
